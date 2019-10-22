@@ -36,7 +36,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
-        <div className="block-break" />
+        <div className="break--style1" />
         <div className="header__bottom">
           <div className="container">
             <nav className="nav--vertical">

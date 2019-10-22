@@ -1,5 +1,5 @@
 header {
-  max-height: 115px;
+  /* max-height: 115px; */
   object-fit: contain;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
@@ -86,7 +86,7 @@ header {
   margin-left: 25px;
 }
 
-.block-break {
+.break--style1 {
   height: 1px;
   background-color: #ececec;
 }
@@ -100,12 +100,15 @@ header {
 .nav--vertical {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 .nav--vertical__container {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 .nav--vertical__container .nav--vertical__item a {
   text-decoration: none;
@@ -117,7 +120,7 @@ header {
   margin-left: 19px;
 }
 .nav--vertical__item__icon {
-  margin-left: 5px;
+  margin-left: .5rem;
 }
 
 

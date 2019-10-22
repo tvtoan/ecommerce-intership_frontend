@@ -1,0 +1,3 @@
+block: "block"
+element: "block__elem"
+modifier: "block--hidden", "block__elem--mod", "block__elem--theme-xmas"

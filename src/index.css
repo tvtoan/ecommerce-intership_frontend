@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --white: #ffffff;
+  --charcoal-grey: #3d3d3f;
+  --dark-grey: #202124;
+  --white-two: #f6f6f6;
+  --white-three: #ededed;
+  --white-four: #d4d3d3;
+  --pea-green: #82bf11;
+  --strawberry: #f63f45;
+  --greyish-two: #b7b7b7;
+  --pale-orange: #ffa15f;
+  --pumpkin-orange: #ff7413;
+  --bright-orange: #ff6900;
+  --apricot: #ffc371;
+  --greyish-brown: #4d4d4d;
+  --pinkish-grey: #cccccc;
+  --greyish: #acacac;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* ===== FONTS ===== */
+@font-face {
+  font-family: Montserrat;
+  src: local(Montserrat-Regular),
+    url('assets/fonts/Montserrat-Regular.ttf') format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
 }
+
+@font-face {
+  font-family: Montserrat;
+  src: local(Montserrat-Italic),
+    url('assets/fonts/Montserrat-Italic.ttf') format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: local(Montserrat-Medium),
+    url('assets/fonts/Montserrat-Medium.ttf') format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: local(Montserrat-MediumItalic),
+    url('assets/fonts/Montserrat-MediumItalic.ttf') format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: local(Montserrat-Bold),
+    url('assets/fonts/Montserrat-Bold.ttf') format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .875rem;
+}
+
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+input:focus,
+input:active {
+  outline: none;
+}
+

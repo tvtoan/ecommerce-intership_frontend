@@ -1,0 +1,126 @@
+header {
+  max-height: 115px;
+  object-fit: contain;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+}
+.header__top {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 69px;
+  padding-top: 21px;
+  padding-bottom: 13px;
+  position: relative;
+}
+.header__search {
+  width: 181px;
+  height: 35px;
+  border-radius: 17px;
+  border: 1px solid var(--greyish-two);
+  padding-left: 15px;
+  padding-right: 12px;
+  display: flex;
+  align-items: center;
+}
+.header__search .header__search-input-field {
+  border: none;
+  max-width: 115px;
+  color: var(--pinkish-grey);
+  line-height: 1.57;
+  letter-spacing: normal;
+}
+.header__search-input-field::placeholder,
+.header__search-input-field:-ms-input-placeholder,
+.header__search-input-field::-ms-input-placeholder { /* Microsoft Edge */
+  color: red;
+}
+.header__search-icon {
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.header__top--center {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header__top--right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.avatar-user {
+  width: 2rem;
+  height: 2rem;
+  opacity: 0.8;
+  border: 2px solid var(--pale-orange);
+  border-radius: 100%;
+  object-fit: cover;
+}
+.cart {
+  position: relative;
+}
+.cart span {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: var(--pale-orange);
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1.83;
+  letter-spacing: normal;
+  color: var(--white);
+  border-radius: 100%;
+  text-align: center;
+  vertical-align: middle;
+  top: -7px;
+  right: -3px;
+}
+.avatar-user + .cart {
+  margin-left: 25px;
+}
+
+.block-break {
+  height: 1px;
+  background-color: #ececec;
+}
+
+.header__bottom {
+  width: 100%;
+  height: 45px;
+}
+
+/* ===== Navigation ===== */
+.nav--vertical {
+  display: flex;
+  justify-content: center;
+}
+.nav--vertical__container {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  padding-left: 0;
+}
+.nav--vertical__container .nav--vertical__item a {
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1.57;
+  color: var(--dark-grey);
+}
+.nav--vertical__container .nav--vertical__item + .nav--vertical__item {
+  margin-left: 19px;
+}
+.nav--vertical__item__icon {
+  margin-left: 5px;
+}
+
+
+
+
+

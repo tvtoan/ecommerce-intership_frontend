@@ -1,13 +1,13 @@
 .container-fluid {
   max-width: 100%;
-  height: 100%;
 }
 .container {
   margin: auto;
   max-width: 1180px;
+}
+.full-height {
   height: 100%;
 }
-
 .body-demo {
   min-height: 500px;
 }

@@ -8,14 +8,26 @@ header {
 .header__top {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* height: 69px; */
-  padding-top: 21px;
-  padding-bottom: 13px;
+  height: 69px;
+  /* padding: 21px 0 13px; */
   position: relative;
 }
+.header__top--left,
+.header__top--right {
+  flex: 1;
+  height: 100%;
+  display: flex;
+}
+.header__top--left {
+  align-items: center;
+  justify-content: flex-start;
+}
+.header__top--right {
+  justify-content: flex-end;
+}
+/* == .header__top--left == */
 .header__search {
   width: 181px;
   height: 35px;
@@ -43,22 +55,54 @@ header {
   object-fit: contain;
   opacity: 0.6;
 }
+/* == .header__top--center == */
 .header__top--center {
-  position: absolute;
+  /* position: absolute;
   top: 28px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
 }
-.header__top--right {
+/* === .header__top--right === */
+.header__top--right .header__top--right__item {
+  display: flex;
+  height: 100%;
+}
+.header__top--right .header__top--right__item + .header__top--right__item {
+  margin-left: 29px;
+}
+/* == .auth == */
+.auth {
+  cursor: pointer;
+  display: flex;
+}
+/* = .auth__register = */
+.auth .auth__register {
+  cursor: inherit;
+  align-self: stretch;
+}
+/* = .auth__login = */
+.auth .auth__login {
+  border: 1px solid var(--pale-orange);
+  border-radius: 100px;
+  font-weight: 700;
+  text-align: center;
+  color: #ff7e24;
+  min-width: 120px;
+  min-height: 35px;
+  align-self: center;
+}
+.auth .auth__register + .auth__login {
+  margin-left: 24px;
+}
+/* = .auth__avatar-user = */
+.auth__avatar-user {
+  line-height: 0;
+  position: relative;
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
-.avatar-user {
-  position: relative;
-  line-height: 0;
-  cursor: pointer;
-}
-.avatar-user img {
+.auth__avatar-user img {
   width: 2rem;
   height: 2rem;
   opacity: 0.8;
@@ -66,24 +110,24 @@ header {
   border-radius: 100%;
   object-fit: cover;
 }
-.avatar-user .avatar-user__dropdown {
+.auth__avatar-user .auth__avatar-user__dropdown {
   min-width: 181px;
   box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
   border: solid 0.5px #eaeaea;
   background-color: #fbfbfb;
   position: absolute;
-  top: calc(100% + 19px);
+  top: calc(100% + 3px);
   right: 0;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
   transition: all .3s ease;
 }
-.avatar-user .avatar-user__dropdown ul {
+.auth__avatar-user .auth__avatar-user__dropdown ul {
   padding: 0;
   margin: 0;
 }
-.avatar-user .avatar-user__dropdown ul li {
+.auth__avatar-user .auth__avatar-user__dropdown ul li {
   padding: 7px 13px;
   font-size: .75rem;
   font-weight: 500;
@@ -91,21 +135,27 @@ header {
   color: var(--greyish-brown);
   cursor: pointer;
 }
-.avatar-user .avatar-user__dropdown ul li + li {
+.auth__avatar-user .auth__avatar-user__dropdown ul li + li {
   border-top: 1px solid #ececec;
 }
-.avatar-user .avatar-user__dropdown button {
+.auth__avatar-user .auth__avatar-user__dropdown button {
   cursor: inherit;
 }
-.avatar-user:hover .avatar-user__dropdown {
+.auth__avatar-user:hover .auth__avatar-user__dropdown {
   opacity: 1;
   visibility: visible;
 }
-.cart {
+/* == .cart == */
+.cart:hover .cart__dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.cart__btn {
   position: relative;
   line-height: 0;
+  align-self: center;
 }
-.cart span {
+.cart__btn span {
   position: absolute;
   width: 18px;
   height: 18px;
@@ -121,9 +171,81 @@ header {
   top: -7px;
   right: -3px;
 }
-.auth + .cart {
-  margin-left: 25px;
+/* = .cart__dropdown = */
+.cart__dropdown {
+  max-width: 270px;
+  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+  border: solid 0.5px #eaeaea;
+  background-color: #fbfbfb;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: -3px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease;
 }
+.cart__dropdown ul {
+  padding: 0;
+  margin: 0;
+}
+.cart__dropdown__item a {
+  display: flex;
+  padding: 10px 22px 10px 7px;
+  align-items: center;
+}
+.cart__dropdown__item + .cart__dropdown__item {
+  border-top: 1px solid #ececec;
+}
+.cart__dropdown__item .cart__dropdown__item__image {
+  width: 60px;
+  height: 60px;
+}
+.cart__dropdown__item .cart__dropdown__item__image img {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
+}
+.cart__dropdown__item__info {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart__dropdown__item__image + .cart__dropdown__item__info {
+  margin-left: 20px;
+}
+.cart__dropdown__item .cart__dropdown__item__info__name-product {
+  font-size: .75rem;
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--greyish-brown);
+  text-transform: capitalize;
+  white-space: normal;
+  margin: 0;
+  flex: 1 0 100%;
+}
+.cart__dropdown__item .cart__dropdown__item__info__price {
+  font-size: .75rem;
+  line-height: 1.83;
+  color: var(--greyish-brown);
+}
+.cart__dropdown__item .cart__dropdown__item__info__detail {
+  opacity: 0.4;
+  font-size: .75rem;
+  line-height: 1.83;
+  text-align: right;
+  color: var(--dark-grey);
+}
+.cart__dropdown__item .cart__dropdown__item__info__detail > span + span::before {
+  content: ' • ';
+}
+.cart__dropdown__item .cart__dropdown__item__info__price,
+.cart__dropdown__item .cart__dropdown__item__info__detail {
+  margin-top: 4px;
+}
+
+
 .break--style1 {
   height: 1px;
   background-color: #ececec;
@@ -133,27 +255,6 @@ header {
   height: 45px;
 }
 
-/* ===== Auth ===== */
-.auth {
-  align-self: stretch;
-  cursor: pointer;
-  display: flex;
-}
-.auth .auth__register {
-  cursor: inherit;
-}
-.auth .auth__login {
-  border: 1px solid var(--pale-orange);
-  border-radius: 100px;
-  font-weight: 700;
-  text-align: center;
-  color: #ff7e24;
-  min-width: 120px;
-  min-height: 35px;
-}
-.auth .auth__register + .auth__login {
-  margin-left: 24px;
-}
 /* ===== Navigation ===== */
 .nav--horizontal {
   display: flex;
@@ -180,7 +281,6 @@ header {
   color: var(--bright-orange);
 }
 .nav--horizontal__container .nav--horizontal__item a {
-  text-decoration: none;
   font-weight: inherit;
   line-height: inherit;
   color: inherit;

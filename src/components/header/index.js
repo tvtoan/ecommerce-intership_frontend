@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as IconSearch } from "assets/images/search.svg";
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { ReactComponent as Cart } from "assets/images/cart.svg";
+import product1 from "assets/images/web/product-1.jpeg";
+import product2 from "assets/images/web/product-2.jpeg";
 
 import "./style.css";
 
@@ -25,35 +27,83 @@ export default class index extends Component {
             <Logo />
           </div>
           <div className="header__top--right">
-            <div className="auth">
-              {/* <button className="flat-button auth__register">Register</button>
-              <button className="flat-button auth__login">Log In</button> */}
-              <div className="avatar-user">
-                <img
-                  src="https://www.alvinailey.org/sites/default/files/melanie-person.jpg"
-                  alt="person-avatar"
-                />
-                <div className="avatar-user__dropdown">
-                  <ul>
-                    <li>
-                      <button className="flat-button">Account setting</button>
-                    </li>
-                    <li>
-                      <button className="flat-button">Logout</button>
-                    </li>
-                  </ul>
+            <div className="header__top--right__item">
+              <div className="auth">
+                {/* <button className="flat-button auth__register">Register</button>
+                <button className="flat-button auth__login">Log In</button> */}
+                <div className="auth__avatar-user">
+                  <img
+                    src="https://www.alvinailey.org/sites/default/files/melanie-person.jpg"
+                    alt="person-avatar"
+                  />
+                  <div className="auth__avatar-user__dropdown">
+                    <ul>
+                      <li>
+                        <button className="flat-button">Account setting</button>
+                      </li>
+                      <li>
+                        <button className="flat-button">Logout</button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="cart">
-              <Cart />
-              <span>7</span>
+            <div className="header__top--right__item cart">
+              <a href="#/" className="cart__btn">
+                <Cart />
+                <span>7</span>
+              </a>
+              <div className="cart__dropdown">
+                <ul>
+                  <li className="cart__dropdown__item">
+                    <a href="#/">
+                      <div className="cart__dropdown__item__image">
+                        <img src={product1} alt="" />
+                      </div>
+                      <div className="cart__dropdown__item__info">
+                        <h3 className="cart__dropdown__item__info__name-product">
+                          new balance men's street backpack
+                        </h3>
+                        <span className="cart__dropdown__item__info__price">
+                          $485
+                        </span>
+                        <div className="cart__dropdown__item__info__detail">
+                          <span className="size">S</span>
+                          <span className="color">Black</span>
+                          <span className="quantity">1 pcs</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="cart__dropdown__item">
+                    <a href="#/">
+                      <div className="cart__dropdown__item__image">
+                        <img src={product2} alt="" />
+                      </div>
+                      <div className="cart__dropdown__item__info">
+                        <h3 className="cart__dropdown__item__info__name-product">
+                          lyle &amp; scott men's short sleeve camo pocket
+                        </h3>
+                        <span className="cart__dropdown__item__info__price">
+                          $85
+                        </span>
+                        <div className="cart__dropdown__item__info__detail">
+                          <span className="size">XXL</span>
+                          <span className="color">White</span>
+                          <span className="quantity">3 pcs</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
         <div className="break--style1" />
         <div className="header__bottom">
-          <div className="container">
+          <div className="container full-height">
             <nav className="nav--horizontal">
               <ul className="nav--horizontal__container">
                 <li className="nav--horizontal__item">

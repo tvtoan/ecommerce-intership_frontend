@@ -19,23 +19,23 @@ footer {
   display: flex;
   justify-content: space-between;
 }
-footer .nav--vertical__container .nav--vertical__item a {
+footer .nav--horizontal__container .nav--horizontal__item a {
   color: var(--greyish-two);
 }
-.footer__top .nav--vertical__container .nav--vertical__item a {
+.footer__top .nav--horizontal__container .nav--horizontal__item a {
   font-weight: normal;
 }
-.footer__top .nav--vertical__container .nav--vertical__item + .nav--vertical__item {
+.footer__top .nav--horizontal__container .nav--horizontal__item + .nav--horizontal__item {
   margin-left: 3rem;
 }
-.footer__bottom .nav--vertical__container .nav--vertical__item a {
+.footer__bottom .nav--horizontal__container .nav--horizontal__item a {
   font-size: .75rem;
   line-height: 1.83;
 }
-.footer__bottom .nav--vertical:nth-child(0) {
+.footer__bottom .nav--horizontal:nth-child(0) {
   justify-content: flex-start;
 }
-.footer__bottom .nav--vertical:nth-child(1) {
+.footer__bottom .nav--horizontal:nth-child(1) {
   justify-content: flex-end;
 }
 

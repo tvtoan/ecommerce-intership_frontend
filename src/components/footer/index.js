@@ -11,24 +11,24 @@ export default class index extends Component {
         <div className="container">
           <div className="footer__top">
             <Logo />
-            <nav className="nav--vertical">
-              <ul className="nav--vertical__container">
-                <li className="nav--vertical__item">
+            <nav className="nav--horizontal">
+              <ul className="nav--horizontal__container">
+                <li className="nav--horizontal__item">
                   <a href="#/">Home</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Products</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Services</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">About us</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Help</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Contacts</a>
                 </li>
               </ul>
@@ -53,34 +53,34 @@ export default class index extends Component {
           </div>
           <div className="break--style2"></div>
           <div className="footer__bottom">
-            <nav className="nav--vertical">
-              <ul className="nav--vertical__container">
-                <li className="nav--vertical__item">
+            <nav className="nav--horizontal">
+              <ul className="nav--horizontal__container">
+                <li className="nav--horizontal__item">
                   <a href="#/">Home</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Products</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Services</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">About us</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Help</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Contacts</a>
                 </li>
               </ul>
             </nav>
-            <nav className="nav--vertical">
-              <ul className="nav--vertical__container">
-                <li className="nav--vertical__item">
+            <nav className="nav--horizontal">
+              <ul className="nav--horizontal__container">
+                <li className="nav--horizontal__item">
                   <a href="#/">Privacy Policy</a>
                 </li>
-                <li className="nav--vertical__item">
+                <li className="nav--horizontal__item">
                   <a href="#/">Terms &amp; Conditions</a>
                 </li>
               </ul>

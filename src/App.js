@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderPage from './components/header';
 import FooterPage from './components/footer';
+import HomePage from './components/homepage';
 
 import './App.css';
 
@@ -8,7 +9,7 @@ function App() {
   return (
     <div>
       <HeaderPage />
-      <main className="body-demo container"></main>
+      <HomePage />
       <FooterPage />
     </div>
   );

@@ -180,6 +180,7 @@ header {
   position: absolute;
   top: calc(100% + 4px);
   right: -3px;
+  z-index: 100;
   opacity: 0;
   visibility: hidden;
   transition: all .3s ease;

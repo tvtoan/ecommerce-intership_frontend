@@ -8,7 +8,7 @@
 .full-height {
   height: 100%;
 }
-.body-demo {
-  min-height: 500px;
+main {
+  padding: 37px 0 57px;
 }
 

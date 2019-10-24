@@ -97,6 +97,9 @@ export default class index extends Component {
                     </a>
                   </li>
                 </ul>
+                <a href="#/" className="cart__dropdown__view-cart">
+                  View cart
+                </a>
               </div>
             </div>
           </div>

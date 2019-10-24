@@ -245,6 +245,21 @@ header {
 .cart__dropdown__item .cart__dropdown__item__info__detail {
   margin-top: 4px;
 }
+.cart__dropdown .cart__dropdown__view-cart {
+  border-top: 1px solid #ececec;
+  font-weight: 700;
+  color: var(--pale-orange);
+  padding: 24px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  background-color: var(--white);
+  transition: all 0.3s ease;
+}
+.cart__dropdown .cart__dropdown__view-cart:hover {
+  background-color: var(--pale-orange);
+  color: var(--white);
+}
 
 
 .break--style1 {

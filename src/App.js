@@ -1,10 +1,11 @@
 import React from 'react';
 import HeaderPage from './components/header';
 import FooterPage from './components/footer';
-import HomePage from './pages/homepage';
+// import HomePage from './pages/homepage';
 // import RegisterModal from './components/auth/register';
 // import LoginModal from './components/auth/login';
-import ForgotPassModal from './components/auth/forgot-pass';
+// import ForgotPassModal from './components/auth/forgot-pass';
+import ProductListPage from "./pages/product-list";
 
 import './App.css';
 
@@ -12,13 +13,11 @@ function App() {
   return (
     <div className="web-shop">
       <HeaderPage />
-      <main className="container">
-        <HomePage />
-      </main>
+      <ProductListPage />
       <FooterPage />
       {/* <RegisterModal /> */}
       {/* <LoginModal /> */}
-      <ForgotPassModal />
+      {/* <ForgotPassModal /> */}
     </div>
   );
 }

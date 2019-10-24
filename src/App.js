@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderPage from './components/header';
 import FooterPage from './components/footer';
-import HomePage from './components/homepage';
+import HomePage from './pages/homepage';
 // import RegisterModal from './components/auth/register';
 // import LoginModal from './components/auth/login';
 import ForgotPassModal from './components/auth/forgot-pass';
@@ -12,7 +12,9 @@ function App() {
   return (
     <div className="web-shop">
       <HeaderPage />
-      <HomePage />
+      <main className="container">
+        <HomePage />
+      </main>
       <FooterPage />
       {/* <RegisterModal /> */}
       {/* <LoginModal /> */}

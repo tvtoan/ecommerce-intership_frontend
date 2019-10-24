@@ -15,6 +15,7 @@
   --greyish-brown: #4d4d4d;
   --pinkish-grey: #cccccc;
   --greyish: #acacac;
+  --dark-grey-rgb: 32, 33, 36;
 }
 
 /* ===== FONTS ===== */
@@ -94,6 +95,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: .875rem;
   line-height: 1.57;
+  color: var(--dark-grey);
 }
 
 /* ===== RESET ===== */

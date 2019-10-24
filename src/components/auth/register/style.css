@@ -1,0 +1,11 @@
+.term {
+  max-width: 284px;
+  text-align: center;
+  margin: auto;
+  padding: 17px 0 51px;
+}
+.term a, .modal-register .modal__footer a {
+  font-weight: 700;
+  color: var(--pumpkin-orange);
+  text-decoration: underline;
+}

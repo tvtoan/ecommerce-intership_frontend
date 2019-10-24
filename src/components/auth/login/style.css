@@ -1,0 +1,14 @@
+.form-login__method {
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-login__method .forgot-pass {
+  font-weight: 600;
+  text-align: right;
+  color: var(--greyish-brown);
+}
+.modal-login .form-login__method + .btn-login {
+  margin-top: 46px;
+}

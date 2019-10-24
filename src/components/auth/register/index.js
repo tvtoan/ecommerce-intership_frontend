@@ -55,10 +55,7 @@ export default class index extends Component {
                 <a href="#/">Terms of Service</a> and{" "}
                 <a href="#/">Privacy Policy</a>
               </div>
-              <button
-                type="button"
-                className="button btn-register"
-              >
+              <button type="button" className="button btn-register">
                 register
               </button>
             </form>

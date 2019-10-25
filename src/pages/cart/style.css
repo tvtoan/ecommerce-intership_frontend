@@ -1,0 +1,211 @@
+.cart-page {
+  display: grid;
+  /* grid-template-columns: 1fr 27.96%; */
+  grid-template-columns: 1fr 330px;
+  column-gap: 70px;
+}
+.cart-page__heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.33;
+  color: var(--dark-grey);
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+}
+.cart-page__main {
+}
+.cart-page__side-right {
+  grid-column: 2 / 3;
+}
+.cart-page__heading + .cart-page__main-section {
+  margin-top: 26px;
+}
+
+.cart-page__summary-section__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.57;
+  color: var(--dark-grey);
+  margin: 0;
+}
+.cart-page__summary-section__content {
+  width: 100%;
+  height: 148px;
+  background-color: #f9f9f9;
+  padding: 32px 30px 24px;
+  font-weight: 500;
+  line-height: 1.57;
+  color: var(--dark-grey);
+}
+.cart-page__checkout-summary__rows {
+  padding-bottom: 15px;
+  vertical-align: middle;
+  border-collapse: collapse;
+  width: 100%;
+}
+.cart-page__summary-section__title + .cart-page__summary-section__content {
+  margin-top: 10px;
+}
+.cart-page__summary-section__content + .cart-page__order-total__checkout {
+  margin-top: 13px;
+}
+.cart-page__checkout-summary__row {
+  font-weight: 500;
+  line-height: 1.57;
+  color: var(--dark-grey);
+}
+.cart-page__checkout-summary__row + .cart-page__checkout-summary__row {
+  margin-top: 2px;
+}
+.cart-page__checkout-summary__row .cart-page__checkout-summary__label::after {
+  content: ":";
+}
+.cart-page__checkout-summary__row .cart-page__checkout-summary__value {
+  text-align: right;
+}
+
+
+.cart-page__checkout-summary__rows th {
+  border-top: 1px solid #979797;
+  padding: 6px 0;
+}
+.cart-page__checkout-summary__rows tbody + tfoot::before {
+  content: "";
+  display: block;
+  height: 15px;
+}
+.cart-page__checkout-total__row .cart-page__checkout-total__label {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--dark-grey);
+  text-align: left;
+}
+.cart-page__checkout-total__row .cart-page__checkout-total__value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.57;
+  color: var(--dark-grey);
+  text-align: right;
+}
+
+
+
+.cart-page__list {
+  width: 100%;
+  border-collapse: collapse;
+  vertical-align: middle;
+}
+.cart-page__list tr td {
+  line-height: 0;
+}
+.cart-page__list tr td:not(:first-child):not(:last-child) {
+  text-align: center;
+}
+.cart-page__list tr th:first-child,
+.cart-page__list tr td:first-child {
+  text-align: left;
+}
+.cart-page__list tr th:last-child,
+.cart-page__list tr td:last-child {
+  text-align: right;
+}
+/* .cart-page__list tr th:first-child {
+  margin-left: 4px;
+}
+.cart-page__list tr td:last-child {
+  margin-right: 2px;
+} */
+.cart-page__list tr th {
+  padding: 10px 0;
+  font-weight: 700;
+  line-height: 1.57;
+  color: var(--dark-grey);
+}
+.cart-page__list tbody tr {
+  border-top: 1px solid #979797;
+}
+.cart-page__list tbody tr td {
+  padding: 10px 0;
+}
+
+
+.cart-page__list-item {
+  font-weight: 500;
+  color: var(--dark-grey);
+}
+.cart-page__list-item .cart-page__list-item__size {
+  text-transform: uppercase;
+  font-size: 1.125rem;
+}
+.cart-page__list-item .cart-page__list-item__amount {
+  font-size: 1rem;
+}
+.cart-page__list-item .cart-page__list-item__product {
+  width: 230px;
+}
+.cart-page__list-item .cart-page__list-item__quantity {
+  width: 108px;
+}
+
+.block-color {
+  width: 30px;
+  height: 30px;
+  background-color: #a4624c;
+  border-radius: 100%;
+  display: inline-block;
+}
+.block-product {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.block-product .block-product__image {
+  width: 80px;
+  height: 113px;
+}
+.block-product .block-product__image + .block-product__info {
+  margin-left: 20px;
+}
+.block-product .block-product__info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.block-product .block-product__info .block-product__name {
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.43;
+  margin: 0;
+  text-transform: capitalize;
+  color: var(--dark-grey);
+}
+.block-product .block-product__info .block-product__name:hover {
+  color: var(--bright-orange);
+}
+.block-product .block-product__info .block-product__method {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.block-product__info .block-product__method button {
+  font-size: .75rem;
+  line-height: 1.83;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.block-product__info .block-product__method button:hover {
+  color: var(--bright-orange);
+}
+.block-product__info .block-product__method button + button:before {
+  content: '';
+  height: 15px;
+  width: 1px;
+  background-color: #979797;
+  margin: 0 5px;
+  display: inline-block;
+
+}

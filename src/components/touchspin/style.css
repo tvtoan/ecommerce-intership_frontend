@@ -1,0 +1,17 @@
+.touchspin {
+  display: flex;
+  flex-flow: row nowrap;
+  border: 1px solid var(--white-four);
+}
+.touchspin__button {
+  padding: 9px 8px;
+  line-height: 0;
+}
+.touchspin__input {
+  border: none;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+  font-weight: 500;
+  line-height: 1.57;
+}

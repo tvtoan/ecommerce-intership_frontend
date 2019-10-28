@@ -27,7 +27,6 @@
   font-style: normal;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-Italic),
@@ -36,7 +35,6 @@
   font-style: italic;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-Medium),
@@ -45,7 +43,6 @@
   font-style: normal;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-MediumItalic),
@@ -54,7 +51,6 @@
   font-style: italic;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-Bold),
@@ -63,7 +59,6 @@
   font-style: normal;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-Bold),
@@ -72,7 +67,6 @@
   font-style: italic;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Montserrat;
   src: local(Montserrat-Bold),
@@ -81,7 +75,6 @@
   font-style: normal;
   font-stretch: normal;
 }
-
 @font-face {
   font-family: Domine;
   src: local(Domine-Bold),
@@ -91,13 +84,12 @@
   font-stretch: normal;
 }
 
+/* ===== RESET ===== */
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: .875rem;
   color: var(--dark-grey);
 }
-
-/* ===== RESET ===== */
 * {
   box-sizing: border-box;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import product4 from "assets/images/web/product-4.jpeg";
 import Touchspin from "components/touchspin";
-import "./style.css";
+import "./style.scss";
 
 export default class index extends Component {
   render() {

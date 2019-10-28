@@ -6,7 +6,7 @@ import { ReactComponent as Cart } from "assets/images/cart.svg";
 import product1 from "assets/images/web/product-1.jpeg";
 import product2 from "assets/images/web/product-2.jpeg";
 
-import "./style.css";
+import "./style.scss";
 
 export default class index extends Component {
   render() {

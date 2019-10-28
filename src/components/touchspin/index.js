@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ReactComponent as PlusIcon } from './plus.svg';
 import { ReactComponent as MinusIcon } from './minus.svg';
-import "./style.css";
+import "./style.scss";
 
 export default class index extends Component {
   render() {

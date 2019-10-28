@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 
-import "./style.css";
+import "./style.scss";
 
 export default class index extends Component {
   render() {

@@ -9,7 +9,7 @@ import FooterPage from './components/footer';
 // import AccountPage from './pages/account-page';
 import CartPage from './pages/cart';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

@@ -7,7 +7,9 @@ import FooterPage from './components/footer';
 // import ForgotPassModal from './components/auth/forgot-pass';
 // import ProductListPage from "./pages/product-list";
 // import AccountPage from './pages/account-page';
-import CartPage from './pages/cart';
+// import CartPage from './pages/cart';
+// import SingleUpload from './pages/upload-page/SingleUpload';
+import AddProductPage from './pages/add-product';
 
 import './App.scss';
 
@@ -15,7 +17,7 @@ function App() {
   return (
     <div className="web-shop">
       <HeaderPage />
-      <CartPage />
+      <AddProductPage />
       <FooterPage />
       {/* <RegisterModal /> */}
       {/* <LoginModal /> */}

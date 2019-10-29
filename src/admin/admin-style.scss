@@ -1,0 +1,107 @@
+.seller-web {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "sidebar main";
+  .sidebar-left {
+    grid-area: sidebar;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    transition: all 1s;
+    box-shadow: 1px 0 0 0 var(--white-three);
+    background-color: var(--white-two);
+  }
+  .main {
+    grid-area: main;
+    padding: 24px 20px;
+    background-color: var(--white-two);
+  }
+  // &:hover .sidebar-left {
+  //   width: 10px;
+  // }
+}
+
+/// ===== .sidebar-left =====
+.seller-web {
+  .sidebar-left__brand {
+    padding: 32px 0;
+    // display: flex;
+    // flex-flow: row nowrap;
+    // justify-content: center;
+    .sidebar-left__brand-logo a {
+      display: block;
+      padding: 0 44px;
+      line-height: 0;
+      svg {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+/// ===== .sidebar-left__menu-wrapper =====
+.sidebar-left__menu-wrapper {
+  padding-top: 12px;
+}
+
+/// ===== .sidebar-left__menu =====
+.sidebar-left__menu {
+  ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  .sidebar-left__menu-item {
+    position: relative;
+    color: var(--charcoal-grey);
+    fill: var(--charcoal-grey);
+    transition: all .2s ease;
+    .sidebar-left__menu-item__link {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      padding: 12px 20px;
+      .sidebar-left__menu-item__link-icon {
+        width: 24px;
+        height: 24px;
+        fill: inherit;
+        & + .sidebar-left__menu-item__link-name {
+          margin-left: 20px;
+        }
+      }
+      .sidebar-left__menu-item__link-name {
+        font-size: .875rem;
+        font-weight: 500;
+        line-height: 1.43;
+      }
+    }
+    & + .sidebar-left__menu-item {
+      margin-top: 8px;
+    }
+    &::before {
+      content: "";
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5.9px;
+      height: 100%;
+      background-color: var(--pale-orange);
+      transition: all .2s ease;
+    }
+    &.active,
+    &:hover {
+      color: var(--pale-orange);
+      fill: var(--pale-orange);
+    }
+    &.active::before,
+    &:hover::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+/// ===== .header__topbar =====
+.header__topbar {
+  display: flex;
+  flex-flow: row wrap;
+  .header__topbar-item__user {
+    
+    img {
+      width: 3rem;
+      height: 3rem;
+      box-shadow: 0 5px 20px 0 rgba(61, 61, 63, 0.2);
+      border: solid 2px var(--white);
+      border-radius: 100%;
+    }
+    .header__topbar-item__user__block {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      .header__topbar-item__user__fullname {
+        font-size: .875rem;
+        font-weight: 700;
+        line-height: 1.71;
+        color: var(--dark-grey);
+        text-transform: capitalize;
+        margin-left: 1rem;
+      }
+      
+    }
+  }
+  .header__topbar-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    & + .header__topbar-item {
+      margin-left: 2rem;
+    }
+  }
+  .header__topbar-item__block {
+    position: relative;
+    line-height: 0;
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+    }
+  }
+}

@@ -1,3 +1,21 @@
+/// General
+.icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  fill: #9B9B9B;
+}
+.badge {
+  border-radius: 8px;
+  background-color: var(--strawberry);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1.07;
+  color: var(--white);
+  padding: 3px 4px;
+}
+
+
 .seller-web {
   display: grid;
   grid-template-columns: auto 1fr;

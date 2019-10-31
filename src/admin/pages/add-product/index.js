@@ -3,13 +3,17 @@ import { ReactComponent as DropdownIcon } from "assets/images/seller/dropdown.sv
 import { ReactComponent as MailIcon } from "assets/images/seller/mail.svg";
 import { ReactComponent as NotificationIcon } from "assets/images/seller/notification.svg";
 import "./style.scss";
+import "assets/scss/style-demo.scss";
 
 import avatar from "assets/images/seller/avatar.jpg";
 
 export default function AddProductPage() {
   return (
     <>
-      <header>
+      <header className="header-wrapper">
+        <div className="header__heading">
+          <h1 className="header__heading__title">Add product</h1>
+        </div>
         <div className="header__topbar">
           <div className="header__topbar-item header__topbar-item__user">
             <img src={avatar} alt="avatar-user" />
@@ -34,6 +38,16 @@ export default function AddProductPage() {
           </div>
         </div>
       </header>
+      <nav aria-label="breadcrumb" className="breadcrumb">
+        <ol className="breadcrumb__container">
+          <li className="breadcrumb__item">
+            <a href="#/">Products</a>
+          </li>
+          <li className="breadcrumb__item active" aria-current="page">
+            Add product
+          </li>
+        </ol>
+      </nav>
     </>
   );
 }

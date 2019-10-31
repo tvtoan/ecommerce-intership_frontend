@@ -1,0 +1,7 @@
+@use "sass:color";
+
+.button {
+  $primary-color: #6b717f;
+  color: $primary-color;
+  border: 1px solid color.scale($primary-color, $lightness: 20%);
+}

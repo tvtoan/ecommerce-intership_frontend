@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import 'normalize.css';
+import 'assets/scss/grid.scss';
 // import App from './App';
 import SellerWeb from './admin';
 import * as serviceWorker from './serviceWorker';

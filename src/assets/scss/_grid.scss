@@ -1,3 +1,7 @@
+@use "variables" as *;
+@use "mixins/grid" as *;
+@use "mixins/breakpoints" as *;
+@use "mixins/grid-framework" as *;
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
@@ -8,23 +12,19 @@
     @include make-container();
     @include make-container-max-widths();
   }
-
   // 100% wide container at all breakpoints
   .container-fluid {
     @include make-container();
   }
-
   // Responsive containers that are 100% wide until a breakpoint
   @each $breakpoint, $container-max-width in $container-max-widths {
     .container-#{$breakpoint} {
       @extend .container-fluid;
     }
-
     @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
       %responsive-container-#{$breakpoint} {
         max-width: $container-max-width;
       }
-
       @each $name, $width in $grid-breakpoints {
         @if ($container-max-width > $width or $breakpoint == $name) {
           .container#{breakpoint-infix($name, $grid-breakpoints)} {
@@ -43,13 +43,11 @@
   .row {
     @include make-row();
   }
-
   // Remove the negative margin from default .row, then the horizontal padding
   // from all immediate children columns (to prevent runaway style inheritance).
   .no-gutters {
     margin-right: 0;
     margin-left: 0;
-
     > .col,
     > [class*="col-"] {
       padding-right: 0;

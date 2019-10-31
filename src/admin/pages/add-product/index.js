@@ -3,7 +3,6 @@ import { ReactComponent as DropdownIcon } from "assets/images/seller/dropdown.sv
 import { ReactComponent as MailIcon } from "assets/images/seller/mail.svg";
 import { ReactComponent as NotificationIcon } from "assets/images/seller/notification.svg";
 import "./style.scss";
-import "assets/scss/style-demo.scss";
 
 import avatar from "assets/images/seller/avatar.jpg";
 
@@ -48,6 +47,20 @@ export default function AddProductPage() {
           </li>
         </ol>
       </nav>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="color-col l12-col-sm-2">
+            <label htmlFor="">photos</label>
+          </div>
+          <div className="color-col l12-col-sm-8">
+            <div className="demo-form">
+            <div className="Rectangle-4-Copy-2"></div>
+            <div className="Rectangle-4-Copy-2"></div>
+            <div className="Rectangle-4-Copy-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

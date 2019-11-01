@@ -1,11 +1,11 @@
 import React from "react";
 import { ReactComponent as Logo } from "assets/images/logo.svg";
-import { ReactComponent as OverviewIcon } from "assets/images/seller/overview-dark.svg";
-import { ReactComponent as OrderIcon } from "assets/images/seller/orders-dark.svg";
-import { ReactComponent as ProductIcon } from "assets/images/seller/products-dark.svg";
-import { ReactComponent as PaymentIcon } from "assets/images/seller/payment-dark.svg";
-import { ReactComponent as PromotionIcon } from "assets/images/seller/promotion-dark.svg";
-import { ReactComponent as SettingIcon } from "assets/images/seller/setting-dark.svg";
+import { ReactComponent as OverviewIcon } from "assets/images/seller/icons/overview-dark.svg";
+import { ReactComponent as OrderIcon } from "assets/images/seller/icons/orders-dark.svg";
+import { ReactComponent as ProductIcon } from "assets/images/seller/icons/products-dark.svg";
+import { ReactComponent as PaymentIcon } from "assets/images/seller/icons/payment-dark.svg";
+import { ReactComponent as PromotionIcon } from "assets/images/seller/icons/promotion-dark.svg";
+import { ReactComponent as SettingIcon } from "assets/images/seller/icons/setting-dark.svg";
 import "./admin-style.scss";
 
 import AddProductPage from './pages/add-product';

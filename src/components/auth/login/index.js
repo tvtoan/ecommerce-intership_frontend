@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CheckboxCustom from "components/form/checkbox";
+import CheckboxCustom from "components/forms/checkbox";
 import "./style.scss";
 
 export default class index extends Component {

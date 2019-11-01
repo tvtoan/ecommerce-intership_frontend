@@ -123,3 +123,20 @@
     }
   }
 }
+
+
+// Override forms style
+.form-control {
+  border-radius: 2px;
+  border: solid 1px var(--white-three);
+  background-color: var(--white);
+  font-size: .875rem;
+  line-height: 1.43;
+  color: var(--charcoal-grey);
+  padding: 13px 16px;
+}
+.form-group {
+  label {
+    line-height: 1.17;
+  }
+}

@@ -1,0 +1,18 @@
+.form-control {
+  background-color: var(--white-two);
+  font-weight: 500;
+  color: var(--dark-grey);
+  outline: 0;
+  width: 100%;
+  border: 1px solid transparent;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  &:focus,
+  &:active {
+    border-color: var(--greyish-two);
+  }
+  ::placeholder {
+    opacity: 0.3;
+    color: var(--greyish-brown);
+  }
+}

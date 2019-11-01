@@ -42,57 +42,6 @@ main {
   }
 }
 
-/* ===== Input ===== */
-.form-group {
-  position: relative;
-  margin-bottom: 24px;
-  & label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    line-height: 1.5;
-    color: var(--dark-grey);
-    text-transform: uppercase;
-  }
-  & label + .form-control {
-    margin-top: 0.5rem;
-  }
-}
-.form-control {
-  background-color: var(--white-two);
-  font-weight: 500;
-  color: var(--dark-grey);
-  outline: 0;
-  width: 100%;
-  border: 1px solid transparent;
-  padding: 12px 24px;
-  transition: all 0.3s ease;
-  &:focus,
-  &:active {
-    border-color: var(--greyish-two);
-  }
-}
-.was-validated .form-control:invalid {
-  border: solid 1px var(--strawberry);
-  background-color: rgba(246, 63, 69, 0.04);
-}
-.form-control::placeholder {
-  opacity: 0.3;
-  color: var(--greyish-brown);
-}
-.invalid-feedback {
-  display: none;
-  font-size: 0.625rem;
-  font-weight: 500;
-  line-height: 2.2;
-  color: var(--strawberry);
-  position: absolute;
-  top: 100%;
-  left: 0;
-}
-.was-validated .form-control:invalid ~ .invalid-feedback {
-  display: block;
-}
-
 /* ===== Modal ===== */
 .modal {
   display: none;

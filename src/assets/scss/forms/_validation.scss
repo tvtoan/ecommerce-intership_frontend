@@ -1,0 +1,17 @@
+.was-validated .form-control:invalid {
+  border: solid 1px var(--strawberry);
+  background-color: rgba(246, 63, 69, 0.04);
+}
+.invalid-feedback {
+  display: none;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 2.2;
+  color: var(--strawberry);
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+.was-validated .form-control:invalid ~ .invalid-feedback {
+  display: block;
+}

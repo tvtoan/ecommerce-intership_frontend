@@ -1,0 +1,14 @@
+.form-group {
+  position: relative;
+  margin-bottom: 24px;
+  & label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--dark-grey);
+    text-transform: uppercase;
+  }
+  & label + .form-control {
+    margin-top: 0.5rem;
+  }
+}

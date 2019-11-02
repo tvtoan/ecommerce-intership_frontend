@@ -7,7 +7,7 @@ export const customStyles = {
     "&:hover": {
       borderColor: "var(--white-three)"
     },
-    boxShadow: state.isFocused ? "none" : ""
+    // boxShadow: state.isFocused ? "none" : ""
   }),
   dropdownIndicator: (provided, state) => ({
     ...provided,
@@ -76,7 +76,17 @@ export const customStyles = {
     fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: 1.43,
-    color: "var(--charcoal-grey)"
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+    color: "var(--charcoal-grey)",
+    transition: 'all 0.1s ease',
+    ':hover, &:active': {
+      backgroundColor: 'unset',
+      color: 'var(--pale-orange)',
+    },
+    ':focus': {
+      borderColor: 'var(--pale-orange)',
+    }
   }),
   placeholder: (provided, state) => ({
     ...provided,

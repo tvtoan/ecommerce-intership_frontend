@@ -16,14 +16,15 @@ const options = [
   { value: "going-out-dresses", label: "Going out dresses" }
 ];
 
-export default function SelectMulti() {
+export default function SelectMulti(props) {
   return (
     <Select
+      {...props}
       defaultValue={[options[4], options[5]]}
       options={options}
       styles={customStyles}
       isMulti
-      menuIsOpen
+      // menuIsOpen
       components={{
         DropdownIndicator,
         Menu,

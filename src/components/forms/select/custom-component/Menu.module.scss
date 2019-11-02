@@ -15,7 +15,7 @@
     width: 1.5rem;
     height: 1.5rem;
     object-fit: contain;
-    fill: var(--greyish);
+    color: var(--greyish);
   }
   span {
     font-size: 0.875rem;
@@ -23,5 +23,39 @@
     line-height: 1.43;
     color: var(--greyish);
     margin-left: 12px;
+  }
+}
+
+.form-add-select {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0.5rem 1rem;
+  input {
+    &:focus,
+    &:active {
+      border-radius: 2px;
+      border: 1px solid var(--pale-orange);
+      background-color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.43;
+      color: var(--charcoal-grey);
+    }
+  }
+  button {
+    padding: 0.75rem;
+    color: #9b9b9b;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 1px solid var(--white-three);
+    cursor: pointer;
+  }
+  button[type*="submit"].valid {
+    color: #fff;
+    background-color: var(--pale-orange);
+    border-color: var(--pale-orange);
+  }
+  .form-add-select__element + .form-add-select__element {
+    margin-left: 0.5rem;
   }
 }

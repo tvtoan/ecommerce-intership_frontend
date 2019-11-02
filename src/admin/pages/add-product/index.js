@@ -4,8 +4,7 @@ import { ReactComponent as MailIcon } from "assets/images/seller/icons/mail.svg"
 import { ReactComponent as NotificationIcon } from "assets/images/seller/icons/notification.svg";
 import "./style.scss";
 
-import { SelectMulti } from 'components/forms/select';
-
+import { SelectMulti } from "components/forms/select";
 
 import avatar from "assets/images/seller/avatar.jpg";
 
@@ -75,7 +74,7 @@ export default function AddProductPage() {
               brand
             </label>
             <div className="l12-col-sm-8">
-              <SelectMulti />
+              <SelectMulti menuIsOpen />
             </div>
           </div>
         </form>

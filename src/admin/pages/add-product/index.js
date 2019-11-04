@@ -74,7 +74,7 @@ export default function AddProductPage() {
               categories
             </label>
             <div className="l12-col-sm-8">
-              <SelectMulti isSearchable={true} />
+              <SelectMulti menuIsOpen isSearchable={true} />
             </div>
           </div>
           <div className="form-group row">

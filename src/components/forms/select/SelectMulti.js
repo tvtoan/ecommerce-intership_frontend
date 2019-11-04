@@ -19,11 +19,16 @@ const options = [
 export default function SelectMulti(props) {
   const refContainer = useRef(null);
   const refSelect = useRef(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const blurInputSelect = () => {
+    console.log("refSelect.current.select:", refSelect.current.select);
+    refSelect.current.select.blur();
+  }
 
   function handleClickOutside(event) {
     if (refContainer.current && !refContainer.current.contains(event.target)) {
-      setIsFocused(false);
+      setMenuIsOpen(false);
     }
   }
 
@@ -33,12 +38,6 @@ export default function SelectMulti(props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const onInputChange = (props, { action }) => {
-    if (action === "input-blur") {
-      setIsFocused(true);
-    };
-  };
 
   return (
     <div ref={refContainer}>
@@ -58,10 +57,12 @@ export default function SelectMulti(props) {
         }}
         className="react-select-container"
         classNamePrefix="react-select"
-        isFocused={isFocused || undefined}
-        menuIsOpen={isFocused || undefined}
-        onMenuInputFocus={setIsFocused}
-        onInputChange={onInputChange}
+        blurInputSelect={blurInputSelect}
+        menuIsOpen={menuIsOpen}
+        onSetMenuOpen={setMenuIsOpen}
+        onMenuOpen={() => setMenuIsOpen(true)}
+        // why? DropdownIndicator when mousedown => call onMenuClose => setMenuIsOpen(false)
+        onMenuClose={() => setMenuIsOpen(false)}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { components } from "react-select";
 
@@ -10,18 +10,20 @@ import { ReactComponent as DoneIcon } from "assets/images/seller/icons/done.svg"
 import styles from "./Menu.module.scss";
 
 const FormAddSelect = React.forwardRef((props, ref) => {
+  const refInput = useRef();
   const [isValidated, setIsValidated] = useState(false);
 
   return (
     <div className={styles["form-add-select"]}>
       <input
-        ref={ref}
+        ref={refInput}
         type="text"
         placeholder="Enter"
         className={classNames(
           "form-control",
           styles["form-add-select__element"]
         )}
+        onFocus={(e) => e.target.focus()}
       />
       <button
         className={classNames(
@@ -54,9 +56,19 @@ const Menu = ({ innerProps, ...restProps }) => {
   const refInput = useRef();
   const [isDisplayFormAdd, setIsDisplayFormAdd] = useState(false);
 
+  /*
+  * onMouseDown function: default call e.preventDefault() and e.stopPropagation() and focusInput() => to not close menu
+  * 
+  */
   const mouseDown = e => {
-    restProps.selectProps.onMenuInputFocus(true);
+    // ????
+    // Why? call stopPropagation = select.blur(). Blur focus input
+    restProps.selectProps.blurInputSelect();
+    // To not close by handle menuIsOpen value
+    restProps.selectProps.onSetMenuOpen(true);
   };
+
+  console.log("restProps:", restProps);
 
   return (
     <components.Menu

@@ -7,11 +7,12 @@ export const customStyles = {
     "&:hover": {
       borderColor: "var(--white-three)"
     },
-    // boxShadow: state.isFocused ? "none" : ""
+    boxShadow: state.isFocused ? "none" : ""
   }),
   dropdownIndicator: (provided, state) => ({
     ...provided,
-    padding: "12px"
+    padding: "12px",
+    color: "#9B9B9B",
   }),
   input: (provided, state) => ({
     ...provided,
@@ -48,12 +49,13 @@ export const customStyles = {
     svg: {
       width: "1rem",
       height: "1rem",
-      objectFit: "contain"
+      objectFit: "contain",
+      color: "#9B9B9B",
     },
     ":hover": {
       backgroundColor: "transparent",
       svg: {
-        fill: "var(--pumpkin-orange)"
+        color: "var(--pumpkin-orange)"
       }
     }
   }),
@@ -90,10 +92,19 @@ export const customStyles = {
   }),
   placeholder: (provided, state) => ({
     ...provided,
-    fontSize: "14px",
+    fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: 1.43,
     color: "var(--greyish)"
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    margin: 0,
+    padding: "6px 8px",
+    fontSize: "0.875rem",
+    fontWeight: 500,
+    lineHeight: 1.43,
+    color: "var(--charcoal-grey)",
   }),
   valueContainer: (provided, state) => ({
     ...provided,

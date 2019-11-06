@@ -1,0 +1,26 @@
+[class*="-col-"] {
+}
+[class*="-col-"]:first-child {
+  padding-left: 0;
+}
+[class*="-col-"]:last-child {
+  padding-right: 0;
+}
+
+.section-form {
+  margin-top: 60px;
+}
+
+.Rectangle-4-Copy-2 {
+  width: 180px;
+  height: 270px;
+  border: dashed 1px var(--white-three);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.Rectangle-4-Copy-2 + .Rectangle-4-Copy-2 {
+  margin-left: 20px;
+}
+.demo-form {
+  display: flex;
+  flex-flow: row wrap;
+}

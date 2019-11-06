@@ -1,35 +1,37 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component } from 'react';
+// 3rd packages
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
-
+// Static resources
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.svg";
 import { ReactComponent as CartIcon } from "assets/images/shop/icons/cart.svg";
-import product1 from "assets/images/web/product-1.jpeg";
-import product2 from "assets/images/web/product-2.jpeg";
+import product1 from "assets/images/shop/product-1.jpeg";
+import product2 from "assets/images/shop/product-2.jpeg";
 
 import "./style.scss";
 
 export default class index extends Component {
   render() {
     return (
-      <header className="container-fluid">
-        <div className="container header__top">
-          <div className="header__top--left">
-            <form action="" method="post" className="header__search">
+      <header className="shop-header container-fluid">
+        <div className="container shop-header__top">
+          <div className="shop-header__top--left">
+            <form action="" method="post" className="shop-header__search">
               <input
                 type="text"
                 placeholder="Search"
-                className="header__search-input-field"
+                className="shop-header__search-input-field"
               />
-              <SearchIcon className="header__search-icon" />
+              <SearchIcon className="shop-header__search-icon" />
             </form>
           </div>
-          <div className="header__top--center">
+          <div className="shop-header__top--center">
             <Logo />
           </div>
-          <div className="header__top--right">
-            <div className="header__top--right__item">
+          <div className="shop-header__top--right">
+            <div className="shop-header__top--right__item">
               <div className="auth">
                 {/* <button className="flat-button auth__register">Register</button>
                 <button className="flat-button auth__login">Log In</button> */}
@@ -51,11 +53,11 @@ export default class index extends Component {
                 </div>
               </div>
             </div>
-            <div className="header__top--right__item cart">
-              <a href="#/" className="cart__btn">
+            <div className="shop-header__top--right__item cart">
+              <Link to="/cart" className="cart__btn">
                 <CartIcon className="icons"/>
                 <span>7</span>
-              </a>
+              </Link>
               <div className="cart__dropdown">
                 <ul>
                   <li className="cart__dropdown__item">
@@ -107,7 +109,7 @@ export default class index extends Component {
           </div>
         </div>
         <div className="break--style1" />
-        <div className="header__bottom">
+        <div className="shop-header__bottom">
           <div className="container full-height">
             <nav className="nav--horizontal">
               <ul className="nav--horizontal__container">

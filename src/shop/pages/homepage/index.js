@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import banner1 from "assets/images/web/banner-1.jpg";
-import banner2 from "assets/images/web/banner-2.jpg";
-import banner3 from "assets/images/web/banner-3.jpg";
-import banner4 from "assets/images/web/banner-4.jpg";
-import banner5 from "assets/images/web/banner-5.jpg";
+import banner1 from "assets/images/shop/banner-1.jpg";
+import banner2 from "assets/images/shop/banner-2.jpg";
+import banner3 from "assets/images/shop/banner-3.jpg";
+import banner4 from "assets/images/shop/banner-4.jpg";
+import banner5 from "assets/images/shop/banner-5.jpg";
 import "./style.scss";
 
 export default class index extends Component {

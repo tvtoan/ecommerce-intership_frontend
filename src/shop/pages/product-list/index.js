@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import product1 from "assets/images/web/product-1.jpg";
+import product1 from "assets/images/shop/product-1.jpg";
 import "./style.scss";
 
 export default class index extends Component {

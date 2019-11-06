@@ -1,11 +1,11 @@
 /* ===== Header ===== */
-header {
+.shop-header {
   /* max-height: 115px; */
   object-fit: contain;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
 }
-.header__top {
+.shop-header__top {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -14,21 +14,21 @@ header {
   /* padding: 21px 0 13px; */
   position: relative;
 }
-.header__top--left,
-.header__top--right {
+.shop-header__top--left,
+.shop-header__top--right {
   flex: 1;
   height: 100%;
   display: flex;
 }
-.header__top--left {
+.shop-header__top--left {
   align-items: center;
   justify-content: flex-start;
 }
-.header__top--right {
+.shop-header__top--right {
   justify-content: flex-end;
 }
-/* == .header__top--left == */
-.header__search {
+/* == .shop-header__top--left == */
+.shop-header__search {
   width: 181px;
   height: 35px;
   border-radius: 17px;
@@ -38,38 +38,38 @@ header {
   display: flex;
   align-items: center;
 }
-.header__search .header__search-input-field {
+.shop-header__search .shop-header__search-input-field {
   border: none;
   max-width: 115px;
   color: var(--pinkish-grey);
   line-height: 1.57;
   letter-spacing: normal;
 }
-.header__search-input-field::placeholder,
-.header__search-input-field:-ms-input-placeholder,
-.header__search-input-field::-ms-input-placeholder { /* Microsoft Edge */
+.shop-header__search-input-field::placeholder,
+.shop-header__search-input-field:-ms-input-placeholder,
+.shop-header__search-input-field::-ms-input-placeholder { /* Microsoft Edge */
   color: red;
 }
-.header__search-icon {
+.shop-header__search-icon {
   width: 1.5rem;
   height: 1.5rem;
   object-fit: contain;
   opacity: 0.6;
   color: var(--charcoal-grey);
 }
-/* == .header__top--center == */
-.header__top--center {
+/* == .shop-header__top--center == */
+.shop-header__top--center {
   /* position: absolute;
   top: 28px;
   left: 50%;
   transform: translateX(-50%); */
 }
-/* === .header__top--right === */
-.header__top--right .header__top--right__item {
+/* === .shop-header__top--right === */
+.shop-header__top--right .shop-header__top--right__item {
   display: flex;
   height: 100%;
 }
-.header__top--right .header__top--right__item + .header__top--right__item {
+.shop-header__top--right .shop-header__top--right__item + .shop-header__top--right__item {
   margin-left: 29px;
 }
 /* == .auth == */
@@ -271,7 +271,7 @@ header {
   height: 1px;
   background-color: #ececec;
 }
-.header__bottom {
+.shop-header__bottom {
   width: 100%;
   height: 45px;
 }

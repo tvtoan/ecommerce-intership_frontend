@@ -1,0 +1,58 @@
+/// General
+.icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  color: #9B9B9B;
+}
+.badge {
+  border-radius: 8px;
+  background-color: var(--strawberry);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1.07;
+  color: var(--white);
+  padding: 3px 4px;
+}
+
+
+.seller-web {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "sidebar main";
+  .sidebar-left {
+    grid-area: sidebar;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    transition: all 1s;
+    box-shadow: 1px 0 0 0 var(--white-three);
+    background-color: var(--white-two);
+  }
+  .main {
+    grid-area: main;
+    padding: 24px 20px;
+    background-color: var(--white-two);
+  }
+  // &:hover .sidebar-left {
+  //   width: 10px;
+  // }
+}
+
+
+// Override forms style
+.form-control {
+  border-radius: 2px;
+  border: solid 1px var(--white-three);
+  background-color: var(--white);
+  font-size: .875rem;
+  line-height: 1.43;
+  color: var(--charcoal-grey);
+  padding: 13px 16px;
+}
+.form-group {
+  label {
+    line-height: 1.17;
+  }
+}

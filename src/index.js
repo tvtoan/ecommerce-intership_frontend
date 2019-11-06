@@ -3,7 +3,7 @@ import React, {Suspense} from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
-// 3rd package
+// 3rd packages
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -25,7 +25,7 @@ library.add(fas, fab);
 
 ReactDOM.render(
   <Router>
-    <Suspense fallback={Loading}>
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/seller" component={SellerWeb} />
         <Route path="/" component={ShopWeb} />

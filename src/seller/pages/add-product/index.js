@@ -1,6 +1,7 @@
 import React from "react";
 // components
 import { SelectSingle, SelectMulti } from "components/forms/select";
+import FileUpload from "../../components/image-upload";
 // styles
 import "./style.scss";
 
@@ -19,7 +20,8 @@ export default function AddProductPage() {
               </label>
               <div className="l12-col-sm-8">
                 <div className="demo-form">
-                  <div className="Rectangle-4-Copy-2"></div>
+                  {/* <div className="Rectangle-4-Copy-2"></div> */}
+                  <FileUpload />
                 </div>
               </div>
             </div>

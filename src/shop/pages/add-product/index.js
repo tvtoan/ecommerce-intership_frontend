@@ -1,6 +1,8 @@
 import React from "react";
+// 3rd packages
 import { Formik } from "formik";
 import _ from "lodash/lang";
+// styles
 import "./style.scss";
 
 export default function AddProduct() {

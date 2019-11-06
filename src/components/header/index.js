@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ReactComponent as IconSearch } from "assets/images/search.svg";
+
+
 import { ReactComponent as Logo } from "assets/images/logo.svg";
-import { ReactComponent as Cart } from "assets/images/cart.svg";
+import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.svg";
+import { ReactComponent as CartIcon } from "assets/images/shop/icons/cart.svg";
 import product1 from "assets/images/web/product-1.jpeg";
 import product2 from "assets/images/web/product-2.jpeg";
 
@@ -20,7 +22,7 @@ export default class index extends Component {
                 placeholder="Search"
                 className="header__search-input-field"
               />
-              <IconSearch className="header__search-icon" />
+              <SearchIcon className="header__search-icon" />
             </form>
           </div>
           <div className="header__top--center">
@@ -51,7 +53,7 @@ export default class index extends Component {
             </div>
             <div className="header__top--right__item cart">
               <a href="#/" className="cart__btn">
-                <Cart />
+                <CartIcon className="icons"/>
                 <span>7</span>
               </a>
               <div className="cart__dropdown">

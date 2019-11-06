@@ -4,8 +4,8 @@ import './index.scss';
 import 'normalize.css';
 import 'assets/scss/grid.scss';
 import 'assets/scss/forms/index.scss';
-// import App from './App';
-import SellerWeb from './admin';
+import App from './App';
+// import SellerWeb from './admin';
 import * as serviceWorker from './serviceWorker';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 library.add(fas, fab);
 
-ReactDOM.render(<SellerWeb />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

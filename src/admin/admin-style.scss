@@ -3,7 +3,7 @@
   width: 1.5rem;
   height: 1.5rem;
   object-fit: contain;
-  fill: #9B9B9B;
+  color: #9B9B9B;
 }
 .badge {
   border-radius: 8px;
@@ -75,7 +75,6 @@
   .sidebar-left__menu-item {
     position: relative;
     color: var(--charcoal-grey);
-    fill: var(--charcoal-grey);
     transition: all .2s ease;
     .sidebar-left__menu-item__link {
       display: flex;
@@ -85,7 +84,7 @@
       .sidebar-left__menu-item__link-icon {
         width: 24px;
         height: 24px;
-        fill: inherit;
+        color: #9B9B9B;
         & + .sidebar-left__menu-item__link-name {
           margin-left: 20px;
         }
@@ -114,12 +113,15 @@
     &.active,
     &:hover {
       color: var(--pale-orange);
-      fill: var(--pale-orange);
     }
     &.active::before,
     &:hover::before {
       opacity: 1;
       visibility: visible;
+    }
+    &.active .sidebar-left__menu-item__link-icon,
+    &:hover .sidebar-left__menu-item__link-icon {
+      color: var(--pale-orange);
     }
   }
 }

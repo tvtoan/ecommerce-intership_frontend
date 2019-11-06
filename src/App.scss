@@ -103,8 +103,9 @@ main {
   }
   & .modal__body {
     padding: 20px 80px 64px 80px;
-    & button {
+    & button[type="submit"] {
       text-transform: capitalize;
+      font-size: 1rem;
     }
   }
   & .modal__footer {

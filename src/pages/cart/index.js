@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import product4 from "assets/images/web/product-4.jpeg";
+import product4 from "assets/images/shop/product-4.jpeg";
 import Touchspin from "components/touchspin";
 import "./style.scss";
 

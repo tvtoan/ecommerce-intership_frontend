@@ -16,6 +16,7 @@ import "assets/scss/grid.scss";
 import "assets/scss/forms/index.scss";
 
 // Websites
+import Loading from "components/loading";
 const ShopWeb = React.lazy(() => import("./shop"));
 const SellerWeb = React.lazy(() => import("./seller"));
 
@@ -24,7 +25,7 @@ library.add(fas, fab);
 
 ReactDOM.render(
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={Loading}>
       <Switch>
         <Route path="/seller" component={SellerWeb} />
         <Route path="/" component={ShopWeb} />

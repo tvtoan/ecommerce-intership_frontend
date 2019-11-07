@@ -1,0 +1,26 @@
+.image-upload__preview {
+  position: relative;
+  .image-upload__preview-remove {
+    line-height: 0;
+    padding: 0.125rem;
+    border-radius: 100%;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    color: #9b9b9b;
+    .icons {
+      color: inherit;
+    }
+  }
+  &:hover .image-upload__preview-remove {
+    background-color: var(--bright-orange);
+    color: var(--white);
+  }
+  .image-upload__preview-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: var(--greyish-two);
+  }
+}

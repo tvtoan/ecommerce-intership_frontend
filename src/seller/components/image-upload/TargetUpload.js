@@ -8,7 +8,7 @@ import "./styles.scss";
 
 export default function ImageUpload(props) {
   const {onDrop} = props;
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: [NativeTypes.FILE],
     drop: (item, monitor) => {
       if (onDrop) {
@@ -20,11 +20,9 @@ export default function ImageUpload(props) {
       canDrop: monitor.canDrop()
     })
   });
-  const isActive = canDrop && isOver;
   return (
     <div ref={drop}>
       {props.children}
-      {isActive ? "Release to drop" : "Drag file here"}
     </div>
   );
 }

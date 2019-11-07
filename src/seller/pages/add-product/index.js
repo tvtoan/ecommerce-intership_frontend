@@ -30,6 +30,7 @@ export default function AddProductPage() {
                 photos
               </label>
               <div className="l12-col-sm-8">
+                <button onClick={() => console.log("refFileUpload:")}>GET</button>
                 <FileUpload
                   isDrag={true}
                   // files={files}

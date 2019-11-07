@@ -13,9 +13,9 @@ export default function ImageUpload(props) {
   return (
     <div className="image-upload-wrapper">
       <div className="image-upload__list">
-        {addedFiles.map(file => (
-          <div key={file.name} className="image-upload__list-item">
-            <ImagePreview dataFile={file} />
+        {addedFiles.map(item => (
+          <div key={item.file.name} className="image-upload__list-item">
+            <ImagePreview dataFile={item} />
           </div>
         ))}
         <div className="image-upload__list-item">

@@ -19,7 +19,7 @@ function getBase64(file) {
 export default function ImagePreview(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [previewImage, setPreviewImage] = useState("");
-  const {files: [, setAddedFiles]} = useContext(FileUploadContext);
+  const {files: [addedFiles, setAddedFiles]} = useContext(FileUploadContext);
 
   const handlePreview = async file => {
     getBase64(file)
@@ -31,18 +31,20 @@ export default function ImagePreview(props) {
   };
 
   const handleRemoveImage = () => {
-    setAddedFiles();
+    const dataFile = props.dataFile;
+    const removedFiles = addedFiles.filter(file => file.location !== dataFile.location);
+    setAddedFiles(removedFiles);
   }
 
   useEffect(() => {
-    handlePreview(props.dataFile);
-  }, [props.dataFile]);
+    handlePreview(props.dataFile.file);
+  }, [props.dataFile.file]);
 
   return (
     <div className="image-upload__preview">
       {!isLoading ? (
         <>
-          <img src={previewImage} alt={props.dataFile.name} className="image-upload__preview-image" />
+          <img src={previewImage} alt={props.dataFile.file.name} title={props.dataFile.file.name} className="image-upload__preview-image" />
           <span className="image-upload__preview-remove" onClick={handleRemoveImage}>
             <CloseIcon className="icons" />
           </span>

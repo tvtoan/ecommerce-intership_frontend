@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+// 3rd packages
 // components
 import { SelectSingle, SelectMulti } from "components/forms/select";
-import FileUpload from "../../components/image-upload";
+import FileUpload from "../../components/file-upload";
 // styles
 import "./style.scss";
 
 export default function AddProductPage() {
+  const [files, setFiles] = useState([]);
+
+  // useEffect(() => {
+  //   console.log("AddProduct page:", files);
+  // }, [files])
+
+  const handleChangeFile = arrFiles => {
+    setFiles(arrFiles);
+  };
+
   return (
     <>
       <section className="section-form">
@@ -19,10 +30,11 @@ export default function AddProductPage() {
                 photos
               </label>
               <div className="l12-col-sm-8">
-                <div className="demo-form">
-                  {/* <div className="Rectangle-4-Copy-2"></div> */}
-                  <FileUpload />
-                </div>
+                <FileUpload
+                  isDrag={true}
+                  // files={files}
+                  // onChangeFiles={handleChangeFile}
+                />
               </div>
             </div>
             <div className="form-group row">

@@ -31,15 +31,14 @@ export default function ImagePreview(props) {
   };
 
   useEffect(() => {
-    console.log("props:", props.dataFile);
     handlePreview(props.dataFile);
-  });
+  }, [props.dataFile]);
 
   return (
     <div className="image-upload__preview">
       {!isLoading ? (
         <>
-          <img src={previewImage} alt="file-name" />
+          <img src={previewImage} alt={props.dataFile.name} className="image-upload__preview-image" />
           <span className="image-upload__preview-remove">
             <CloseIcon className="icons" />
           </span>
@@ -54,5 +53,5 @@ export default function ImagePreview(props) {
 }
 
 ImagePreview.propTypes = {
-  dataFile: PropTypes.object
+  dataFile: PropTypes.object,
 };

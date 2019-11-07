@@ -2,19 +2,16 @@
 import React, {Suspense} from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-
 // 3rd packages
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 // stypes
 import "./index.scss";
 import "normalize.css";
 import "assets/scss/grid.scss";
 import "assets/scss/forms/index.scss";
-
 // Websites
 import Loading from "components/loading";
 const ShopWeb = React.lazy(() => import("./shop"));

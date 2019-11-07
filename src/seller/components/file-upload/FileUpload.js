@@ -47,9 +47,10 @@ export default class FileUpload extends React.Component {
     }
     let listFiles = [];
     // check maxUpload
-    let limitFiles = this.props.maxUpload
-      ? this.props.maxUpload
-      : convertedFiles.length;
+    let limitFiles =
+      this.props.maxUpload && this.props.maxUpload <= convertedFiles.length
+        ? this.props.maxUpload
+        : convertedFiles.length;
     for (let i = 0; i < limitFiles; i++) {
       let fileObj = {
         location: this.state.addedFiles.length + i,
@@ -98,6 +99,10 @@ export default class FileUpload extends React.Component {
   handleResetUpload = () => {
     this.setAddedFiles([]);
   };
+
+  componentDidMount() {
+    console.log("Files:", this.state.addedFiles);
+  }
 
   render() {
     const store = {

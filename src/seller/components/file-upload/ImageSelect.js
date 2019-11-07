@@ -6,7 +6,12 @@ import { ReactComponent as AddIcon } from "assets/images/seller/icons/add.svg";
 
 export default function ImageSelect(props) {
   const refInputFile = useRef();
-  const {handleAddFile} = useContext(FileUploadContext);
+  const {handleAddFile, filterType, multiple} = useContext(FileUploadContext);
+
+  const handleFilterType = types => {
+    let tmpTypes = types.map(type => '.' + type);
+    return tmpTypes.join(',');
+  }
 
   const handleSelectFile = e => {
     handleAddFile(e.target.files);
@@ -24,6 +29,8 @@ export default function ImageSelect(props) {
         style={{ display: "none" }}
         ref={refInputFile}
         onChange={handleSelectFile}
+        accept={handleFilterType(filterType)}
+        multiple={multiple}
       />
       <div className="image-upload__button">
         <AddIcon className="image-upload__button-icon" />

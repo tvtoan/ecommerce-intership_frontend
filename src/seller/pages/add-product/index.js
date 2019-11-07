@@ -33,6 +33,8 @@ export default function AddProductPage() {
                 <FileUpload
                   isDrag={true}
                   multiple={true}
+                  filterType={['jpg', 'jpeg', 'png']}
+                  maxUpload={3}
                   // files={files}
                   // onChangeFiles={handleChangeFile}
                 />

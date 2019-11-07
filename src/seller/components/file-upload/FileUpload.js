@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 // 3rd packages
 import HTML5Backend from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
@@ -23,6 +23,22 @@ export default class FileUpload extends React.Component {
     this.setState({ addedFiles: files });
   };
 
+  handleFilterFile = types => {
+    return types.reduce((acc, cur, idx) => {
+      // example: (\\.jpg|\\.jpeg|\\.png|\\.gif)
+      if (idx === types.length - 1) {
+        return acc
+          .concat("\\.")
+          .concat(cur)
+          .concat(")");
+      }
+      return acc
+        .concat("\\.")
+        .concat(cur)
+        .concat("|");
+    }, "(");
+  };
+
   handleListFile = files => {
     // convert FileList to File array
     let convertedFiles = files;
@@ -30,9 +46,26 @@ export default class FileUpload extends React.Component {
       convertedFiles = Array.from(files);
     }
     let listFiles = [];
-    for (let [i, file] of convertedFiles.entries()) {
-      let fileObj = { location: this.state.addedFiles.length + i, file: file };
-      listFiles.push(fileObj);
+    // check maxUpload
+    let limitFiles = this.props.maxUpload
+      ? this.props.maxUpload
+      : convertedFiles.length;
+    for (let i = 0; i < limitFiles; i++) {
+      let fileObj = {
+        location: this.state.addedFiles.length + i,
+        file: convertedFiles[i]
+      };
+      if (this.props.filterType) {
+        let regexType = new RegExp(
+          this.handleFilterFile(this.props.filterType),
+          "i"
+        );
+        if (regexType.test(convertedFiles[i].name)) {
+          listFiles.push(fileObj);
+        }
+      } else {
+        listFiles.push(fileObj);
+      }
     }
     return listFiles;
   };
@@ -69,7 +102,9 @@ export default class FileUpload extends React.Component {
   render() {
     const store = {
       files: [this.state.addedFiles, this.setAddedFiles],
-      handleAddFile: this.handleAddFile
+      handleAddFile: this.handleAddFile,
+      multiple: this.props.multiple,
+      filterType: this.props.filterType
     };
     return (
       <FileUploadContext.Provider value={store}>
@@ -87,85 +122,12 @@ export default class FileUpload extends React.Component {
   }
 }
 
-// export default function FileUpload({ files, onChangeFiles, ...restProps }) {
-//   const [addedFiles, setAddedFiles] = useState(files || []);
-
-//   const handleListFile = useCallback(files => {
-//     // convert FileList to File array
-//     let convertedFiles = files;
-//     if (files instanceof FileList) {
-//       convertedFiles = Array.from(files);
-//     }
-//     let listFiles = [];
-//     for (let [i, file] of convertedFiles.entries()) {
-//       let fileObj = { location: addedFiles.length + i, file: file };
-//       listFiles.push(fileObj);
-//     }
-//     return listFiles;
-//   });
-
-//   const handleFileDrop = useCallback(
-//     (item, monitor) => {
-//       if (monitor) {
-//         let dragFiles = [];
-//         if (restProps.multiple) {
-//           dragFiles = monitor.getItem().files;
-//         } else {
-//           dragFiles = [monitor.getItem().files[0]];
-//         }
-//         const listFiles = handleListFile(dragFiles);
-//         setAddedFiles(oldLists => [...oldLists, ...listFiles]);
-//         if (onChangeFiles) {
-//           onChangeFiles([...addedFiles, ...listFiles]);
-//         }
-//       }
-//     },
-//     [addedFiles, onChangeFiles, handleListFile, restProps.multiple]
-//   );
-
-//   const handleAddFile = files => {
-//     const listFiles = handleListFile(files);
-//     setAddedFiles(oldArray => [...oldArray, ...listFiles]);
-//     if (onChangeFiles) {
-//       onChangeFiles([...addedFiles, ...listFiles]);
-//     }
-//   };
-
-//   // Reset files upload to reset form
-//   const handleResetUpload = () => {
-//     setAddedFiles([]);
-//   };
-
-//   const store = {
-//     files: [addedFiles, setAddedFiles],
-//     handleAddFile
-//   };
-
-//   useEffect(() => {
-//     console.log("Files:", addedFiles);
-//   }, [addedFiles]);
-
-//   return (
-//     <FileUploadContext.Provider value={store}>
-//       {restProps.isDrag ? (
-//         <DndProvider backend={HTML5Backend}>
-//           <TargetUpload onDrop={handleFileDrop}>
-//             <ImageUpload />
-//           </TargetUpload>
-//         </DndProvider>
-//       ) : (
-//         <ImageUpload />
-//       )}
-//     </FileUploadContext.Provider>
-//   );
-// }
-
 FileUpload.propsTypes = {
   isDrag: PropTypes.bool,
   files: PropTypes.array,
   multiple: PropTypes.bool,
   maxUpload: PropTypes.number,
-  filterType: PropTypes.string,
+  filterType: PropTypes.array,
   // function
   onChangeFiles: PropTypes.func,
   resetFiles: PropTypes.func

@@ -2,6 +2,7 @@ import React from "react";
 // 3rd packages
 import { Formik, Field } from "formik";
 import * as yup from "yup";
+import classNames from "classnames";
 // components
 import Modal from "components/modal";
 import { InputField } from "components/formik";
@@ -62,7 +63,7 @@ export default function RegisterModal() {
           handleSubmit(values, setSubmitting, setFieldError, resetForm);
         }}
       >
-        {({ handleSubmit, isSubmitting }) => (
+        {({ isValid, handleSubmit, isSubmitting }) => (
           <form className="form-register" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="fieldName">Name</label>
@@ -101,7 +102,7 @@ export default function RegisterModal() {
             </div>
             <button
               type="submit"
-              className="button btn-register"
+              className={classNames("button button-lg btn-register", {"button-primary": isValid})}
               disabled={isSubmitting}
             >
               register

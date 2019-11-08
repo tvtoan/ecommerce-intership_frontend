@@ -2,6 +2,7 @@ import React from "react";
 // 3rd packages
 import { Formik, Field } from "formik";
 import * as yup from "yup";
+import classNames from "classnames";
 // components
 import Modal from "components/modal";
 import { InputField, CheckboxField } from "components/formik";
@@ -61,7 +62,7 @@ export default function LoginModal() {
           handleSubmit(values, setSubmitting, setFieldError, resetForm);
         }}
       >
-        {({ handleSubmit, isSubmitting }) => (
+        {({ isValid, handleSubmit, isSubmitting }) => (
           <form className="form-login" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="fieldEmail">E-mail</label>
@@ -96,7 +97,7 @@ export default function LoginModal() {
             </div>
             <button
               type="submit"
-              className="button btn-login"
+              className={classNames("button button-lg btn-login", {"button-primary": isValid})}
               disabled={isSubmitting}
             >
               Log In

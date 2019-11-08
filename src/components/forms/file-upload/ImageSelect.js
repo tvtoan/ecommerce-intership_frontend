@@ -1,31 +1,34 @@
 import React, { useRef, useContext } from "react";
 // context
-import {FileUploadContext} from "./context/FileUploadContext";
+import { FileUploadContext } from "./context/FileUploadContext";
 // static resources
 import { ReactComponent as AddIcon } from "assets/images/seller/icons/add.svg";
 
 export default function ImageSelect(props) {
   const refInputFile = useRef();
-  const {handleAddFile, filterType, multiple} = useContext(FileUploadContext);
+  const { handleAddFile, filterType, multiple, handleBlur } = useContext(
+    FileUploadContext
+  );
 
   const handleFilterType = types => {
-    let tmpTypes = types.map(type => '.' + type);
-    return tmpTypes.join(',');
-  }
+    let tmpTypes = types.map(type => "." + type);
+    return tmpTypes.join(",");
+  };
 
   const handleSelectFile = e => {
+    handleBlur();
     handleAddFile(e.target.files);
   };
 
   return (
     <div
       className="image-upload__select"
-      onClick={() => refInputFile.current.click()}
+      onClick={() => {
+        refInputFile.current.click();
+      }}
     >
       <input
         type="file"
-        name=""
-        id=""
         style={{ display: "none" }}
         ref={refInputFile}
         onChange={handleSelectFile}

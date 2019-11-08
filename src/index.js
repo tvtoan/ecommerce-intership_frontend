@@ -15,7 +15,8 @@ import thunk from "redux-thunk";
 import "./index.scss";
 import "normalize.css";
 import "assets/scss/grid.scss";
-import "assets/scss/forms/index.scss";
+import "assets/scss/forms/forms.scss";
+import "assets/scss/button/button.scss";
 // Websites
 import Loading from "components/loading";
 const ShopWeb = React.lazy(() => import("./shop"));

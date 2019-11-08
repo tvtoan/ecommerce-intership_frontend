@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // 3rd packages
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -12,10 +12,6 @@ export default function CheckboxControl({
   children,
   ...props
 }) {
-  useEffect(() => {
-    console.log("Props CheckboxControl:", props);
-  }, [props]);
-
   return (
     <div className={classNames("custom-control form-check-input", className)}>
       <input

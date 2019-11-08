@@ -15,12 +15,17 @@ export default class FileUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addedFiles: props.files || []
+      addedFiles: props.files || [],
+      isTouched: false
     };
   }
 
   setAddedFiles = files => {
     this.setState({ addedFiles: files });
+  };
+
+  setIsTouched = touched => {
+    this.setState({ isTouched: touched });
   };
 
   handleFilterFile = types => {
@@ -46,11 +51,16 @@ export default class FileUpload extends React.Component {
       convertedFiles = Array.from(files);
     }
     let listFiles = [];
+    let limitFiles = 0;
     // check maxUpload
-    let limitFiles =
-      this.props.maxUpload && this.props.maxUpload <= convertedFiles.length
-        ? this.props.maxUpload
-        : convertedFiles.length;
+    if (this.props.maxUpload) {
+      // get number files can drag/select
+      let canUpload = this.props.maxUpload - this.state.addedFiles.length;
+      limitFiles =
+        convertedFiles.length > canUpload ? canUpload : convertedFiles.length;
+    } else {
+      limitFiles = convertedFiles.length;
+    }
     for (let i = 0; i < limitFiles; i++) {
       let fileObj = {
         location: this.state.addedFiles.length + i,
@@ -72,6 +82,9 @@ export default class FileUpload extends React.Component {
   };
 
   handleFileDrop = (item, monitor) => {
+    if (item) {
+      this.handleBlur();
+    }
     if (monitor) {
       let dragFiles = [];
       if (this.props.multiple) {
@@ -84,14 +97,29 @@ export default class FileUpload extends React.Component {
       if (this.props.onChangeFiles) {
         this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
       }
+      // control change value formik
+      if (this.props.onChangeFormik) {
+        this.props.onChangeFormik(this.props.name, [
+          ...this.state.addedFiles,
+          ...listFiles
+        ]);
+      }
     }
   };
 
   handleAddFile = files => {
+    this.handleBlur();
     const listFiles = this.handleListFile(files);
     this.setAddedFiles([...this.state.addedFiles, ...listFiles]);
     if (this.props.onChangeFiles) {
       this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
+    }
+    // control change value formik
+    if (this.props.onChangeFormik) {
+      this.props.onChangeFormik(this.props.name, [
+        ...this.state.addedFiles,
+        ...listFiles
+      ]);
     }
   };
 
@@ -100,23 +128,30 @@ export default class FileUpload extends React.Component {
     this.setAddedFiles([]);
   };
 
+  handleBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur(this.props.name, true);
+    }
+  };
+
   render() {
     const store = {
       files: [this.state.addedFiles, this.setAddedFiles],
       handleAddFile: this.handleAddFile,
       multiple: this.props.multiple,
-      filterType: this.props.filterType
+      filterType: this.props.filterType,
+      handleBlur: this.handleBlur,
+      info: {
+        note: this.props.note,
+        validateMessage: this.props.validateMessage,
+      }
     };
     return (
       <FileUploadContext.Provider value={store}>
         {this.props.isDrag ? (
           <DndProvider backend={HTML5Backend}>
             <TargetUpload onDrop={this.handleFileDrop}>
-              <button onClick={e => {
-                e.preventDefault();
-                console.log("Files:", this.state.addedFiles);
-              }}>GET</button>
-              <ImageUpload />
+              <ImageUpload onTouched={this.handleBlur} />
             </TargetUpload>
           </DndProvider>
         ) : (
@@ -133,8 +168,11 @@ FileUpload.propsTypes = {
   multiple: PropTypes.bool,
   maxUpload: PropTypes.number,
   filterType: PropTypes.array,
+  note: PropTypes.string,
+  validateMessage: PropTypes.string,
   // function
   onChangeFiles: PropTypes.func,
+  onChangeFormik: PropTypes.func,
   resetFiles: PropTypes.func
 };
 

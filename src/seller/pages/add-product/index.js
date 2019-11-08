@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 // 3rd packages
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
+import * as yup from "yup";
 // components
 import { SelectSingle, SelectMulti } from "components/forms/select";
-import FileUpload from "../../../components/forms/file-upload";
+import FileUploadField from "components/formik/FileUploadField";
+import InputField from "components/formik/InputField";
 // styles
 import "./style.scss";
+import FileUpload from "components/forms/file-upload";
 
 export default function AddProductPage() {
   const [files, setFiles] = useState([]);
 
-  // useEffect(() => {
-  //   console.log("AddProduct page:", files);
-  // }, [files])
-
   const handleChangeFile = arrFiles => {
     setFiles(arrFiles);
+  };
+
+  const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+    setSubmitting(true);
+    console.log("values:", values);
+    // resetForm();
+    setSubmitting(false);
   };
 
   return (
@@ -23,35 +29,19 @@ export default function AddProductPage() {
       <section className="section-form">
         <div className="container-fluid">
           <Formik
-            initialValues={{ email: "", password: "" }}
-            validate={values => {
-              const errors = {};
-              if (!values.email) {
-                errors.email = "Required";
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-              ) {
-                errors.email = "Invalid email address";
-              }
-              return errors;
+            initialValues={{
+              files: [],
+              name: "",
+              description: "",
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            validationSchema={yup.object().shape({
+              files: yup.array().required("A file is required")
+            })}
+            onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
+              handleSubmit(values, setSubmitting, setFieldError, resetForm);
             }}
           >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting
-              /* and other goodies */
-            }) => (
+            {({ handleSubmit, isSubmitting }) => (
               <form onSubmit={handleSubmit}>
                 <div className="form-group row">
                   <label
@@ -61,17 +51,18 @@ export default function AddProductPage() {
                     photos
                   </label>
                   <div className="l12-col-sm-8">
-                    <FileUpload
-                      isDrag={true}
+                    <Field
+                      isDrag={false}
                       multiple={true}
                       filterType={["jpg", "jpeg", "png"]}
-                      maxUpload={3}
-                      // files={files}
-                      // onChangeFiles={handleChangeFile}
+                      maxUpload={8}
+                      note="You can add up to 8 photos. The 1st photo will be set as cover (main photo)."
+                      name="files"
+                      component={FileUploadField}
                     />
                   </div>
                 </div>
-                {/* <div className="form-group row">
+                <div className="form-group row">
                   <label
                     htmlFor="input-name_product"
                     className="l12-col-sm-2 col-form-label"
@@ -79,10 +70,12 @@ export default function AddProductPage() {
                     name
                   </label>
                   <div className="l12-col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control"
+                    <Field
                       id="input-name_product"
+                      type="text"
+                      name="name"
+                      placeholder="Enter your email..."
+                      component={InputField}
                     />
                   </div>
                 </div>
@@ -97,7 +90,7 @@ export default function AddProductPage() {
                     <SelectMulti menuIsOpen isSearchable={true} />
                   </div>
                 </div>
-                <div className="form-group row">
+                {/* <div className="form-group row">
                   <label
                     htmlFor="input-brand"
                     className="l12-col-sm-2 col-form-label"
@@ -159,7 +152,7 @@ export default function AddProductPage() {
                       id="input-quantity"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="form-group row">
                   <label
                     htmlFor="input-description"
@@ -168,13 +161,36 @@ export default function AddProductPage() {
                     description
                   </label>
                   <div className="l12-col-sm-8">
-                    <textarea
+                    <Field
                       rows={4}
+                      name="description"
+                      as="textarea"
                       className="form-control"
                       id="input-description"
                     />
                   </div>
-                </div> */}
+                </div>
+                <div className="form-group row">
+                  <div className="l12-col-sm-6"></div>
+                  <div className="l12-col-sm-2">
+                    <button
+                      type="button"
+                      className="button button-outline-primary"
+                      disabled={isSubmitting}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <div className="l12-col-sm-2">
+                    <button
+                      type="submit"
+                      className="button button-primary"
+                      disabled={isSubmitting}
+                    >
+                      Complete
+                    </button>
+                  </div>
+                </div>
               </form>
             )}
           </Formik>

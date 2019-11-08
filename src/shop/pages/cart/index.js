@@ -89,7 +89,7 @@ export default class index extends Component {
                   </tfoot>
                 </table>
               </div>
-              <button className="button button-tertiary cart-page__order-total__checkout">
+              <button className="button button-lg button-tertiary cart-page__order-total__checkout">
                 Check out
               </button>
             </div>

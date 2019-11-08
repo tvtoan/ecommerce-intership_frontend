@@ -76,3 +76,20 @@
     color: var(--greyish-two);
   }
 }
+
+/// ===== .file-upload__note =====
+.file-upload__note {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.43;
+  color: var(--greyish);
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+/// validation
+.image-upload-wrapper {
+  .invalid-feedback {
+    display: block;
+  }
+}

@@ -9,7 +9,8 @@ import { FileUploadContext } from "./context/FileUploadContext";
 export default function ImageUpload(props) {
   // files: [addedFiles, setAddFiles]
   const {
-    files: [addedFiles]
+    files: [addedFiles],
+    info: { note, validateMessage, isInvalid }
   } = useContext(FileUploadContext);
 
   return (
@@ -27,6 +28,10 @@ export default function ImageUpload(props) {
           <ImageSelect />
         </div>
       </div>
+      {note && <span className="file-upload__note">{note}</span>}
+      {validateMessage && (
+        <div className="invalid-feedback">{validateMessage}</div>
+      )}
     </div>
   );
 }

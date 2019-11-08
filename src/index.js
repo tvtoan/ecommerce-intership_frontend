@@ -1,5 +1,5 @@
 // core
-import React, {Suspense} from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 // 3rd packages
@@ -7,6 +7,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reducerApp from "./redux";
+import thunk from "redux-thunk";
 // stypes
 import "./index.scss";
 import "normalize.css";
@@ -19,16 +23,26 @@ const SellerWeb = React.lazy(() => import("./seller"));
 
 // configs
 library.add(fas, fab);
+const middleware = [thunk];
+const store = createStore(
+  reducerApp,
+  compose(
+    applyMiddleware(...middleware)
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  )
+);
 
 ReactDOM.render(
-  <Router>
-    <Suspense fallback={<Loading />}>
-      <Switch>
-        <Route path="/seller" component={SellerWeb} />
-        <Route path="/" component={ShopWeb} />
-      </Switch>
-    </Suspense>
-  </Router>,
+  <Suspense fallback={<Loading />}>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route path="/seller" component={SellerWeb} />
+          <Route path="/" component={ShopWeb} />
+        </Switch>
+      </Router>
+    </Provider>
+  </Suspense>,
   document.getElementById("root")
 );
 

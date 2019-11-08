@@ -100,10 +100,6 @@ export default class FileUpload extends React.Component {
     this.setAddedFiles([]);
   };
 
-  componentDidMount() {
-    console.log("Files:", this.state.addedFiles);
-  }
-
   render() {
     const store = {
       files: [this.state.addedFiles, this.setAddedFiles],
@@ -116,6 +112,10 @@ export default class FileUpload extends React.Component {
         {this.props.isDrag ? (
           <DndProvider backend={HTML5Backend}>
             <TargetUpload onDrop={this.handleFileDrop}>
+              <button onClick={e => {
+                e.preventDefault();
+                console.log("Files:", this.state.addedFiles);
+              }}>GET</button>
               <ImageUpload />
             </TargetUpload>
           </DndProvider>

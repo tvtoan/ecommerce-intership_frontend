@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+// 3rd packages
+import { Formik, Field } from "formik";
+import * as yup from "yup";
 // components
 import Modal from "components/modal";
-import CheckboxCustom from "components/forms/checkbox";
+import { InputField, CheckboxField } from "components/formik";
 // styles
 import "./style.scss";
 
@@ -22,6 +25,13 @@ function BottomComponent() {
   );
 }
 
+const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+  setSubmitting(true);
+  console.log("values:", values);
+  // resetForm();
+  setSubmitting(false);
+};
+
 export default function LoginModal() {
   return (
     <Modal
@@ -31,36 +41,69 @@ export default function LoginModal() {
         bottomComponent: <BottomComponent />
       }}
     >
-      <form className="form-login was-validated">
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">e-mail</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            placeholder="Enter your name..."
-          />
-          <div className="invalid-feedback">Please enter a valid name!</div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Password</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            placeholder="Enter your password…"
-          />
-        </div>
-        <div className="form-login__method">
-          <CheckboxCustom />
-          <button className="flat-button forgot-pass">
-            Forgot your password?
-          </button>
-        </div>
-        <button type="submit" className="button btn-login">
-          Log In
-        </button>
-      </form>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          isRemember: ""
+        }}
+        validationSchema={yup.object().shape({
+          email: yup
+            .string()
+            .email("Please enter a valid e-mail!")
+            .required("Please enter a valid e-mail!"),
+          password: yup
+            .string()
+            .min(6, "Your passwords must be more than 6 characters!")
+            .required("Please enter a valid password!")
+        })}
+        onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
+          handleSubmit(values, setSubmitting, setFieldError, resetForm);
+        }}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <form className="form-login" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fieldEmail">E-mail</label>
+              <Field
+                id="fieldEmail"
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+                component={InputField}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="fieldPassword">Password</label>
+              <Field
+                id="fieldPassword"
+                type="password"
+                name="password"
+                placeholder="Enter your password..."
+                component={InputField}
+              />
+            </div>
+            <div className="form-login__method">
+              <Field
+                id="fieldIsRemember"
+                name="isRemember"
+                label="Remember password"
+                component={CheckboxField}
+              />
+              <button className="flat-button forgot-pass">
+                Forgot your password?
+              </button>
+            </div>
+            <button
+              type="submit"
+              className="button btn-login"
+              disabled={isSubmitting}
+            >
+              Log In
+            </button>
+          </form>
+        )}
+      </Formik>
     </Modal>
   );
 }

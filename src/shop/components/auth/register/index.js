@@ -1,6 +1,10 @@
 import React from "react";
+// 3rd packages
+import { Formik, Field } from "formik";
+import * as yup from "yup";
 // components
 import Modal from "components/modal";
+import { InputField } from "components/formik";
 // styles
 import "./style.scss";
 
@@ -10,7 +14,7 @@ function TopComponent() {
       <h5 className="modal__title">Register</h5>
     </>
   );
-};
+}
 
 function BottomComponent() {
   return (
@@ -19,6 +23,13 @@ function BottomComponent() {
       <a href="#/">Log in</a>
     </>
   );
+}
+
+const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+  setSubmitting(true);
+  console.log("values:", values);
+  resetForm();
+  setSubmitting(false);
 };
 
 export default function RegisterModal() {
@@ -30,43 +41,74 @@ export default function RegisterModal() {
         bottomComponent: <BottomComponent />
       }}
     >
-      <form className="form-register was-validated">
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Name</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            placeholder="Enter your name..."
-          />
-          <div className="invalid-feedback">Please enter a valid name!</div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">E-mail</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            placeholder="Enter your email..."
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Password</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            placeholder="Enter your password…"
-          />
-        </div>
-        <div className="term">
-          By creating an account you agree to the{" "}
-          <a href="#/">Terms of Service</a> and <a href="#/">Privacy Policy</a>
-        </div>
-        <button type="button" className="button btn-register">
-          register
-        </button>
-      </form>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          password: ""
+        }}
+        validationSchema={yup.object().shape({
+          name: yup.string().required("Please enter a valid name!"),
+          email: yup
+            .string()
+            .email("Please enter a valid e-mail!")
+            .required("Please enter a valid e-mail!"),
+          password: yup
+            .string()
+            .min(6, "Your passwords must be more than 6 characters!")
+            .required("Please enter a valid password!")
+        })}
+        onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
+          handleSubmit(values, setSubmitting, setFieldError, resetForm);
+        }}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <form className="form-register" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fieldName">Name</label>
+              <Field
+                id="fieldName"
+                type="text"
+                name="name"
+                placeholder="Enter your name..."
+                component={InputField}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="fieldEmail">E-mail</label>
+              <Field
+                id="fieldEmail"
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+                component={InputField}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="fieldPassword">Password</label>
+              <Field
+                id="fieldPassword"
+                type="password"
+                name="password"
+                placeholder="Enter your password..."
+                component={InputField}
+              />
+            </div>
+            <div className="term">
+              By creating an account you agree to the{" "}
+              <a href="#/">Terms of Service</a> and{" "}
+              <a href="#/">Privacy Policy</a>
+            </div>
+            <button
+              type="submit"
+              className="button btn-register"
+              disabled={isSubmitting}
+            >
+              register
+            </button>
+          </form>
+        )}
+      </Formik>
     </Modal>
   );
 }

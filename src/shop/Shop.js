@@ -5,8 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import HeaderPage from './components/header';
 import FooterPage from './components/footer';
 // import RegisterModal from './components/auth/register';
-// import LoginModal from './components/auth/login';
-import ForgotPassModal from './components/auth/forgot-pass';
+import LoginModal from './components/auth/login';
+// import ForgotPassModal from './components/auth/forgot-pass';
 // Pages
 import HomePage from './pages/homepage';
 import ProductListPage from "./pages/product-list";
@@ -30,8 +30,8 @@ function App() {
       </Switch>
       <FooterPage />
       {/* <RegisterModal /> */}
-      {/* <LoginModal /> */}
-      <ForgotPassModal />
+      <LoginModal />
+      {/* <ForgotPassModal /> */}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React from "react";
 // 3rd packages
 import { getIn } from "formik";
-import { Form } from "react-bootstrap";
 import classNames from "classnames";
 
 export default function UploadField({

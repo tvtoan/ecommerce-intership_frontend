@@ -17,3 +17,92 @@
     color: var(--greyish-brown);
   }
 }
+
+/// ===== custom-control =====
+.custom-control {
+  position: relative;
+  display: block;
+  min-height: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.custom-control-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  &:checked ~ .custom-control-label::before {
+    color: var(--white);
+    background-color: var(--pale-orange);
+    border-color: var(--pale-orange);
+  }
+  &:focus ~ .custom-control-label::before {
+    /* box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); */
+  }
+  &:focus:not(:checked) ~ .custom-control-label::before {
+    /* border-color: #80bdff; */
+  }
+  &:not(:disabled):active ~ .custom-control-label::before {
+    /* color: #fff;
+    background-color: #b3d7ff;
+    border-color: #b3d7ff; */
+  }
+  &:disabled ~ .custom-control-label {
+    color: #6c757d;
+  }
+  &:disabled ~ .custom-control-label::before {
+    background-color: #e9ecef;
+  }
+}
+.custom-control-label {
+  font-size: 0.875rem;
+  line-height: 1.57;
+  position: relative;
+  margin-bottom: 0;
+  vertical-align: top;
+  color: var(--greyish-brown);
+  padding-left: 1.5rem;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    content: "";
+    background-color: #fff;
+    border: 1px solid #808080;
+  }
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background: no-repeat 50%;
+    border: 1px solid transparent;
+  }
+}
+// ???
+.custom-control-label::before,
+.custom-file-label,
+.custom-select {
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-control-label::before,
+  .custom-file-label,
+  .custom-select {
+    transition: none;
+  }
+}

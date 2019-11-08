@@ -1,7 +1,5 @@
-.was-validated .form-control:invalid {
-  border: solid 1px var(--strawberry);
-  background-color: rgba(246, 63, 69, 0.04);
-}
+@use "mixins" as mix;
+
 .invalid-feedback {
   display: none;
   font-size: 0.625rem;
@@ -12,6 +10,28 @@
   top: 100%;
   left: 0;
 }
-.was-validated .form-control:invalid ~ .invalid-feedback {
-  display: block;
+// .form-control
+.was-validated .form-control {
+  &:invalid {
+    @include mix.invalid-form-control;
+  }
 }
+.form-control {
+  &.is-invalid {
+    @include mix.invalid-form-control;
+  }
+}
+// .form-check-input
+.form-check-input {
+  .was-validated .custom-control-input {
+    &:invalid {
+      @include mix.invalid-form-check-input ;
+    }
+  }
+  .custom-control-input {
+    &.is-invalid {
+      @include mix.invalid-form-check-input ;
+    }
+  }
+}
+

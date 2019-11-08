@@ -1,6 +1,6 @@
 /* ===== Modal ===== */
 .modal {
-  display: none;
+  // display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -60,6 +60,7 @@
   & .modal__body {
     padding: 20px 80px 64px 80px;
     & button[type="submit"] {
+      cursor: pointer;
       text-transform: capitalize;
       font-size: 1rem;
     }

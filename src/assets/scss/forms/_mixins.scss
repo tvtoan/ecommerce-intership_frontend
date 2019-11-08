@@ -1,0 +1,13 @@
+@mixin invalid-form-control {
+  border: solid 1px var(--strawberry);
+  background-color: rgba(246, 63, 69, 0.04);
+  ~ .invalid-feedback {
+    display: block;
+  }
+}
+@mixin invalid-form-check-input {
+  color: var(--strawberry);
+  ~ .invalid-feedback {
+    display: block;
+  }
+}

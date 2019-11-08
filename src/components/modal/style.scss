@@ -1,0 +1,85 @@
+/* ===== Modal ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background-color: rgba(var(--dark-grey-rgb), 0.4);
+  padding-top: 110px;
+}
+.modal__content {
+  width: 555px;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.03);
+  background-color: var(--white);
+  margin: auto;
+}
+.modal-auth {
+  & .modal__header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    position: relative;
+    padding: 47px 0 15px;
+    & .modal__close {
+      position: absolute;
+      top: 16px;
+      right: 14px;
+      align-self: flex-end;
+      color: var(--white-four);
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      cursor: pointer;
+    }
+    & .modal__title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.31;
+      text-align: center;
+      color: var(--dark-grey);
+      margin: 0;
+      text-transform: capitalize;
+    }
+    & .modal__description {
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.83;
+      text-align: center;
+      color: #808080;
+    }
+    & .modal__title + .modal__description {
+      margin-top: 7px;
+    }
+  }
+  & .modal__body {
+    padding: 20px 80px 64px 80px;
+    & button[type="submit"] {
+      text-transform: capitalize;
+      font-size: 1rem;
+    }
+  }
+  & .modal__footer {
+    border-top: 1px solid var(--white-three);
+    padding: 22px 0;
+    text-align: center;
+    & span {
+      font-weight: 500;
+      color: var(--greyish-brown);
+    }
+    & a {
+      font-weight: 700;
+      color: var(--pumpkin-orange);
+      text-decoration: underline;
+    }
+    & span + a {
+      margin-left: 4px;
+      text-transform: capitalize;
+    }
+  }
+}

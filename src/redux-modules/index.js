@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-// import AuthReducer from './auth/reducers';
+// shop's reducers 
+import UIReducer from './shop/ui/reducers';
 
 const reducerApp = combineReducers({
-  // AuthReducer,
+  UIReducer,
   // ErrorReducer,
   // FarmReducer,
   // TreeReducer,

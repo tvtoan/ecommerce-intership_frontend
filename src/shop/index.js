@@ -1,3 +1,3 @@
-import Shop from './Shop';
+import ShopWeb from './Shop';
 
-export default Shop;
+export default ShopWeb;

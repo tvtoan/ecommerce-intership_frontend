@@ -5,7 +5,6 @@ import * as yup from "yup";
 import classNames from "classnames";
 // components
 import Modal from "components/modal";
-import ForgotPassModal from "../forgot-pass";
 import { InputField, CheckboxField } from "components/formik";
 // styles
 import "./style.scss";
@@ -18,11 +17,19 @@ function TopComponent() {
   );
 }
 
-function BottomComponent() {
+function BottomComponent(props) {
   return (
     <>
       <span>Don’t have an account?</span>
-      <a href="#/">register</a>
+      <button
+        className="flat-button link-other"
+        onClick={() => {
+          props.closeAllAuthModal();
+          props.setShowRegisterModal("register", true);
+        }}
+      >
+        register
+      </button>
     </>
   );
 }
@@ -35,14 +42,18 @@ const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
 };
 
 export default function LoginModal({ className, ...props }) {
-  const [isShowForgotModal, setIsShowForgotModal] = useState(false);
   return (
     <>
       <Modal
         className={classNames("modal-auth modal-login", className)}
         component={{
           topComponent: <TopComponent />,
-          bottomComponent: <BottomComponent />
+          bottomComponent: (
+            <BottomComponent
+              closeAllAuthModal={props.closeAllAuthModal}
+              setShowRegisterModal={props.setShowRegisterModal}
+            />
+          )
         }}
         {...props}
       >
@@ -99,8 +110,7 @@ export default function LoginModal({ className, ...props }) {
                   className="flat-button forgot-pass"
                   onClick={e => {
                     e.preventDefault();
-                    setIsShowForgotModal(true);
-                    props.onHide();
+                    props.setShowForgotModal("forgot_pass", true);
                   }}
                 >
                   Forgot your password?
@@ -119,11 +129,6 @@ export default function LoginModal({ className, ...props }) {
           )}
         </Formik>
       </Modal>
-      <ForgotPassModal
-        show={isShowForgotModal}
-        onHide={() => setIsShowForgotModal(false)}
-        onOpen={() => props.onHide()}
-      />
     </>
   );
 }

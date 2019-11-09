@@ -23,13 +23,13 @@
   margin: auto;
 }
 .modal-auth {
-  & .modal__header {
+  .modal__header {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     position: relative;
     padding: 47px 0 15px;
-    & .modal__close {
+    .modal__close {
       position: absolute;
       top: 16px;
       right: 14px;
@@ -40,7 +40,7 @@
       height: 1.5rem;
       cursor: pointer;
     }
-    & .modal__title {
+    .modal__title {
       font-size: 2rem;
       font-weight: 700;
       line-height: 1.31;
@@ -48,42 +48,47 @@
       color: var(--dark-grey);
       margin: 0;
       text-transform: capitalize;
+      + .modal__description {
+        margin-top: 7px;
+      }
     }
-    & .modal__description {
+    .modal__description {
       font-size: 0.75rem;
       font-weight: 500;
       line-height: 1.83;
       text-align: center;
       color: #808080;
     }
-    & .modal__title + .modal__description {
-      margin-top: 7px;
-    }
   }
-  & .modal__body {
+  .modal__body {
     padding: 20px 80px 64px 80px;
-    & button[type="submit"] {
+    button[type="submit"] {
       cursor: pointer;
       text-transform: capitalize;
       font-size: 1rem;
     }
   }
-  & .modal__footer {
+  .modal__footer {
     border-top: 1px solid var(--white-three);
     padding: 22px 0;
     text-align: center;
-    & span {
+    span {
       font-weight: 500;
       color: var(--greyish-brown);
+      + a,
+      + .link-other {
+        margin-left: 4px;
+        text-transform: capitalize;
+      }
     }
-    & a {
+    a,
+    .link-other {
       font-weight: 700;
       color: var(--pumpkin-orange);
       text-decoration: underline;
     }
-    & span + a {
-      margin-left: 4px;
-      text-transform: capitalize;
+    .link-other {
+      cursor: pointer;
     }
   }
 }

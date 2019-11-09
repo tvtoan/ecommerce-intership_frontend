@@ -27,62 +27,76 @@ function TopComponent() {
   );
 }
 
-function BottomComponent() {
+function BottomComponent(props) {
   return (
     <>
       <span>I remember my password now.</span>
-      <a href="#/">Log in</a>
+      <button
+        className="flat-button link-other"
+        onClick={() => {
+          props.closeAllAuthModal();
+          props.setShowLoginModal("login", true);
+        }}
+      >
+        Log in
+      </button>
     </>
   );
 }
 
-export default function ForgotPassModal({className, ...props}) {
+export default function ForgotPassModal({ className, ...props }) {
   return (
     <Modal
-        className={classNames("modal-auth modal-forgot-pass", className)}
-        component={{
-          topComponent: <TopComponent />,
-          bottomComponent: <BottomComponent />
+      className={classNames("modal-auth modal-forgot-pass", className)}
+      component={{
+        topComponent: <TopComponent />,
+        bottomComponent: (
+          <BottomComponent
+            closeAllAuthModal={props.closeAllAuthModal}
+            setShowLoginModal={props.setShowLoginModal}
+          />
+        )
+      }}
+      {...props}
+    >
+      <Formik
+        initialValues={{
+          email: ""
         }}
-        {...props}
+        validationSchema={yup.object().shape({
+          email: yup
+            .string()
+            .email("Please enter a valid e-mail!")
+            .required("Please enter a valid e-mail!")
+        })}
+        onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
+          handleSubmit(values, setSubmitting, setFieldError, resetForm);
+        }}
       >
-        <Formik
-          initialValues={{
-            email: ""
-          }}
-          validationSchema={yup.object().shape({
-            email: yup
-              .string()
-              .email("Please enter a valid e-mail!")
-              .required("Please enter a valid e-mail!")
-          })}
-          onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
-            handleSubmit(values, setSubmitting, setFieldError, resetForm);
-          }}
-        >
-          {({ isValid, handleSubmit, isSubmitting }) => (
-            <form className="form-forgot-pass" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="fieldEmail">E-mail</label>
-                <Field
-                  id="fieldEmail"
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email..."
-                  component={InputField}
-                />
-              </div>
-              <button
-                type="submit"
-                className={classNames("button button-lg btn-forgot-pass", {"button-primary": isValid})}
-                disabled={isSubmitting}
-              >
-                submit
-              </button>
-            </form>
-          )}
-        </Formik>
-      </Modal>
-  )
+        {({ isValid, handleSubmit, isSubmitting }) => (
+          <form className="form-forgot-pass" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fieldEmail">E-mail</label>
+              <Field
+                id="fieldEmail"
+                type="email"
+                name="email"
+                placeholder="Enter your email..."
+                component={InputField}
+              />
+            </div>
+            <button
+              type="submit"
+              className={classNames("button button-lg btn-forgot-pass", {
+                "button-primary": isValid
+              })}
+              disabled={isSubmitting}
+            >
+              submit
+            </button>
+          </form>
+        )}
+      </Formik>
+    </Modal>
+  );
 }
-

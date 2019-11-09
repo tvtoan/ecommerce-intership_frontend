@@ -9,7 +9,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
-import reducerApp from "./redux";
+import reducerApp from "./redux-modules";
 import thunk from "redux-thunk";
 // stypes
 import "./index.scss";

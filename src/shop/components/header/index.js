@@ -2,9 +2,6 @@ import React, { useState } from "react";
 // 3rd packages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-// components
-import RegisterModal from "../auth/register";
-import LoginModal from "../auth/login";
 // static resources
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.svg";
@@ -14,10 +11,10 @@ import product2 from "assets/images/shop/product-2.jpeg";
 
 import "./style.scss";
 
-export default function HeaderPage() {
+export default function HeaderPage(props) {
   const [isAuth] = useState(false);
-  const [isShowRegisterModal, setIsShowRegisterModal] = useState(false);
-  const [isShowLoginModal, setIsShowLoginModal] = useState(false);
+  // const [isShowRegisterModal, setIsShowRegisterModal] = useState(false);
+  // const [isShowLoginModal, setIsShowLoginModal] = useState(false);
 
   return (
     <header className="shop-header container-fluid">
@@ -42,13 +39,15 @@ export default function HeaderPage() {
                 <>
                   <button
                     className="flat-button auth__register"
-                    onClick={() => setIsShowRegisterModal(true)}
+                    // onClick={() => setIsShowRegisterModal(true)}
+                    onClick={() => props.setShowRegisterModal("register", true)}
                   >
                     Register
                   </button>
                   <button
                     className="flat-button auth__login"
-                    onClick={() => setIsShowLoginModal(true)}
+                    // onClick={() => setIsShowLoginModal(true)}
+                    onClick={() => props.setShowLoginModal("login", true)}
                   >
                     Log In
                   </button>
@@ -199,15 +198,6 @@ export default function HeaderPage() {
           </nav>
         </div>
       </div>
-
-      <RegisterModal
-        show={isShowRegisterModal}
-        onHide={() => setIsShowRegisterModal(false)}
-      />
-      <LoginModal
-        show={isShowLoginModal}
-        onHide={() => setIsShowLoginModal(false)}
-      />
     </header>
   );
 }

@@ -17,11 +17,19 @@ function TopComponent() {
   );
 }
 
-function BottomComponent() {
+function BottomComponent(props) {
   return (
     <>
       <span>Do you have an account?</span>
-      <a href="#/">Log in</a>
+      <button
+        className="flat-button link-other"
+        onClick={() => {
+          props.closeAllAuthModal();
+          props.setShowLoginModal("login", true);
+        }}
+      >
+        Log in
+      </button>
     </>
   );
 }
@@ -33,13 +41,18 @@ const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
   setSubmitting(false);
 };
 
-export default function RegisterModal({className, ...props}) {
+export default function RegisterModal({ className, ...props }) {
   return (
     <Modal
       className={classNames("modal-auth modal-register", className)}
       component={{
         topComponent: <TopComponent />,
-        bottomComponent: <BottomComponent />
+        bottomComponent: (
+          <BottomComponent
+            closeAllAuthModal={props.closeAllAuthModal}
+            setShowLoginModal={props.setShowLoginModal}
+          />
+        )
       }}
       {...props}
     >
@@ -103,7 +116,9 @@ export default function RegisterModal({className, ...props}) {
             </div>
             <button
               type="submit"
-              className={classNames("button button-lg btn-register", {"button-primary": isValid})}
+              className={classNames("button button-lg btn-register", {
+                "button-primary": isValid
+              })}
               disabled={isSubmitting}
             >
               register

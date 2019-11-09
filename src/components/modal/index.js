@@ -10,21 +10,22 @@ export default function Modal(props) {
   const [isShow, setIsShow] = useState(props.show || false);
 
   const handleHide = e => {
+    setIsShow(false);
     if (props.onHide) {
       props.onHide(e);
     }
   };
 
   useEffect(() => {
-    if (isShow === true && props.onOpen) {
+    if (props.show === true && props.onOpen) {
       props.onOpen();
     }
-    if ('show' in props) {
+    if ("show" in props) {
       setIsShow(props.show);
     }
-  }, [isShow, props, props.show]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.show]);
 
-  
   if (!isShow) {
     return null;
   }

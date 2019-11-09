@@ -5,6 +5,7 @@ import * as yup from "yup";
 import classNames from "classnames";
 // components
 import Modal from "components/modal";
+import ForgotPassModal from '../forgot-pass';
 import { InputField, CheckboxField } from "components/formik";
 // styles
 import "./style.scss";
@@ -33,14 +34,15 @@ const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
   setSubmitting(false);
 };
 
-export default function LoginModal() {
+export default function LoginModal({className, ...props}) {
   return (
     <Modal
-      className="modal-auth modal-login"
+      className={classNames("modal-auth modal-login", className)}
       component={{
         topComponent: <TopComponent />,
         bottomComponent: <BottomComponent />
       }}
+      {...props}
     >
       <Formik
         initialValues={{

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 // 3rd packages
 import { Formik, Field } from "formik";
 import * as yup from "yup";
@@ -36,15 +36,15 @@ function BottomComponent() {
   );
 }
 
-export default class index extends Component {
-  render() {
-    return (
-      <Modal
-        className="modal-auth modal-forgot-pass"
+export default function ForgotPassModal({className, ...props}) {
+  return (
+    <Modal
+        className={classNames("modal-auth modal-forgot-pass", className)}
         component={{
           topComponent: <TopComponent />,
           bottomComponent: <BottomComponent />
         }}
+        {...props}
       >
         <Formik
           initialValues={{
@@ -83,6 +83,6 @@ export default class index extends Component {
           )}
         </Formik>
       </Modal>
-    );
-  }
+  )
 }
+

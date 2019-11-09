@@ -33,14 +33,15 @@ const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
   setSubmitting(false);
 };
 
-export default function RegisterModal() {
+export default function RegisterModal({className, ...props}) {
   return (
     <Modal
-      className="modal-auth modal-register"
+      className={classNames("modal-auth modal-register", className)}
       component={{
         topComponent: <TopComponent />,
         bottomComponent: <BottomComponent />
       }}
+      {...props}
     >
       <Formik
         initialValues={{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // 3rd packages
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -7,8 +7,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
 
 export default function Modal(props) {
+  const [isShow, setIsShow] = useState(props.show || false);
+
+  const handleHide = e => {
+    if (props.onHide) {
+      props.onHide(e);
+    }
+  };
+
+  useEffect(() => {
+    if (isShow === true && props.onOpen) {
+      props.onOpen();
+    }
+    if ('show' in props) {
+      setIsShow(props.show);
+    }
+  }, [isShow, props, props.show]);
+
+  
+  if (!isShow) {
+    return null;
+  }
   return (
-    <div className={classNames("modal", props.className)}>
+    <div className={classNames("modal", props.className, { show: isShow })}>
       <div className="modal__content">
         <div className="modal__header">
           <button
@@ -16,6 +37,7 @@ export default function Modal(props) {
             className="flat-button modal__close"
             data-dismiss="modal"
             aria-label="Close"
+            onClick={handleHide}
           >
             <FontAwesomeIcon icon={["fas", "times"]} aria-hidden="true" />
           </button>
@@ -29,8 +51,12 @@ export default function Modal(props) {
 }
 
 Modal.propTypes = {
+  show: PropTypes.bool,
   component: PropTypes.shape({
     topComponent: PropTypes.element.isRequired,
     bottomComponent: PropTypes.element.isRequired
-  }).isRequired
+  }).isRequired,
+  // functions
+  onOpen: PropTypes.func,
+  onHide: PropTypes.func
 };

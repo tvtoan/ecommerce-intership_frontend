@@ -10,7 +10,7 @@ export default function ImageUpload(props) {
   // files: [addedFiles, setAddFiles]
   const {
     files: [addedFiles],
-    info: { note, validateMessage, isInvalid }
+    info: { note, validateMessage }
   } = useContext(FileUploadContext);
 
   return (

@@ -6,7 +6,9 @@ import HeaderPage from "../components/header";
 import { acShowAuthModal } from "redux-modules/shop/ui/actions";
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isAuthenticated: state.AuthReducer.isAuthenticated
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {

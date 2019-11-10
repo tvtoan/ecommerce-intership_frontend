@@ -1,4 +1,4 @@
-import * as types from './types';
+import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case types.REGISTER_REQUEST:
       return {
         ...state,
-      };
+      }
     case types.LOGIN_REQUEST:
       return {
         ...state,
@@ -21,8 +21,8 @@ export default (state = initialState, action) => {
       };
     case types.LOGOUT_REQUEST:
       return {
-        ...initialState,
-      }
+        ...initialState
+      };
     case types.FORGOT_PASSWORD_MESSAGE:
       return {
         message: action.message

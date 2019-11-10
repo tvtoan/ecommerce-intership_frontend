@@ -1,0 +1,32 @@
+.modal-auth-success {
+  .modal__body {
+    padding: 2rem 5rem;
+  }
+  .modal-auth-success-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    .modal-auth-success__icon{
+      font-size: 2rem;
+      color: var(--pea-green);
+      align-self: center;
+      padding: 1rem;
+      border-radius: 100%;
+      line-height: 0;
+      border: .125em solid var(--pea-green);
+    }
+    .modal-auth-success__message{
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.83;
+      text-transform: capitalize;
+      text-align: center;
+      margin: 1.5rem 0 2rem;
+    }
+    .modal-auth-success__button-link{
+      text-transform: capitalize;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}

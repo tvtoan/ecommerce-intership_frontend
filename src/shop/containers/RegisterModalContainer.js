@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
+    setShowRegisterModal: isShow => dispatch(acShowAuthModal("register", isShow)),
     setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
     closeAllAuthModal: () => dispatch(acCloseAllAuthModal()),
     // auth

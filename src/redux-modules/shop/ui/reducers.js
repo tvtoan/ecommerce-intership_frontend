@@ -4,7 +4,8 @@ import * as types from "./types";
 const initialState = {
   isShowRegister: false,
   isShowLogin: false,
-  isShowForgotPass: false
+  isShowForgotPass: false,
+  isShowSuccess: false
 };
 
 // reducer
@@ -24,6 +25,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isShowForgotPass: action.isShow
+      };
+    case types.SUCCESS_MODAL_SHOW:
+      return {
+        ...state,
+        isShowSuccess: action.isShow
       };
     case types.CLOSE_ALL_AUTH_MODAL_SHOW:
       return {

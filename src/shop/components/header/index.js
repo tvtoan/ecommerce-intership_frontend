@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // 3rd packages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -12,9 +12,6 @@ import product2 from "assets/images/shop/product-2.jpeg";
 import "./style.scss";
 
 export default function HeaderPage(props) {
-  const [isAuth] = useState(false);
-  // const [isShowRegisterModal, setIsShowRegisterModal] = useState(false);
-  // const [isShowLoginModal, setIsShowLoginModal] = useState(false);
 
   return (
     <header className="shop-header container-fluid">
@@ -35,7 +32,7 @@ export default function HeaderPage(props) {
         <div className="shop-header__top--right">
           <div className="shop-header__top--right__item">
             <div className="auth">
-              {!isAuth ? (
+              {!props.isAuthenticated ? (
                 <>
                   <button
                     className="flat-button auth__register"

@@ -42,7 +42,7 @@ const handleSubmit = async (values, setSubmitting, setFieldError, resetForm, ...
     setSubmitting(false);
     resetForm();
     if (closeModal) {
-      closeModal("register", false);
+      closeModal(false);
     }
   } catch (error) {
     console.error("[REGISTER]:", error);

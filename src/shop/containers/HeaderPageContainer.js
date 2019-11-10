@@ -10,10 +10,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setShowRegisterModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow)),
-    setShowLoginModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow))
+    setShowRegisterModal: isShow =>
+      dispatch(acShowAuthModal("register", isShow)),
+    setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow))
   };
 };
 

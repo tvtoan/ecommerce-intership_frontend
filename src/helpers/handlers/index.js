@@ -6,7 +6,6 @@ let logoutStatuses = [401, 403];
 
 const handleError = (dispatch, error, methodFormik = undefined) => {
   if (logoutStatuses.indexOf(error.status) > -1) {
-    console.log("error logout");
     removeToken();
     removeUser();
     dispatch(aLogout());
@@ -15,7 +14,7 @@ const handleError = (dispatch, error, methodFormik = undefined) => {
       error.json().then(res => {
         if (res.details !== undefined) {
           for (let errorServer of res.details) {
-            methodFormik(errorServer.field, errorServer.issue);
+            methodFormik(errorServer.field, errorServer.message);
           }
         } else {
           dispatch(aHandleMessage(error));

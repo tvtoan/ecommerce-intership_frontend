@@ -35,7 +35,7 @@ function BottomComponent(props) {
         className="flat-button link-other"
         onClick={() => {
           props.closeAllAuthModal();
-          props.setShowLoginModal("login", true);
+          props.setShowLoginModal(true);
         }}
       >
         Log in

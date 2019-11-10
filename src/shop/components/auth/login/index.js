@@ -25,7 +25,7 @@ function BottomComponent(props) {
         className="flat-button link-other"
         onClick={() => {
           props.closeAllAuthModal();
-          props.setShowRegisterModal("register", true);
+          props.setShowRegisterModal(true);
         }}
       >
         register
@@ -34,11 +34,19 @@ function BottomComponent(props) {
   );
 }
 
-const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+const handleSubmit = async (values, setSubmitting, setFieldError, resetForm, ...[handleAuth, closeModal]) => {
   setSubmitting(true);
   console.log("values:", values);
-  // resetForm();
-  setSubmitting(false);
+  try {
+    await handleAuth(values, setFieldError);
+    setSubmitting(false);
+    resetForm();
+    if (closeModal) {
+      closeModal(false);
+    }
+  } catch (error) {
+    console.error("[LOGIN]:", error);
+  }
 };
 
 export default function LoginModal({ className, ...props }) {
@@ -74,7 +82,7 @@ export default function LoginModal({ className, ...props }) {
               .required("Please enter a valid password!")
           })}
           onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
-            handleSubmit(values, setSubmitting, setFieldError, resetForm);
+            handleSubmit(values, setSubmitting, setFieldError, resetForm, props.handleLogin, props.setShowLoginModal);
           }}
         >
           {({ isValid, handleSubmit, isSubmitting }) => (
@@ -110,7 +118,7 @@ export default function LoginModal({ className, ...props }) {
                   className="flat-button forgot-pass"
                   onClick={e => {
                     e.preventDefault();
-                    props.setShowForgotModal("forgot_pass", true);
+                    props.setShowForgotModal(true);
                   }}
                 >
                   Forgot your password?

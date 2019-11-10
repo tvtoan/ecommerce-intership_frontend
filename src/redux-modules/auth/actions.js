@@ -14,26 +14,26 @@ export const aRegister = () => ({
 });
 
 export const aLogout = () => ({
-  type: types.LOGOUT,
+  type: types.LOGOUT_REQUEST,
 });
 
 
 // action creators (functions that create actions)
+export const acRegister = (user, setFieldError) => async (dispatch) => {
+  try {
+    await callApi(`auth/register`, undefined, 'POST', user);
+    dispatch(aRegister());
+  } catch (error) {
+    handleError(dispatch, error, setFieldError)
+  }
+};
+
 export const acLogin = (user, setFieldError) => async (dispatch) => {
   try {
     const res = await callApi(`auth/login`, undefined, 'POST', user);
     setToken(res.accessToken);
     setUser(res.user);
     dispatch(aLogin(res.user));
-  } catch (error) {
-    handleError(dispatch, error, setFieldError)
-  }
-};
-
-export const acRegister = (user, setFieldError) => async (dispatch) => {
-  try {
-    await callApi(`auth/register`, undefined, 'POST', user);
-    dispatch(aRegister());
   } catch (error) {
     handleError(dispatch, error, setFieldError)
   }

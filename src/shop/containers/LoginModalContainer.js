@@ -13,10 +13,10 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setShowForgotModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow)),
-    setShowRegisterModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow)),
+    setShowForgotModal: isShow =>
+      dispatch(acShowAuthModal("forgot_pass", isShow)),
+    setShowRegisterModal: isShow =>
+      dispatch(acShowAuthModal("register", isShow)),
     closeAllAuthModal: () => dispatch(acCloseAllAuthModal())
   };
 };

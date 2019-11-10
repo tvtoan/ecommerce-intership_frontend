@@ -13,8 +13,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setShowLoginModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow)),
+    setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
     closeAllAuthModal: () => dispatch(acCloseAllAuthModal())
   };
 };

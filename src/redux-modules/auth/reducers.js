@@ -9,18 +9,17 @@ const initialState = {
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
+    case types.REGISTER_REQUEST:
+      return {
+        ...state,
+      };
     case types.LOGIN_REQUEST:
       return {
         ...state,
         user: action.user,
         isAuthenticated: true
       };
-    case types.REGISTER_REQUEST:
-      return {
-        ...state,
-        isRegisted: true,
-      };
-    case types.LOGOUT:
+    case types.LOGOUT_REQUEST:
       return {
         ...initialState,
       }

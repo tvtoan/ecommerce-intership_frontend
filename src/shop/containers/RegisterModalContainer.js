@@ -7,15 +7,18 @@ import {
   acShowAuthModal,
   acCloseAllAuthModal
 } from "redux-modules/shop/ui/actions";
+import { acRegister } from "redux-modules/auth/actions";
 
 const mapStateToProps = state => {
   return {};
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setShowLoginModal: (typeModal, isShow) =>
-      dispatch(acShowAuthModal(typeModal, isShow)),
-    closeAllAuthModal: () => dispatch(acCloseAllAuthModal())
+    setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
+    closeAllAuthModal: () => dispatch(acCloseAllAuthModal()),
+    // auth
+    handleRegister: (user, setFieldError) =>
+      dispatch(acRegister(user, setFieldError))
   };
 };
 

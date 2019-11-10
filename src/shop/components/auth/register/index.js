@@ -25,7 +25,7 @@ function BottomComponent(props) {
         className="flat-button link-other"
         onClick={() => {
           props.closeAllAuthModal();
-          props.setShowLoginModal("login", true);
+          props.setShowLoginModal(true);
         }}
       >
         Log in
@@ -34,11 +34,19 @@ function BottomComponent(props) {
   );
 }
 
-const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+const handleSubmit = async (values, setSubmitting, setFieldError, resetForm, ...[handleAuth, closeModal]) => {
   setSubmitting(true);
   console.log("values:", values);
-  resetForm();
-  setSubmitting(false);
+  try {
+    await handleAuth(values, setFieldError);
+    setSubmitting(false);
+    resetForm();
+    if (closeModal) {
+      closeModal("register", false);
+    }
+  } catch (error) {
+    console.error("[REGISTER]:", error);
+  }
 };
 
 export default function RegisterModal({ className, ...props }) {
@@ -58,12 +66,12 @@ export default function RegisterModal({ className, ...props }) {
     >
       <Formik
         initialValues={{
-          name: "",
+          fullname: "",
           email: "",
           password: ""
         }}
         validationSchema={yup.object().shape({
-          name: yup.string().required("Please enter a valid name!"),
+          fullname: yup.string().required("Please enter a valid name!"),
           email: yup
             .string()
             .email("Please enter a valid e-mail!")
@@ -74,7 +82,7 @@ export default function RegisterModal({ className, ...props }) {
             .required("Please enter a valid password!")
         })}
         onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
-          handleSubmit(values, setSubmitting, setFieldError, resetForm);
+          handleSubmit(values, setSubmitting, setFieldError, resetForm, props.handleRegister, props.setShowRegisterModal);
         }}
       >
         {({ isValid, handleSubmit, isSubmitting }) => (
@@ -84,7 +92,7 @@ export default function RegisterModal({ className, ...props }) {
               <Field
                 id="fieldName"
                 type="text"
-                name="name"
+                name="fullname"
                 placeholder="Enter your name..."
                 component={InputField}
               />

@@ -40,14 +40,14 @@ export default function HeaderPage(props) {
                   <button
                     className="flat-button auth__register"
                     // onClick={() => setIsShowRegisterModal(true)}
-                    onClick={() => props.setShowRegisterModal("register", true)}
+                    onClick={() => props.setShowRegisterModal(true)}
                   >
                     Register
                   </button>
                   <button
                     className="flat-button auth__login"
                     // onClick={() => setIsShowLoginModal(true)}
-                    onClick={() => props.setShowLoginModal("login", true)}
+                    onClick={() => props.setShowLoginModal(true)}
                   >
                     Log In
                   </button>

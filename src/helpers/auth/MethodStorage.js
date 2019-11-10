@@ -1,4 +1,5 @@
-import { KEY_TOKEN, KEY_INFO_USER } from 'common/Constants';
+const KEY_TOKEN = "KEY_TOKEN";
+const KEY_INFO_USER = "KEY_INFO_USER";
 
 export const getToken = () => {
   return localStorage.getItem(KEY_TOKEN);

@@ -1,0 +1,44 @@
+/// General
+.icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  color: #9b9b9b;
+}
+.badge {
+  border-radius: 8px;
+  background-color: var(--strawberry);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1.07;
+  color: var(--white);
+  padding: 3px 4px;
+}
+
+// ===== Override forms style ======
+.form-control {
+  border-radius: 2px;
+  border: solid 1px var(--white-three);
+  background-color: var(--white);
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: var(--charcoal-grey);
+  padding: 13px 16px;
+}
+.form-group {
+  label {
+    line-height: 1.17;
+  }
+}
+.invalid-feedback {
+  position: static;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+// button
+.button {
+  border-radius: 2px;
+  line-height: 1.71;
+}
+
+

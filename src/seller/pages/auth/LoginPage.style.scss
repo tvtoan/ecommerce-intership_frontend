@@ -1,0 +1,11 @@
+@use "mixins" as mix;
+
+.login-page__wrapper {
+  max-width: 23.75rem;
+  .form-login {
+    @include mix.flex-column-nowrap;
+    .btn-login {
+      margin: 1.25rem 0 2rem;
+    }
+  }
+}

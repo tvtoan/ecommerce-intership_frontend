@@ -1,0 +1,11 @@
+@use "mixins" as mix;
+
+.forgot-pass-page__wrapper {
+  max-width: 30rem;
+  .form-forgot-pass {
+    @include mix.flex-column-nowrap;
+    .btn-forgot-pass {
+      margin: 0.5rem 0 2rem;
+    }
+  }
+}

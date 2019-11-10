@@ -1,0 +1,23 @@
+.seller-web {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "sidebar main";
+  .sidebar-left {
+    grid-area: sidebar;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    transition: width 1s ease;
+    box-shadow: 1px 0 0 0 var(--white-three);
+    background-color: var(--white-two);
+  }
+  .main {
+    grid-area: main;
+    padding: 24px 20px;
+    background-color: var(--white-two);
+  }
+  // &:hover .sidebar-left {
+  //   width: 10px;
+  // }
+}

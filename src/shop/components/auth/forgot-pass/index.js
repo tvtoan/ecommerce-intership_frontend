@@ -9,13 +9,6 @@ import { InputField } from "components/formik";
 // styles
 import "./style.scss";
 
-const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
-  setSubmitting(true);
-  console.log("values:", values);
-  // resetForm();
-  setSubmitting(false);
-};
-
 function TopComponent() {
   return (
     <>
@@ -43,6 +36,13 @@ function BottomComponent(props) {
     </>
   );
 }
+
+const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
+  setSubmitting(true);
+  console.log("values:", values);
+  // resetForm();
+  setSubmitting(false);
+};
 
 export default function ForgotPassModal({ className, ...props }) {
   return (

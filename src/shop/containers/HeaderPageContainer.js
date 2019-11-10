@@ -2,12 +2,13 @@
 import { connect } from "react-redux";
 // components
 import HeaderPage from "../components/header";
-// Redux actions
+// redux actions
 import { acShowAuthModal } from "redux-modules/shop/ui/actions";
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.AuthReducer.isAuthenticated
+    isAuthenticated: state.AuthReducer.isAuthenticated,
+    userInfo: state.AuthReducer.user,
   };
 };
 const mapDispatchToProps = dispatch => {

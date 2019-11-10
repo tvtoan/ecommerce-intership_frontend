@@ -36,7 +36,8 @@ export default (state = initialState, action) => {
         ...state,
         isShowRegister: false,
         isShowLogin: false,
-        isShowForgotPass: false
+        isShowForgotPass: false,
+        isShowSuccess: false
       };
     default:
       return state;

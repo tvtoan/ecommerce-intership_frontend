@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-import { getToken } from 'helpers/auth/MethodStorage';
+import { getToken } from './StorageMethods';
 
 export const isTokenExpired = (token) => {
   try {

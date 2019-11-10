@@ -11,6 +11,11 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reducerApp from "./redux-modules";
 import thunk from "redux-thunk";
+// helper methods
+import isLogin from "helpers/auth/AuthChecker";
+import { getUser } from "helpers/auth/StorageMethods";
+// redux actions
+import { aLogin } from "redux-modules/auth/actions";
 // stypes
 import "./index.scss";
 import "normalize.css";
@@ -29,9 +34,14 @@ const store = createStore(
   reducerApp,
   compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
+
+// check auth / get auth from localstorage
+if (isLogin()) {
+  store.dispatch(aLogin(getUser()));
+}
 
 ReactDOM.render(
   <Suspense fallback={<Loading />}>

@@ -69,7 +69,7 @@ export default function LoginModal({ className, ...props }) {
           initialValues={{
             email: "",
             password: "",
-            isRemember: ""
+            isRemember: false,
           }}
           validationSchema={yup.object().shape({
             email: yup

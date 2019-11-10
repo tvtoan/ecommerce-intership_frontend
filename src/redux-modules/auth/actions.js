@@ -6,7 +6,7 @@ import {
   removeToken,
   setUser,
   removeUser
-} from "helpers/auth/MethodStorage";
+} from "helpers/auth/StorageMethods";
 // other action creators
 import { acShowAuthModal } from "../shop/ui/actions";
 

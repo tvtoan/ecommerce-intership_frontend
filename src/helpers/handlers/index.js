@@ -1,6 +1,6 @@
 import { aLogout } from 'redux-modules/auth/actions';
 import { aHandleMessage } from 'redux-modules/error/actions';
-import { removeToken, removeUser } from 'helpers/auth/MethodStorage';
+import { removeToken, removeUser } from 'helpers/auth/StorageMethods';
 
 let logoutStatuses = [401, 403];
 

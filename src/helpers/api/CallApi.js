@@ -1,5 +1,5 @@
 import _ from "lodash/lang";
-import { getToken } from "helpers/auth/MethodStorage";
+import { getToken } from "helpers/auth/StorageMethods";
 
 export default (
   endpoint,

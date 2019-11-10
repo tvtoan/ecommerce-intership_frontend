@@ -8,11 +8,11 @@ import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.sv
 import { ReactComponent as CartIcon } from "assets/images/shop/icons/cart.svg";
 import product1 from "assets/images/shop/product-1.jpeg";
 import product2 from "assets/images/shop/product-2.jpeg";
+import avatarPlacholder from "assets/images/profile-placeholder.jpeg";
 
 import "./style.scss";
 
 export default function HeaderPage(props) {
-
   return (
     <header className="shop-header container-fluid">
       <div className="container shop-header__top">
@@ -52,7 +52,11 @@ export default function HeaderPage(props) {
               ) : (
                 <div className="auth__avatar-user">
                   <img
-                    src="https://www.alvinailey.org/sites/default/files/melanie-person.jpg"
+                    src={
+                      props.userInfo.avatar
+                        ? props.userInfo.avatar
+                        : avatarPlacholder
+                    }
                     alt="person-avatar"
                   />
                   <div className="auth__avatar-user__dropdown">

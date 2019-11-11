@@ -4,18 +4,20 @@ import { connect } from "react-redux";
 import HeaderPage from "../components/header";
 // redux actions
 import { acShowAuthModal } from "redux-modules/shop/ui/actions";
+import { acLogout } from "redux-modules/auth/actions";
 
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.AuthReducer.isAuthenticated,
-    userInfo: state.AuthReducer.user,
+    userInfo: state.AuthReducer.user
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     setShowRegisterModal: isShow =>
       dispatch(acShowAuthModal("register", isShow)),
-    setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow))
+    setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
+    handleLogout: () => dispatch(acLogout())
   };
 };
 

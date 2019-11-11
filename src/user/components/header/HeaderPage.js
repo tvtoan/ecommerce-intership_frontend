@@ -1,7 +1,7 @@
 import React from "react";
 // 3rd packages
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // static resources
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.svg";
@@ -12,7 +12,18 @@ import avatarPlacholder from "assets/images/profile-placeholder.jpeg";
 
 import "./style.scss";
 
+const handleLogout = async (cb, ...[history]) => {
+  try {
+    await cb();
+    history.push("/");
+  } catch (error) {
+    console.error("[LOGOUT]:", error);
+  }
+};
+
 export default function HeaderPage(props) {
+  let history = useHistory();
+
   return (
     <header className="shop-header container-fluid">
       <div className="container shop-header__top">
@@ -60,10 +71,21 @@ export default function HeaderPage(props) {
                   <div className="auth__avatar-user__dropdown">
                     <ul>
                       <li className="auth__avatar-user__dropdown-item">
-                        <Link to="/account" className="auth__avatar-user__link">Account setting</Link>
+                        <Link to="/account" className="auth__avatar-user__link">
+                          Account setting
+                        </Link>
                       </li>
                       <li className="auth__avatar-user__dropdown-item">
-                        <Link to="/logout" className="auth__avatar-user__link">Logout</Link>
+                        <Link
+                          to="/logout"
+                          className="auth__avatar-user__link"
+                          onClick={e => {
+                            e.preventDefault();
+                            handleLogout(props.handleLogout, history);
+                          }}
+                        >
+                          Logout
+                        </Link>
                       </li>
                     </ul>
                   </div>

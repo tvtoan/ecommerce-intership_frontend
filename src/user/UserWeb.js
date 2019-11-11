@@ -20,11 +20,11 @@ import { acShowAuthModal, acCloseAllAuthModal } from "redux-modules/shop/ui/acti
 // import SingleUpload from './pages/upload-page/SingleUpload';
 // import AddProductPage from './pages/add-product';
 
-import "./shop-styles.scss";
+import "./UserWeb.style.scss";
 
 function ShopWeb(props) {
   return (
-    <div className="web-shop">
+    <div className="user-web">
       <HeaderPage />
       <Switch>
         <Route path="/cart" component={CartPage} />

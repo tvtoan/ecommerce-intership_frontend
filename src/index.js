@@ -24,7 +24,7 @@ import "assets/scss/forms/forms.scss";
 import "assets/scss/button/button.scss";
 // Websites
 import Loading from "components/loading";
-const ShopWeb = React.lazy(() => import("./shop"));
+const ShopWeb = React.lazy(() => import("./user"));
 const SellerWeb = React.lazy(() => import("./seller"));
 
 // configs

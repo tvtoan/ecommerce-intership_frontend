@@ -1,3 +1,3 @@
-import Seller from './Seller';
+import Seller from './SellerWeb';
 
 export default Seller;

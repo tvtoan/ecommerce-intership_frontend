@@ -2,14 +2,14 @@ import React from "react";
 // 3rd packages
 import { Switch, useRouteMatch } from "react-router-dom";
 // routes
-import PrivateRoute from "./routes/PrivateRoute";
+import PrivateRoute from "./containers/PrivateRouteContainer";
 import AuthRoute from "./routes/AuthRoute";
 // pages
 import LoginPage from "./pages/auth/LoginPage";
 import ForgotPassPage from "./pages/auth/ForgotPassPage";
 import AddProductPage from "./pages/add-product";
 // styles
-import "./Seller.style.scss";
+import "./SellerWeb.style.scss";
 
 export default function SellerWeb() {
   let match = useRouteMatch();

@@ -6,7 +6,7 @@ import { SelectSingle } from "components/forms/select";
 
 export default function SelectSingleField({
   field,
-  form: { touched, errors },
+  form: { touched, errors, setFieldTouched, setFieldValue },
   ...props
 }) {
   return (
@@ -14,6 +14,8 @@ export default function SelectSingleField({
       <SelectSingle
         {...field}
         {...props}
+        onChange={value => setFieldValue(field.name, value)}
+        onBlur={() => setFieldTouched(field.name, true)}
         value={field.value || ""}
         isInvalid={getIn(touched, field.name) && getIn(errors, field.name)}
       />

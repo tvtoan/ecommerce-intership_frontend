@@ -1,15 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
+// 3rd packages
 import Select from "react-select";
-import { customStyles } from "./styles";
+import PropTypes from "prop-types";
+import Async from "react-select/async";
 
+import { customStyles } from "./styles";
 import MultiValueRemove from "./custom-component/MultiValueRemove";
 import DropdownIndicator from "./custom-component/DropdownIndicator";
 import Menu from "./custom-component/Menu";
 
-export default function SelectMulti(props) {
+export default function SelectMulti({ isAsync, ...props }) {
   const refContainer = useRef(null);
   const refSelect = useRef(null);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const Component = !isAsync ? Select : Async;
 
   const blurInputSelect = () => {
     refSelect.current.select.blur();
@@ -30,7 +34,7 @@ export default function SelectMulti(props) {
 
   return (
     <div ref={refContainer} className="react-select-wrapper">
-      <Select
+      <Component
         {...props}
         ref={refSelect}
         styles={customStyles}
@@ -55,4 +59,12 @@ export default function SelectMulti(props) {
       />
     </div>
   );
+}
+
+SelectMulti.propTypes = {
+  isAsync: PropTypes.bool
+};
+
+SelectMulti.defaultProps = {
+  isAsync: false,
 }

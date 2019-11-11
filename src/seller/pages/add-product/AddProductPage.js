@@ -3,19 +3,18 @@ import React, { useState } from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 // components
-import { SelectSingle, SelectMulti } from "components/forms/select";
+import { SelectSingleField, SelectMultiField } from "components/formik";
 import FileUploadField from "components/formik/FileUploadField";
 import InputField from "components/formik/InputField";
 // styles
 import "./style.scss";
-import FileUpload from "components/forms/file-upload";
 
 export default function AddProductPage() {
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
 
-  const handleChangeFile = arrFiles => {
-    setFiles(arrFiles);
-  };
+  // const handleChangeFile = arrFiles => {
+  //   setFiles(arrFiles);
+  // };
 
   const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
     setSubmitting(true);
@@ -30,12 +29,18 @@ export default function AddProductPage() {
         <div className="container-fluid">
           <Formik
             initialValues={{
-              files: [],
+              photos: [],
               name: "",
-              description: "",
+              categories: [],
+              brand: null,
+              price: "",
+              sizes: [],
+              colors: [],
+              quantity: "",
+              description: ""
             }}
             validationSchema={yup.object().shape({
-              files: yup.array().required("A file is required")
+              photos: yup.array().required("A file is required")
             })}
             onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
               handleSubmit(values, setSubmitting, setFieldError, resetForm);
@@ -52,13 +57,13 @@ export default function AddProductPage() {
                   </label>
                   <div className="l12-col-sm-8">
                     <Field
+                      name="photos"
+                      component={FileUploadField}
                       isDrag={false}
                       multiple={true}
                       filterType={["jpg", "jpeg", "png"]}
                       maxUpload={8}
                       note="You can add up to 8 photos. The 1st photo will be set as cover (main photo)."
-                      name="files"
-                      component={FileUploadField}
                     />
                   </div>
                 </div>
@@ -71,11 +76,11 @@ export default function AddProductPage() {
                   </label>
                   <div className="l12-col-sm-8">
                     <Field
+                      name="name"
+                      component={InputField}
                       id="input-name_product"
                       type="text"
-                      name="name"
-                      placeholder="Enter your email..."
-                      component={InputField}
+                      placeholder="Enter name product ..."
                     />
                   </div>
                 </div>
@@ -87,10 +92,15 @@ export default function AddProductPage() {
                     categories
                   </label>
                   <div className="l12-col-sm-8">
-                    <SelectMulti menuIsOpen isSearchable={true} />
+                    <Field
+                      name="categoies"
+                      component={SelectMultiField}
+                      id="input-categories"
+                      isSearchable={true}
+                    />
                   </div>
                 </div>
-                {/* <div className="form-group row">
+                <div className="form-group row">
                   <label
                     htmlFor="input-brand"
                     className="l12-col-sm-2 col-form-label"
@@ -98,7 +108,12 @@ export default function AddProductPage() {
                     brand
                   </label>
                   <div className="l12-col-sm-8">
-                    <SelectSingle isSearchable={false} />
+                    <Field
+                      name="brand"
+                      component={SelectSingleField}
+                      id="input-brand"
+                      isSearchable={false}
+                    />
                   </div>
                 </div>
                 <div className="form-group row">
@@ -109,10 +124,12 @@ export default function AddProductPage() {
                     price ($)
                   </label>
                   <div className="l12-col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control"
+                    <Field
+                      name="price"
+                      component={InputField}
                       id="input-price"
+                      type="text"
+                      placeholder="Enter price ..."
                     />
                   </div>
                 </div>
@@ -124,7 +141,12 @@ export default function AddProductPage() {
                     sizes
                   </label>
                   <div className="l12-col-sm-8">
-                    <SelectMulti isSearchable={false} />
+                    <Field
+                      name="sizes"
+                      component={SelectMultiField}
+                      id="input-sizes"
+                      isSearchable={false}
+                    />
                   </div>
                 </div>
                 <div className="form-group row">
@@ -135,7 +157,12 @@ export default function AddProductPage() {
                     colors
                   </label>
                   <div className="l12-col-sm-8">
-                    <SelectMulti isSearchable={false} />
+                    <Field
+                      name="colors"
+                      component={SelectMultiField}
+                      id="input-colors"
+                      isSearchable={false}
+                    />
                   </div>
                 </div>
                 <div className="form-group row">
@@ -146,13 +173,15 @@ export default function AddProductPage() {
                     quantity
                   </label>
                   <div className="l12-col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control"
+                    <Field
+                      name="quantity"
+                      component={InputField}
                       id="input-quantity"
+                      type="text"
+                      placeholder="Enter quantity ..."
                     />
                   </div>
-                </div> */}
+                </div>
                 <div className="form-group row">
                   <label
                     htmlFor="input-description"

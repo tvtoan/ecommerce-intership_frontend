@@ -3,7 +3,7 @@ import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // components
 import { InputField } from "components/formik";
 // styles
@@ -14,7 +14,7 @@ const handleSubmit = async (
   setSubmitting,
   setFieldError,
   resetForm,
-  ...[handleAuth, closeModal]
+  ...[handleAuth, history]
 ) => {
   setSubmitting(true);
   console.log("values:", values);
@@ -22,15 +22,15 @@ const handleSubmit = async (
     await handleAuth(values, setFieldError);
     setSubmitting(false);
     resetForm();
-    if (closeModal) {
-      closeModal(false);
-    }
+    history.push("./");
   } catch (error) {
-    console.error("[LOGIN]:", error);
+    console.error("[LOGIN SELLER]:", error);
   }
 };
 
 export default function LoginPage(props) {
+  let history = useHistory();
+
   return (
     <div className="flex-wrapper login-page__wrapper">
       <h3 className="auth-page__heading">log in</h3>
@@ -56,7 +56,7 @@ export default function LoginPage(props) {
             setFieldError,
             resetForm,
             props.handleLogin,
-            props.setShowLoginModal
+            history
           );
         }}
       >

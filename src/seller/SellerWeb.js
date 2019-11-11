@@ -5,7 +5,7 @@ import { Switch, useRouteMatch } from "react-router-dom";
 import PrivateRoute from "./containers/PrivateRouteContainer";
 import AuthRoute from "./routes/AuthRoute";
 // pages
-import LoginPage from "./pages/auth/LoginPage";
+import LoginPage from "./containers/LoginPageContainer";
 import ForgotPassPage from "./pages/auth/ForgotPassPage";
 import AddProductPage from "./pages/add-product";
 import DashboardPage from "./pages/dashboard/DashboardPage";

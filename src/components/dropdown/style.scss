@@ -1,0 +1,8 @@
+.menu-container {
+  display: none;
+  position: absolute;
+  background-color: white;
+  &.show {
+    display: block;
+  }
+}

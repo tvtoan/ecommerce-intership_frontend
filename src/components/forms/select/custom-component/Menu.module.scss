@@ -49,6 +49,7 @@
     background-color: transparent;
     border: 1px solid var(--white-three);
     cursor: pointer;
+    line-height: 0;
   }
   button[type*="submit"].valid {
     color: #fff;

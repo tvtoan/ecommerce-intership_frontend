@@ -59,7 +59,7 @@ export default function AddProductPage() {
                     <Field
                       name="photos"
                       component={FileUploadField}
-                      isDrag={false}
+                      isDrag={true}
                       multiple={true}
                       filterType={["jpg", "jpeg", "png"]}
                       maxUpload={8}

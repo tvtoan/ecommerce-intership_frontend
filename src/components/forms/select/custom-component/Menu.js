@@ -1,74 +1,29 @@
 import React, { useRef, useState } from "react";
+// 3rd packages
 import classNames from "classnames";
 import { components } from "react-select";
-
+// components
+import FormAddSelect from "./FormAddSelect";
+// static resources
 import { ReactComponent as AddIcon } from "assets/images/seller/icons/add.svg";
-import { ReactComponent as CloseIcon } from "assets/images/seller/icons/close-1.svg";
-import { ReactComponent as DoneIcon } from "assets/images/seller/icons/done.svg";
-
 // style
 import styles from "./Menu.module.scss";
 
-const FormAddSelect = React.forwardRef((props, ref) => {
-  const refInput = useRef();
-  const [isValidated, setIsValidated] = useState(false);
-
-  return (
-    <div className={styles["form-add-select"]}>
-      <input
-        ref={refInput}
-        type="text"
-        placeholder="Enter"
-        className={classNames(
-          "form-control",
-          styles["form-add-select__element"]
-        )}
-        onFocus={(e) => e.target.focus()}
-      />
-      <button
-        className={classNames(
-          "flat-button",
-          styles["form-add-select__element"]
-        )}
-        onClick={e => {
-          e.preventDefault();
-          props.onCloseAdd(false);
-          console.log("button close onClick");
-        }}
-      >
-        <CloseIcon />
-      </button>
-      <button
-        type="submit"
-        className={classNames(
-          "flat-button",
-          styles["form-add-select__element"],
-          { [styles["valid"]]: isValidated }
-        )}
-      >
-        <DoneIcon />
-      </button>
-    </div>
-  );
-});
-
-const Menu = ({ innerProps, ...restProps }) => {
+const Menu = ({ innerProps, ...props }) => {
   const refInput = useRef();
   const [isDisplayFormAdd, setIsDisplayFormAdd] = useState(false);
 
   /*
-  * onMouseDown function: default call e.preventDefault() and e.stopPropagation() and focusInput() => to not close menu
-  * 
-  */
+   * onMouseDown function: default call e.preventDefault() and e.stopPropagation() and focusInput()
+   * => to not close menu
+   */
   const mouseDown = e => {
     // ????
     // Why? call stopPropagation = select.blur(). Blur focus input
-    restProps.selectProps.blurInputSelect();
+    props.selectProps.blurInputSelect();
     // To not close by handle menuIsOpen value
-    restProps.selectProps.onSetMenuOpen(true);
+    props.selectProps.onSetMenuOpen(true);
   };
-
-  console.log("restProps:", restProps);
 
   return (
     <components.Menu
@@ -76,9 +31,9 @@ const Menu = ({ innerProps, ...restProps }) => {
         ...innerProps,
         onMouseDown: mouseDown
       }}
-      {...restProps}
+      {...props}
     >
-      {restProps.children}
+      {props.children}
       <div className={styles["hr-split"]}></div>
       <div>
         {!isDisplayFormAdd && (

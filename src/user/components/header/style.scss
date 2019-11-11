@@ -131,19 +131,20 @@
       padding: 0;
       margin: 0;
     }
-    ul li {
-      padding: 7px 13px;
+    .auth__avatar-user__dropdown-item {
       font-size: 0.75rem;
       font-weight: 500;
       line-height: 1.83;
       color: var(--greyish-brown);
       cursor: pointer;
-    }
-    ul li + li {
-      border-top: 1px solid #ececec;
-    }
-    button {
-      cursor: inherit;
+      + .auth__avatar-user__dropdown-item {
+        border-top: 1px solid #ececec;
+      }
+      .auth__avatar-user__link {
+        display: block;
+        padding: 7px 13px;
+        cursor: inherit;
+      }
     }
   }
   &:hover .auth__avatar-user__dropdown {

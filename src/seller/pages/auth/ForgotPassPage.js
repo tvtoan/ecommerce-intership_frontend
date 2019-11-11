@@ -63,7 +63,7 @@ export default function ForgotPassPage(props) {
           </form>
         )}
       </Formik>
-      <Link to="/forgot-pass" className="connect-link">
+      <Link to="./login" className="connect-link">
         Login
       </Link>
     </div>

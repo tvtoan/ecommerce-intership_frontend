@@ -3,7 +3,7 @@ import React from "react";
 import { Formik, Field } from "formik";
 import * as yup from "yup";
 import classNames from "classnames";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 // components
 import { InputField } from "components/formik";
 // styles
@@ -31,10 +31,6 @@ const handleSubmit = async (
 };
 
 export default function LoginPage(props) {
-  let match = useLocation();
-
-  console.log("match:", match);
-
   return (
     <div className="flex-wrapper login-page__wrapper">
       <h3 className="auth-page__heading">log in</h3>
@@ -98,7 +94,7 @@ export default function LoginPage(props) {
           </form>
         )}
       </Formik>
-      <Link to="/forgot-pass" className="connect-link">
+      <Link to="./forgot-password" className="connect-link">
         Forgot password
       </Link>
     </div>

@@ -1,4 +1,6 @@
 import React from "react";
+// 3rd packages
+import { Link, useHistory } from "react-router-dom";
 // components
 import Dropdown from "components/dropdown";
 // static resources
@@ -11,7 +13,19 @@ import avatar from "assets/images/seller/avatar.jpg";
 // styles
 import "./styles.scss";
 
-export default function HeaderPage() {
+const handleLogout = async (e, cb, ...[history]) => {
+  try {
+    e.preventDefault();
+    await cb();
+    history.push("/seller/");
+  } catch (error) {
+    console.error("[LOGOUT]:", error);
+  }
+};
+
+export default function HeaderPage(props) {
+  let history = useHistory();
+
   return (
     <header className="header-wrapper">
       <div className="header__heading">
@@ -32,16 +46,23 @@ export default function HeaderPage() {
             <Dropdown.Menu className="dropdown-menu header__topbar-item__user-dropdown__menu">
               <ul>
                 <li className="header__topbar-item__user-dropdown-item">
-                  <a href="#/" className="header__topbar-item__user-dropdown__link">
+                  <Link
+                    to="#/"
+                    className="header__topbar-item__user-dropdown__link"
+                  >
                     <ProfileIcon className="icons header__topbar-item__user-dropdown-item__icon" />
                     <span>View profile</span>
-                  </a>
+                  </Link>
                 </li>
                 <li className="header__topbar-item__user-dropdown-item">
-                  <a href="#/" className="header__topbar-item__user-dropdown__link">
+                  <Link
+                    to="/logout"
+                    className="header__topbar-item__user-dropdown__link"
+                    onClick={e => handleLogout(e, props.handleLogout, history)}
+                  >
                     <LogoutIcon className="icons header__topbar-item__user-dropdown-item__icon" />
                     <span>Log out</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </Dropdown.Menu>

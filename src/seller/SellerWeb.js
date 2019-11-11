@@ -15,7 +15,6 @@ import "./SellerWeb.style.scss";
 export default function SellerWeb() {
   let match = useRouteMatch();
 
-  console.log("match SellerWeb:", match.path);
   return (
     <Switch>
       <AuthRoute

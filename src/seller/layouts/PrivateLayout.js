@@ -1,7 +1,7 @@
 import React from "react";
 // components
 import Sidebar from "../components/sidebar";
-import HeaderPage from "../components/header";
+import HeaderPage from "../containers/HeaderPageContainer";
 import Breadcrumb from "../components/breadcrumb";
 // styles
 import "./PrivateLayout.style.scss";

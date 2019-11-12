@@ -27,20 +27,29 @@ export const aLogout = () => ({
 // action creators (functions that create actions)
 export const acRegister = (user, setFieldError) => async dispatch => {
   try {
-    const res = await callApi(`auth/register`, undefined, "POST", user);
+    const res = await callApi({
+      endpoint: `auth/register`,
+      method: "POST",
+      body: user,
+      isRequestToken: false
+    });
     dispatch(aRegister());
     if (!res.isSeller) {
-      dispatch(acShowAuthModal('success', true));
+      dispatch(acShowAuthModal("success", true));
     }
   } catch (error) {
-    console.log("error register:", error);
     handleError(dispatch, error, setFieldError);
   }
 };
 
 export const acLogin = (user, setFieldError) => async dispatch => {
   try {
-    const res = await callApi(`auth/login`, undefined, "POST", user);
+    const res = await callApi({
+      endpoint: `auth/login`,
+      method: "POST",
+      body: user,
+      isRequestToken: false
+    });
     setToken(res.accessToken);
     setUser(res.user);
     dispatch(aLogin(res.user));
@@ -51,7 +60,10 @@ export const acLogin = (user, setFieldError) => async dispatch => {
 
 export const acLogout = () => async dispatch => {
   try {
-    await callApi(`auth/logout`, undefined, "POST", undefined, true);
+    await callApi({
+      endpoint: `auth/logout`,
+      method: "POST"
+    });
     removeToken();
     removeUser();
     dispatch(aLogout());

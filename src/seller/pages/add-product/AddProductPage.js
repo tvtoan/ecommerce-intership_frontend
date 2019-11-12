@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // 3rd packages
 import { Formik, Field } from "formik";
 import * as yup from "yup";
@@ -10,11 +10,6 @@ import InputField from "components/formik/InputField";
 import "./style.scss";
 
 export default function AddProductPage() {
-  // const [files, setFiles] = useState([]);
-
-  // const handleChangeFile = arrFiles => {
-  //   setFiles(arrFiles);
-  // };
 
   const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
     setSubmitting(true);

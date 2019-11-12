@@ -1,14 +1,14 @@
 import _ from "lodash/lang";
 import { getToken } from "helpers/auth/StorageMethods";
 
-export default (
+export default ({
   endpoint,
   searchParams = {},
   method = "GET",
   body = null,
-  isRequestToken = false,
+  isRequestToken = true,
   headerOptions = {}
-) => {
+}) => {
   let headers = {
     Accept: "application/json",
     "Content-Type": "application/json",

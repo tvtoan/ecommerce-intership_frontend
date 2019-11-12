@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { components } from "react-select";
 // components
-import FormAddSelect from "./FormAddSelect";
+import FormAddSelect from "containers/FormAddSelectContainer";
 // static resources
 import { ReactComponent as AddIcon } from "assets/images/seller/icons/add.svg";
 // style

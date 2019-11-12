@@ -2,7 +2,7 @@
 .image-upload-wrapper {
   .image-upload__list {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     .image-upload__list-item {
       height: 270px;

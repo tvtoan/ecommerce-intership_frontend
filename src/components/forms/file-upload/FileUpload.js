@@ -147,7 +147,8 @@ export default class FileUpload extends React.Component {
         note: this.props.note,
         validateMessage: this.props.validateMessage,
       },
-      removeFile: this.props.onRemoveFile
+      removeFile: this.props.onRemoveFile,
+      maxUpload: this.props.maxUpload
     };
     return (
       <FileUploadContext.Provider value={store}>

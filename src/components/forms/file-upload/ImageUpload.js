@@ -10,7 +10,8 @@ export default function ImageUpload(props) {
   // files: [addedFiles, setAddFiles]
   const {
     files: [addedFiles],
-    info: { note, validateMessage }
+    info: { note, validateMessage },
+    maxUpload
   } = useContext(FileUploadContext);
 
   return (
@@ -24,9 +25,11 @@ export default function ImageUpload(props) {
             </div>
           );
         })}
-        <div className="image-upload__list-item">
-          <ImageSelect />
-        </div>
+        {addedFiles.length < maxUpload && (
+          <div className="image-upload__list-item">
+            <ImageSelect />
+          </div>
+        )}
       </div>
       {note && <span className="file-upload__note">{note}</span>}
       {validateMessage && (

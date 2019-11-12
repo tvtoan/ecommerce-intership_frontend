@@ -95,7 +95,8 @@ export default class FileUpload extends React.Component {
       const listFiles = this.handleListFile(dragFiles);
       this.setAddedFiles([...this.state.addedFiles, ...listFiles]);
       if (this.props.onChangeFiles) {
-        this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
+        // this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
+        this.props.onChangeFiles(listFiles);
       }
       // control change value formik
       if (this.props.onChangeFormik) {
@@ -112,7 +113,8 @@ export default class FileUpload extends React.Component {
     const listFiles = this.handleListFile(files);
     this.setAddedFiles([...this.state.addedFiles, ...listFiles]);
     if (this.props.onChangeFiles) {
-      this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
+      // this.props.onChangeFiles([...this.state.addedFiles, ...listFiles]);
+      this.props.onChangeFiles(listFiles);
     }
     // control change value formik
     if (this.props.onChangeFormik) {
@@ -144,7 +146,8 @@ export default class FileUpload extends React.Component {
       info: {
         note: this.props.note,
         validateMessage: this.props.validateMessage,
-      }
+      },
+      removeFile: this.props.onRemoveFile
     };
     return (
       <FileUploadContext.Provider value={store}>
@@ -173,6 +176,7 @@ FileUpload.propsTypes = {
   // function
   onChangeFiles: PropTypes.func,
   onChangeFormik: PropTypes.func,
+  onRemoveFile: PropTypes.func,
   resetFiles: PropTypes.func
 };
 
@@ -181,5 +185,6 @@ FileUpload.defaultProps = {
   multiple: false,
   // function
   onChangeFiles: () => {},
-  resetFiles: () => {}
+  onRemoveFiles: () => {},
+  resetFile: () => {}
 };

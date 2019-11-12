@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // 3rd packages
 import classNames from "classnames";
 // static resources
@@ -7,13 +7,18 @@ import { ReactComponent as DoneIcon } from "assets/images/seller/icons/done.svg"
 // styles
 import styles from "./Menu.module.scss";
 
-const FormAddSelect = React.forwardRef((props, ref) => {
+// const FormAddSelect = React.forwardRef((props, ref) => {
+
+// });
+
+export default function FormAddSelect(props) {
+  const refInput = useRef(null);
   const [isValidated, setIsValidated] = useState(false);
 
   return (
     <div className={styles["form-add-select"]}>
       <input
-        ref={ref}
+        ref={refInput}
         type="text"
         placeholder="Enter"
         className={classNames(
@@ -21,6 +26,7 @@ const FormAddSelect = React.forwardRef((props, ref) => {
           styles["form-add-select__element"]
         )}
         onFocus={e => e.target.focus()}
+        onBlur={() => setIsValidated(true)}
       />
       <button
         className={classNames(
@@ -42,11 +48,17 @@ const FormAddSelect = React.forwardRef((props, ref) => {
           styles["form-add-select__element"],
           { [styles["valid"]]: isValidated }
         )}
+        onClick={async () => {
+          // let valueInput = refInput.current.value;
+          // const category = await props.addCategory({ name: valueInput });
+          refInput.current.value = '';
+          // props.setValueOption({_id: category._id, name: category.name}, "select-option");
+          // props.onCloseAdd(false);
+          // props.reloadSelect();
+        }}
       >
         <DoneIcon />
       </button>
     </div>
   );
-});
-
-export default FormAddSelect;
+}

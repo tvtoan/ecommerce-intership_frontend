@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 // 3rd packages
 import classNames from "classnames";
 import { components } from "react-select";
@@ -10,9 +10,9 @@ import { ReactComponent as AddIcon } from "assets/images/seller/icons/add.svg";
 import styles from "./Menu.module.scss";
 
 const Menu = ({ innerProps, ...props }) => {
-  const refInput = useRef();
   const [isDisplayFormAdd, setIsDisplayFormAdd] = useState(false);
-
+  
+  // console.log("innerRef Menu:", props);
   /*
    * onMouseDown function: default call e.preventDefault() and e.stopPropagation() and focusInput()
    * => to not close menu
@@ -24,6 +24,8 @@ const Menu = ({ innerProps, ...props }) => {
     // To not close by handle menuIsOpen value
     props.selectProps.onSetMenuOpen(true);
   };
+
+  
 
   return (
     <components.Menu
@@ -52,7 +54,7 @@ const Menu = ({ innerProps, ...props }) => {
           </button>
         )}
         {isDisplayFormAdd && (
-          <FormAddSelect ref={refInput} onCloseAdd={setIsDisplayFormAdd} />
+          <FormAddSelect setValueOption={props.setValue} onCloseAdd={setIsDisplayFormAdd} reloadSelect={props.selectProps.reloadSelect}/>
         )}
       </div>
     </components.Menu>

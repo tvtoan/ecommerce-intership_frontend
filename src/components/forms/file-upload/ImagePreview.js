@@ -19,7 +19,7 @@ function getBase64(file) {
 export default function ImagePreview(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [previewImage, setPreviewImage] = useState("");
-  const {files: [addedFiles, setAddedFiles]} = useContext(FileUploadContext);
+  const {files: [addedFiles, setAddedFiles], removeFile} = useContext(FileUploadContext);
 
   const handlePreview = async file => {
     getBase64(file)
@@ -34,6 +34,9 @@ export default function ImagePreview(props) {
     const dataFile = props.dataFile;
     const removedFiles = addedFiles.filter(file => file.location !== dataFile.location);
     setAddedFiles(removedFiles);
+    if (removeFile) {
+      removeFile(dataFile.location);
+    }
   }
 
   useEffect(() => {

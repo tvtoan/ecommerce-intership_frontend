@@ -22,18 +22,19 @@ export const aGetCategory = category => ({
 
 export const aGetCategories = categories => ({
   type: types.GET_CATEGORIES_REQUEST,
-  categories
+  category: categories
 });
 
 // action creators (functions that create actions)
 export const acCreateCategory = (category, setFieldError) => async dispatch => {
   try {
-    await callApi({
-      endpoint: `categoies`,
+    const res = await callApi({
+      endpoint: `categories`,
       method: "POST",
       body: category
     });
     dispatch(aCreateCategory());
+    return res.category;
   } catch (error) {
     handleError(dispatch, error, setFieldError);
   }
@@ -46,7 +47,7 @@ export const acUpdateCategory = (
 ) => async dispatch => {
   try {
     await callApi({
-      endpoint: `categoies/${id}`,
+      endpoint: `categories/${id}`,
       method: "PATCH",
       body: category
     });
@@ -59,7 +60,7 @@ export const acUpdateCategory = (
 export const acRemoveCategory = id => async dispatch => {
   try {
     await callApi({
-      endpoint: `categoies/${id}`,
+      endpoint: `categories/${id}`,
       method: "DELETE"
     });
     dispatch(aRemoveCategory());
@@ -71,7 +72,7 @@ export const acRemoveCategory = id => async dispatch => {
 export const acGetCategory = id => async dispatch => {
   try {
     const category = await callApi({
-      endpoint: `categoies/${id}`
+      endpoint: `categories/${id}`
     });
     dispatch(aGetCategory(category));
   } catch (error) {
@@ -81,10 +82,12 @@ export const acGetCategory = id => async dispatch => {
 
 export const acGetCategories = () => async dispatch => {
   try {
-    const categories = await callApi({
-      endpoint: `categoies`
+    const data = await callApi({
+      endpoint: `categories`
     });
+    const categories = data.categories;
     dispatch(aGetCategories(categories));
+    return categories;
   } catch (error) {
     handleError(dispatch, error);
   }

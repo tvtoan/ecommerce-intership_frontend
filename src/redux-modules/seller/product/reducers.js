@@ -2,31 +2,31 @@ import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
-  category: null
+  product: null
 };
 
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_CATEGORY_REQUEST:
+    case types.GET_PRODUCT_REQUEST:
       return {
         ...state,
-        category: action.category
+        product: action.product
       };
-    case types.GET_CATEGORIES_REQUEST:
+    case types.GET_PRODUCTS_REQUEST:
       return {
         ...state,
-        category: action.category
+        product: action.product
       };
-    case types.UPDATE_CATEGORY_REQUEST:
+    case types.UPDATE_PRODUCT_REQUEST:
       return {
         ...state
       };
-    case types.CREATE_CATEGORY_REQUEST:
+    case types.CREATE_PRODUCT_REQUEST:
       return {
         ...state
       };
-    case types.REMOVE_CATEGORY_REQUEST:
+    case types.REMOVE_PRODUCT_REQUEST:
       return {
         ...state
       };

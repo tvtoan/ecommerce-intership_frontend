@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 // components
 import FormAddSelect from "components/forms/select/custom-component/FormAddSelect";
 // Redux actions
-// import { acLogout } from "redux-modules/auth/actions";
+import { acCreateCategory } from "redux-modules/seller/category/actions";
 
 const mapStateToProps = state => {
   return {};
 };
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    addCategory: (category) => dispatch(acCreateCategory(category))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormAddSelect);

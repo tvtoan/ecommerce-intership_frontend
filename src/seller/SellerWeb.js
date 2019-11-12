@@ -7,7 +7,7 @@ import AuthRoute from "./routes/AuthRoute";
 // pages
 import LoginPage from "./containers/LoginPageContainer";
 import ForgotPassPage from "./pages/auth/ForgotPassPage";
-import AddProductPage from "./pages/add-product";
+import AddProductPage from "./containers/AddProductPageContainer";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 // styles
 import "./SellerWeb.style.scss";

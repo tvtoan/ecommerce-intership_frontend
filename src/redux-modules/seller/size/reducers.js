@@ -2,31 +2,31 @@ import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
-  category: null
+  size: null
 };
 
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_CATEGORY_REQUEST:
+    case types.GET_SIZE_REQUEST:
       return {
         ...state,
-        category: action.category
+        size: action.size
       };
-    case types.GET_CATEGORIES_REQUEST:
+    case types.GET_SIZES_REQUEST:
       return {
         ...state,
-        category: action.category
+        size: action.size
       };
-    case types.UPDATE_CATEGORY_REQUEST:
+    case types.UPDATE_SIZE_REQUEST:
       return {
         ...state
       };
-    case types.CREATE_CATEGORY_REQUEST:
+    case types.CREATE_SIZE_REQUEST:
       return {
         ...state
       };
-    case types.REMOVE_CATEGORY_REQUEST:
+    case types.REMOVE_SIZE_REQUEST:
       return {
         ...state
       };

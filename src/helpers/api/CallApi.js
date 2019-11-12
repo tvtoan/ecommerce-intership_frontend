@@ -7,13 +7,16 @@ export default ({
   method = "GET",
   body = null,
   isRequestToken = true,
-  headerOptions = {}
+  headerOptions = {},
+  isMultiForm = false
 }) => {
   let headers = {
     Accept: "application/json",
-    "Content-Type": "application/json",
     ...headerOptions
   };
+  if (!isMultiForm) {
+    headers["Content-Type"] = "application/json";
+  }
   if (isRequestToken) {
     const accessToken = getToken() || null;
     if (accessToken !== null) {
@@ -25,7 +28,7 @@ export default ({
     headers: headers
   };
   if (body !== null) {
-    options.body = JSON.stringify(body);
+    options.body = isMultiForm ? body : JSON.stringify(body);
   }
   // URL
   let url = new URL(`${process.env.REACT_APP_API_URL}/${endpoint}`);

@@ -25,6 +25,12 @@ export default function SelectMulti({ isAsync, ...props }) {
     }
   }
 
+  const reloadSelect = (e) => {
+    console.log(refSelect.current.props);
+    refSelect.current.props.loadOptions('');
+    // refSelect.current.props.filterOption();
+  }
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -56,6 +62,8 @@ export default function SelectMulti({ isAsync, ...props }) {
         // why? DropdownIndicator when mousedown => call onMenuClose => setMenuIsOpen(false)
         onMenuClose={() => setMenuIsOpen(false)}
         // [END] control menu open
+        // props reload
+        reloadSelect={reloadSelect}
       />
     </div>
   );

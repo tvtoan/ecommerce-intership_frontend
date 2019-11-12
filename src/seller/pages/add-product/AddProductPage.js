@@ -1,21 +1,122 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 // 3rd packages
 import { Formik, Field } from "formik";
 import * as yup from "yup";
+import _ from "lodash";
 // components
 import { SelectSingleField, SelectMultiField } from "components/formik";
-import FileUploadField from "components/formik/FileUploadField";
+// import FileUploadField from "components/formik/FileUploadField";
+import FileUpload from "components/forms/file-upload";
 import InputField from "components/formik/InputField";
 // styles
 import "./style.scss";
 
-export default function AddProductPage() {
+const handleQuantityToSize = (quantity, sizes) => {
+  let convertedObj = [];
+  for (let size of sizes) {
+    convertedObj.push({ size: size._id, quantity: quantity });
+  }
+  return convertedObj;
+};
 
-  const handleSubmit = (values, setSubmitting, setFieldError, resetForm) => {
-    setSubmitting(true);
-    console.log("values:", values);
-    // resetForm();
-    setSubmitting(false);
+const getOnlyFieldArray = (arr, field) => {
+  return _.map(arr, _.partialRight(_.pick, field));
+};
+
+const getOnlyField = (obj, field) => {
+  return _.pick(obj, field);
+};
+
+const getDataFiles = files => {
+  return files.map(item => {
+    return item.file;
+  });
+};
+
+const handleSubmit = async (
+  values,
+  setSubmitting,
+  setFieldError,
+  resetForm,
+  ...[handleAdd, files, refFileUpload, setUploadedFiles]
+) => {
+  setSubmitting(true);
+  console.log("values:", values);
+  const newClone = _.omit(values, [
+    "quantity",
+    "sizes",
+    "category",
+    "brand",
+    "color"
+  ]);
+  let variant = handleQuantityToSize(values.quantity, values.sizes);
+  newClone.brand = getOnlyField(values.brand, "_id");
+  newClone.category = getOnlyFieldArray(values.category, "_id");
+  newClone.color = getOnlyFieldArray(values.color, "_id");
+  newClone.photos = getOnlyFieldArray(files, "_id");
+  newClone.variant = variant;
+  newClone.user = "5dc7e2045cb91f09c93a6b4a";
+
+  console.log("newClone:", newClone);
+  try {
+    await handleAdd(newClone, setFieldError);
+  } catch (error) {
+    console.error("[ADD-PRODUCT]:", error);
+  }
+  refFileUpload.current.handleResetUpload();
+  setUploadedFiles([]);
+  resetForm();
+  setSubmitting(false);
+};
+
+const addLocationFiles = (files, news) => {
+  let currentLocation = files.length;
+  if (Array.isArray(news)) {
+    news.map((item, index) => {
+      return (item.location = currentLocation + index);
+    });
+    return [...files, ...news];
+  } else {
+    news.location = currentLocation;
+    return [...files, news];
+  }
+};
+
+export default function AddProductPage(props) {
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const refFileUpload = useRef();
+
+  const handleChangeFiles = async newFiles => {
+    try {
+      const convertFile = getDataFiles(newFiles);
+      const fd = new FormData();
+      if (convertFile.length > 1) {
+        convertFile.forEach(file => {
+          fd.append("image", file, file.name);
+        });
+      } else {
+        fd.append("image", convertFile[0], convertFile[0].name);
+      }
+      const res = await props.uploadImage(fd);
+      setUploadedFiles(addLocationFiles(uploadedFiles, res));
+    } catch (error) {
+      console.error("[ADD-PRODUCT]:", error);
+    }
+  };
+
+  const handleRemoveFile = async location => {
+    const file = uploadedFiles.find(item => {
+      return item.location === location;
+    });
+    try {
+      await props.removeImage(file._id);
+      const removedFiles = uploadedFiles.filter(
+        file => file.location !== location
+      );
+      setUploadedFiles(removedFiles);
+    } catch (error) {
+      console.error("[ADD-PRODUCT]:", error);
+    }
   };
 
   return (
@@ -24,21 +125,27 @@ export default function AddProductPage() {
         <div className="container-fluid">
           <Formik
             initialValues={{
-              photos: [],
               name: "",
-              categories: [],
+              category: [],
               brand: null,
-              price: "",
+              price: 0,
               sizes: [],
-              colors: [],
+              color: [],
               quantity: "",
               description: ""
             }}
-            validationSchema={yup.object().shape({
-              photos: yup.array().required("A file is required")
-            })}
+            validationSchema={yup.object().shape({})}
             onSubmit={(values, { setSubmitting, setFieldError, resetForm }) => {
-              handleSubmit(values, setSubmitting, setFieldError, resetForm);
+              handleSubmit(
+                values,
+                setSubmitting,
+                setFieldError,
+                resetForm,
+                props.addProduct,
+                uploadedFiles,
+                refFileUpload,
+                setUploadedFiles
+              );
             }}
           >
             {({ handleSubmit, isSubmitting }) => (
@@ -51,9 +158,19 @@ export default function AddProductPage() {
                     photos
                   </label>
                   <div className="l12-col-sm-8">
-                    <Field
+                    {/* <Field
                       name="photos"
                       component={FileUploadField}
+                      isDrag={true}
+                      multiple={true}
+                      filterType={["jpg", "jpeg", "png"]}
+                      maxUpload={8}
+                      note="You can add up to 8 photos. The 1st photo will be set as cover (main photo)."
+                    /> */}
+                    <FileUpload
+                      ref={refFileUpload}
+                      onRemoveFile={handleRemoveFile}
+                      onChangeFiles={handleChangeFiles}
                       isDrag={true}
                       multiple={true}
                       filterType={["jpg", "jpeg", "png"]}
@@ -88,10 +205,16 @@ export default function AddProductPage() {
                   </label>
                   <div className="l12-col-sm-8">
                     <Field
-                      name="categoies"
+                      name="category"
                       component={SelectMultiField}
-                      id="input-categories"
-                      isSearchable={true}
+                      id="input-category"
+                      isSearchable={false}
+                      isAsync={true}
+                      cacheOptions
+                      defaultOptions
+                      getOptionLabel={option => option.name}
+                      getOptionValue={option => option._id}
+                      loadOptions={() => props.getCategories()}
                     />
                   </div>
                 </div>
@@ -108,6 +231,12 @@ export default function AddProductPage() {
                       component={SelectSingleField}
                       id="input-brand"
                       isSearchable={false}
+                      isAsync={true}
+                      cacheOptions
+                      defaultOptions
+                      getOptionLabel={option => option.name}
+                      getOptionValue={option => option._id}
+                      loadOptions={() => props.getBrands()}
                     />
                   </div>
                 </div>
@@ -141,6 +270,12 @@ export default function AddProductPage() {
                       component={SelectMultiField}
                       id="input-sizes"
                       isSearchable={false}
+                      isAsync={true}
+                      cacheOptions
+                      defaultOptions
+                      getOptionLabel={option => option.name}
+                      getOptionValue={option => option._id}
+                      loadOptions={() => props.getSizes()}
                     />
                   </div>
                 </div>
@@ -153,10 +288,16 @@ export default function AddProductPage() {
                   </label>
                   <div className="l12-col-sm-8">
                     <Field
-                      name="colors"
+                      name="color"
                       component={SelectMultiField}
                       id="input-colors"
                       isSearchable={false}
+                      isAsync={true}
+                      cacheOptions
+                      defaultOptions
+                      getOptionLabel={option => option.name}
+                      getOptionValue={option => option._id}
+                      loadOptions={() => props.getColors()}
                     />
                   </div>
                 </div>

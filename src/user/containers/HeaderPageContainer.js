@@ -10,8 +10,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.AuthReducer.isAuthenticated,
     userInfo: state.AuthReducer.user,
-    amountProductCart: state.CartReducer.cartProducts.length,
-    cartProducts: state.CartReducer.cartProducts
+    amountProductCart: state.CartReducer.cart.length,
+    cart: state.CartReducer.cart
   };
 };
 const mapDispatchToProps = dispatch => {

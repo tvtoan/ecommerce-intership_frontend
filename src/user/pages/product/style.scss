@@ -8,12 +8,12 @@
   flex-flow: column nowrap;
   .product__photo {
     width: 100%;
-    max-height: 7.25rem;
+    height: 7.25rem;
     margin-bottom: 1.5625rem;
     overflow: hidden;
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
     }
     &:last-child {
@@ -22,11 +22,11 @@
   }
 }
 .product__preview {
-  max-height: 33.6875rem;
+  height: 33.6875rem;
   overflow: hidden;
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
   }
 }

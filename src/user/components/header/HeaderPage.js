@@ -99,11 +99,11 @@ export default function HeaderPage(props) {
               <span>{props.amountProductCart}</span>
             </Link>
             <div className="cart__dropdown">
-              {props.cartProducts && props.cartProducts.length > 0 ? (
+              {props.cart && props.cart.length > 0 ? (
                 <ul>
-                  {props.cartProducts.map(product => (
-                    <li className="cart__dropdown__item">
-                      <CartItem product={product} />
+                  {props.cart.map(item => (
+                    <li className="cart__dropdown__item" key={item.product._id}>
+                      <CartItem cartItem={item} />
                     </li>
                   ))}
                 </ul>

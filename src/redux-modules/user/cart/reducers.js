@@ -2,7 +2,7 @@ import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
-  cartProducts: []
+  cart: []
 };
 
 // reducer
@@ -11,12 +11,12 @@ export default (state = initialState, action) => {
     case types.ADD_PRODUCT_CART:
       return {
         ...state,
-        cartProducts: [...state.cartProducts, action.product]
+        cart: [...state.cart, action.product]
       };
     case types.REMOVE_PRODUCT_CART:
       return {
         ...state,
-        cartProducts: state.cartProducts.filter(
+        cart: state.cart.filter(
           product => product._id !== action.product._id
         )
       };

@@ -211,12 +211,11 @@
       border-top: 1px solid #ececec;
     }
     .cart__dropdown__item__image {
-      width: 3.75rem;
-      height: 3.75rem;
+      line-height: 0;
       img {
         object-fit: cover;
-        width: 60px;
-        height: 60px;
+        width: 3.75rem;
+      height: 3.75rem;
       }
       & + .cart__dropdown__item__info {
         margin-left: 20px;

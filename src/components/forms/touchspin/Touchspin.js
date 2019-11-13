@@ -16,7 +16,8 @@ export default function Touchspin({ onChange, className, ...props }) {
     if (onChange) {
       onChange(value);
     }
-  }, [value, onChange]);
+    // eslint-disable-next-line
+  }, [value]);
 
   return (
     <div className={classNames("touchspin", className)}>
@@ -45,5 +46,5 @@ export default function Touchspin({ onChange, className, ...props }) {
 
 Touchspin.propTypes = {
   value: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };

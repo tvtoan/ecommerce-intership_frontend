@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // 3rd packages
 import { useParams } from "react-router-dom";
 // components
@@ -12,30 +12,15 @@ import { ReactComponent as RantingIcon } from "assets/images/shop/icons/star.svg
 // styles
 import "./style.scss";
 
-const sizes = [
-  { _id: "dhf54", name: "s" },
-  { _id: "7rhrth", name: "m" },
-  { _id: "285dg3", name: "l" }
-];
-const colors = [
-  { _id: "43543", name: "orange", code: "#ffa500" },
-  { _id: "34hsdf435", name: "blue", code: "#5f6dff" }
-];
-
-function handleAddProductCart(product, color, size, quantity) {
-  return {
-    product: {
-      _id: product._id,
-      coverImage: product.photos[0],
-      slug: product.slug,
-      price: product.price,
-      name: product.name
-    },
-    color,
-    size,
-    quantity
-  };
-}
+// const sizes = [
+//   { _id: "dhf54", name: "s" },
+//   { _id: "7rhrth", name: "m" },
+//   { _id: "285dg3", name: "l" }
+// ];
+// const colors = [
+//   { _id: "43543", name: "orange", code: "#ffa500" },
+//   { _id: "34hsdf435", name: "blue", code: "#5f6dff" }
+// ];
 
 export default function ProductPage({
   product,
@@ -44,10 +29,29 @@ export default function ProductPage({
   ...props
 }) {
   const { slug } = useParams();
+  const [sizeSelected, setSizeSelected] = useState();
+  const [colorSelected, setColorSelected] = useState();
+  const [quantity, setQuantity] = useState();
+
+  const handleAddProductCart = (product, color, size, quantity) => {
+    return {
+      product: {
+        _id: product._id,
+        slug: product.slug,
+        coverImage: product.photos[0],
+        name: product.name,
+        price: product.price,
+      },
+      color,
+      size,
+      quantity
+    };
+  }
 
   useEffect(() => {
     getProductBySlug(slug);
-  }, [slug, getProductBySlug])
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <main className="product-wrapper">
@@ -56,7 +60,8 @@ export default function ProductPage({
         <div className="row">
           <div className="l24-col-sm-2">
             <div className="product__photos">
-              {product && product.photos &&
+              {product &&
+                product.photos &&
                 product.photos.map(photo => (
                   <div className="product__photo" key={photo._id}>
                     <img
@@ -70,15 +75,23 @@ export default function ProductPage({
           <div className="l24-col-sm-8">
             <div className="product__preview">
               <img
-                src={product ? `${process.env.REACT_APP_SERVER_URL}/${product.photos[0].path}` : product1}
+                src={
+                  product
+                    ? `${process.env.REACT_APP_SERVER_URL}/${product.photos[0].path}`
+                    : product1
+                }
                 alt=""
               />
             </div>
           </div>
           <div className="l24-col-sm-9 l24-offset-sm-1">
             <div className="product__info">
-              <h2 className="product__info__heading">{product && product.name}</h2>
-              <h3 className="product__info__price">${product && product.price}</h3>
+              <h2 className="product__info__heading">
+                {product && product.name}
+              </h2>
+              <h3 className="product__info__price">
+                ${product && product.price}
+              </h3>
               <div className="product__info__block">
                 <div className="product__info__ranting">
                   <RantingIcon className="ranting-icon" />
@@ -93,30 +106,39 @@ export default function ProductPage({
               <div className="product__info__field product__info__size">
                 <span className="product__info__name-field">Size</span>
                 <SizeCheckbox
-                  sizes={sizes}
+                  sizes={product && product.variant}
                   className="product__info__content-field"
+                  onChange={(e, value) => setSizeSelected(value)}
+                  pathIdentifier="size._id"
+                  pathName="size.name"
                 />
               </div>
               <div className="product__info__field product__info__color">
                 <span className="product__info__name-field">Color</span>
                 <ColorCheckbox
-                  colors={colors}
+                  colors={product && product.color}
                   className="product__info__content-field"
+                  onChange={(e, value) => setColorSelected(value)}
                 />
               </div>
               <div className="product__info__field product__info__quantity">
                 <span className="product__info__name-field">Quantity</span>
-                <Touchspin className="product__info__quantity__input" />
+                <Touchspin
+                  className="product__info__quantity__input"
+                  value={1}
+                  onChange={value => setQuantity(value)}
+                />
               </div>
               <button
                 className="button button-secondary button-lg product__info__btn-add"
                 onClick={() => {
                   let productCart = handleAddProductCart(
                     product,
-                    product.color[0],
-                    "Dsfhsdf",
-                    1
+                    colorSelected,
+                    sizeSelected.size,
+                    quantity
                   );
+                  console.log("productCart:", productCart);
                   addProductCart(productCart);
                 }}
               >

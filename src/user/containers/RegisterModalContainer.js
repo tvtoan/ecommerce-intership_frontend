@@ -6,7 +6,7 @@ import RegisterModal from "../components/auth/register";
 import {
   acShowAuthModal,
   acCloseAllAuthModal
-} from "redux-modules/shop/ui/actions";
+} from "redux-modules/user/ui/actions";
 import { acRegister } from "redux-modules/auth/actions";
 
 const mapStateToProps = state => {

@@ -6,7 +6,7 @@ import ForgotPassModal from "../components/auth/forgot-pass";
 import {
   acShowAuthModal,
   acCloseAllAuthModal
-} from "redux-modules/shop/ui/actions";
+} from "redux-modules/user/ui/actions";
 
 const mapStateToProps = state => {
   return {};

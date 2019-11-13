@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 // components
 import HeaderPage from "../components/header";
 // redux actions
-import { acShowAuthModal } from "redux-modules/shop/ui/actions";
+import { acShowAuthModal } from "redux-modules/user/ui/actions";
 import { acLogout } from "redux-modules/auth/actions";
 
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.AuthReducer.isAuthenticated,
-    userInfo: state.AuthReducer.user
+    userInfo: state.AuthReducer.user,
+    amountProductCart: state.CartReducer.cartProducts.length,
+    cartProducts: state.CartReducer.cartProducts
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -17,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     setShowRegisterModal: isShow =>
       dispatch(acShowAuthModal("register", isShow)),
     setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
-    handleLogout: () => dispatch(acLogout())
+    handleLogout: () => dispatch(acLogout()),
   };
 };
 

@@ -1,0 +1,31 @@
+/* ===== .breadcrumb ===== */
+.breadcrumb {
+  margin-bottom: 38px;
+}
+.breadcrumb__container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+  list-style: none;
+  line-height: 1.57;
+  margin: 0;
+  justify-content: center;
+}
+.breadcrumb__item {
+  transition: all 0.2s ease;
+  &:hover:not(.active) {
+    color: var(--bright-orange);
+  }
+  + .breadcrumb__item {
+    padding-left: 0.25rem;
+    &::before {
+      content: "/";
+      display: inline-block;
+      padding-right: 0.25rem;
+      color: #6c757d;
+    }
+  }
+  &.active {
+    /* color: var(--bright-orange); */
+  }
+}

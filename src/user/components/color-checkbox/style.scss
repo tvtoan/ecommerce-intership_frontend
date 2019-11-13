@@ -1,0 +1,20 @@
+.color-checkbox {
+  display: flex;
+  flex-flow: row wrap;
+  .color-checkbox__item {
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 100%;
+    margin-right: 1.25rem;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover,
+    &.selected {
+      opacity: 1;
+    }
+  }
+}

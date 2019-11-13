@@ -2,7 +2,7 @@ import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
-  category: null
+  category: null,
 };
 
 // reducer

@@ -11,11 +11,15 @@ import ForgotPassModal from "./containers/ForgotPassModalContainer";
 import SuccessRegisterModal from "./components/auth/success";
 // pages
 import HomePage from "./pages/homepage";
-import ProductListPage from "./pages/product-list";
+import ProductPage from "./containers/ProductPageContainer";
+import CategoryPage from "./containers/CategoryPageContainer";
 import AccountPage from "./pages/account-page";
 import CartPage from "./pages/cart";
 // redux actions
-import { acShowAuthModal, acCloseAllAuthModal } from "redux-modules/shop/ui/actions";
+import {
+  acShowAuthModal,
+  acCloseAllAuthModal
+} from "redux-modules/user/ui/actions";
 // Demo Upload
 // import SingleUpload from './pages/upload-page/SingleUpload';
 // import AddProductPage from './pages/add-product';
@@ -27,8 +31,9 @@ function ShopWeb(props) {
     <div className="user-web">
       <HeaderPage />
       <Switch>
+        <Route path="/product/:slug" component={ProductPage} />
+        <Route path="/category" component={CategoryPage} />
         <Route path="/cart" component={CartPage} />
-        <Route path="/products" component={ProductListPage} />
         <Route path="/account" component={AccountPage} />
         <Route path="/" component={HomePage} />
       </Switch>
@@ -80,7 +85,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopWeb);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopWeb);

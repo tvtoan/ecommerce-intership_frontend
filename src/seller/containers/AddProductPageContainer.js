@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 // components
 import AddProductPage from "../pages/add-product";
 // Redux actions
-import { acGetCategories } from "redux-modules/seller/category/actions";
-import { acGetBrands } from "redux-modules/seller/brand/actions";
-import { acGetColors } from "redux-modules/seller/color/actions";
-import { acGetSizes } from "redux-modules/seller/size/actions";
+import { acGetCategories } from "redux-modules/data/category/actions";
+import { acGetBrands } from "redux-modules/data/brand/actions";
+import { acGetColors } from "redux-modules/data/color/actions";
+import { acGetSizes } from "redux-modules/data/size/actions";
 import { acUploadImage, acRemoveImage } from "redux-modules/image/actions";
-import { acCreateProduct } from "redux-modules/seller/product/actions";
+import { acCreateProduct } from "redux-modules/data/product/actions";
 
 const mapStateToProps = state => {
   return {

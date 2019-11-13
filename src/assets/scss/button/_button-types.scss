@@ -2,17 +2,23 @@
   &.button-primary {
     color: var(--white);
     background-color: var(--pale-orange);
-    // box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    &:hover {
+      box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    }
   }
   &.button-secondary {
     color: var(--white);
     background-color: #5f6dff;
-    // box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    &:hover {
+      box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    }
   }
   &.button-tertiary {
     color: var(--white);
     background-color: #ff5f6d;
-    // box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    &:hover {
+      box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    }
   }
   &.button-outline-primary {
     color: var(--pale-orange);

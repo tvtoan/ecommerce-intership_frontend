@@ -3,7 +3,7 @@ import { getToken } from "helpers/auth/StorageMethods";
 
 export default ({
   endpoint,
-  searchParams = {},
+  queryParams = {},
   method = "GET",
   body = null,
   isRequestToken = true,
@@ -32,8 +32,8 @@ export default ({
   }
   // URL
   let url = new URL(`${process.env.REACT_APP_API_URL}/${endpoint}`);
-  if (!_.isEmpty(searchParams)) {
-    url.search = new URLSearchParams(searchParams).toString();
+  if (!_.isEmpty(queryParams)) {
+    url.search = new URLSearchParams(queryParams).toString();
   }
   return fetch(url, options)
     .then(handleResponse)

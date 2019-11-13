@@ -8,7 +8,7 @@ import {
   removeUser
 } from "helpers/auth/StorageMethods";
 // other action creators
-import { acShowAuthModal } from "../shop/ui/actions";
+import { acShowAuthModal } from "../user/ui/actions";
 
 // action (Actions are payloads of information that send data from your application to your store)
 export const aRegister = () => ({

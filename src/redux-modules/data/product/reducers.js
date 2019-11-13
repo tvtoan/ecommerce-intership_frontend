@@ -2,7 +2,8 @@ import * as types from "./types";
 
 // initial state for reducer
 const initialState = {
-  product: null
+  product: null,
+  products: []
 };
 
 // reducer
@@ -16,7 +17,7 @@ export default (state = initialState, action) => {
     case types.GET_PRODUCTS_REQUEST:
       return {
         ...state,
-        product: action.product
+        products: action.products
       };
     case types.UPDATE_PRODUCT_REQUEST:
       return {

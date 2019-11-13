@@ -22,7 +22,7 @@ export const aGetProduct = product => ({
 
 export const aGetProducts = products => ({
   type: types.GET_PRODUCTS_REQUEST,
-  product: products
+  products
 });
 
 // action creators (functions that create actions)
@@ -80,14 +80,25 @@ export const acGetProduct = id => async dispatch => {
   }
 };
 
-export const acGetProducts = () => async dispatch => {
+export const acGetProductBySlug = slug => async dispatch => {
+  try {
+    const res = await callApi({
+      endpoint: `products/${slug}`
+    });
+    console.log("acGetSLug:", res.product);
+    dispatch(aGetProduct(res.product));
+  } catch (error) {
+    handleError(dispatch, error);
+  }
+};
+
+export const acGetProducts = (query) => async dispatch => {
   try {
     const data = await callApi({
-      endpoint: `products`
+      endpoint: `products`,
+      queryParams: query,
     });
-    const products = data.products;
-    dispatch(aGetProducts(products));
-    return products;
+    dispatch(aGetProducts(data));
   } catch (error) {
     handleError(dispatch, error);
   }

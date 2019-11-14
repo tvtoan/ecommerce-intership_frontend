@@ -47,8 +47,7 @@ function setupDB(namespace = "eco") {
       return;
     }
 
-    let dbName = namespace === "" ? "eco" : "db_" + namespace;
-    let dbReq = indexedDB.open(dbName, 1);
+    let dbReq = indexedDB.open(namespace, 1);
 
     // Fires when the version of the database goes up, or the database is created
     // for the first time
@@ -155,6 +154,78 @@ export const removeUser = (nameKey = KEY_INFO_USER) => {
     request.onsuccess = resolve;
     request.onerror = function(event) {
       reject(`error storing note ${event.target.errorCode}`);
+    };
+  });
+};
+
+// cart
+export const addItemCart = itemCart => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readwrite");
+    let store = tx.objectStore("cart");
+    let data = {
+      ...itemCart
+    };
+    store.add(data);
+    tx.oncomplete = resolve;
+    tx.onerror = function(event) {
+      reject(`error add item cart: ${event.target.errorCode}`);
+    };
+  });
+};
+export const updateItemCart = (itemCart, nameKey) => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readwrite");
+    let store = tx.objectStore("cart");
+    let request = store.get(nameKey);
+    request.onsuccess = function(event) {
+      let data = event.target.result;
+      data.product = itemCart;
+      let requestUpdate = store.put(data);
+      requestUpdate.onerror = function(event) {
+        reject(`error update item cart: ${event.target.errorCode}`);
+      };
+      requestUpdate.onsuccess = resolve;
+    };
+    request.onerror = function(event) {
+      reject(`error update item cart: ${event.target.errorCode}`);
+    };
+  });
+};
+export const removeItemCart = nameKey => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readwrite");
+    let store = tx.objectStore("cart");
+    let request = store.delete(nameKey);
+    request.onsuccess = resolve;
+    request.onerror = function(event) {
+      reject(`error remove item cart: ${event.target.errorCode}`);
+    };
+  });
+};
+export const getItemCart = (db, nameKey) => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readonly");
+    let store = tx.objectStore("cart");
+    let request = store.get(nameKey);
+    request.onsuccess = function(event) {
+      resolve(request.result ? request.result.user : request.result);
+    };
+    request.onerror = function(event) {
+      reject(`error get item cart: ${event.target.errorCode}`);
+    };
+  });
+};
+export const getCart = db => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readonly");
+    let store = tx.objectStore("cart");
+    let request = store.getAll();
+    request.onsuccess = function(event) {
+      resolve(event.target.result ? event.target.result : null);
+    };
+    request.onerror = function(event) {
+      reject(`error get all cart: ${event.target.errorCode}`);
     };
   });
 };

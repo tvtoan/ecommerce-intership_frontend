@@ -14,9 +14,10 @@ import thunk from "redux-thunk";
 // helper methods
 import isLogin from "helpers/auth/AuthChecker";
 // import { getUser } from "helpers/auth/StorageMethods";
-import setupDB, { getUser } from "helpers/auth/StorageIndexedDB";
+import setupDB, { getUser, getCart } from "helpers/auth/StorageIndexedDB";
 // redux actions
 import { aLogin } from "redux-modules/auth/actions";
+import { acGetCart } from "redux-modules/user/cart/actions";
 // stypes
 import "./index.scss";
 import "normalize.css";
@@ -45,9 +46,7 @@ isLogin().then(result => {
     store.dispatch(
       aLogin(
         setupDB()
-          .then(db => {
-            return getUser(db);
-          })
+          .then(db => getUser(db))
           .then(user => {
             return user;
           })
@@ -55,6 +54,12 @@ isLogin().then(result => {
     );
   }
 });
+
+setupDB()
+  .then(db => getCart(db))
+  .then(cart => {
+    store.dispatch(acGetCart(cart));
+  });
 
 ReactDOM.render(
   <Suspense fallback={<Loading />}>

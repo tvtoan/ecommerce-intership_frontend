@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useHistory } from "react-router-dom";
 // components
-import CartItem from "./CartItem";
+import ItemCart from "./ItemCart";
 // static resources
 import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { ReactComponent as SearchIcon } from "assets/images/shop/icons/search.svg";
@@ -103,16 +103,16 @@ export default function HeaderPage(props) {
                 <ul>
                   {props.cart.map((item, index) => (
                     <li className="cart__dropdown__item" key={item.product._id.toString().concat(index)}>
-                      <CartItem cartItem={item} />
+                      <ItemCart itemCart={item} />
                     </li>
                   ))}
                 </ul>
               ) : (
                 <p className="cart__dropdown__message-none">Cart empty</p>
               )}
-              <a href="#/" className="cart__dropdown__view-cart">
+              <Link to="/cart" className="cart__dropdown__view-cart">
                 View cart
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -25,9 +25,9 @@ export const acAddProduct = product => dispatch => {
   dispatch(aAddProduct(product));
 };
 
-export const acRemove = itemCart => dispatch => {
+export const acRemoveProduct = itemCart => dispatch => {
   setupDB().then(removeItemCart(itemCart.id));
-  dispatch(aRemoveProduct(itemCart.product));
+  dispatch(aRemoveProduct(itemCart));
 };
 
 export const acGetCart = cart => dispatch => {

@@ -14,7 +14,7 @@ import HomePage from "./pages/homepage";
 import ProductPage from "./containers/ProductPageContainer";
 import CategoryPage from "./containers/CategoryPageContainer";
 import AccountPage from "./pages/account-page";
-import CartPage from "./pages/cart";
+import CartPage from "./containers/CartPageContainer";
 // redux actions
 import {
   acShowAuthModal,

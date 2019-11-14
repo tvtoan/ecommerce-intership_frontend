@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case types.REMOVE_PRODUCT_CART:
       return {
         ...state,
-        cart: state.cart.filter(product => product._id !== action.product._id)
+        cart: state.cart.filter(item => item.id !== action.product.id)
       };
     case types.GET_CART:
       return {

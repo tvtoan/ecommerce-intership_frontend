@@ -8,7 +8,14 @@ import { ReactComponent as MinusIcon } from "./minus.svg";
 // styles
 import "./style.scss";
 
-export default function Touchspin({ onChange, className, ...props }) {
+const handleMinValue = (value, minValue, ...[setValue, changeValue]) => {
+  if (value > minValue) {
+    setValue(value);
+    changeValue(value);
+  }
+};
+
+export default function Touchspin({ minValue, onChange, className, ...props }) {
   const [value, setValue] = useState(props.value || 0);
   const refInput = useRef();
 
@@ -26,26 +33,28 @@ export default function Touchspin({ onChange, className, ...props }) {
     <div className={classNames("touchspin", className)}>
       <button
         className="flat-button touchspin__button"
-        onClick={() => {
-          setValue(value - 1);
-          changeValue(value - 1);
-        }}
+        onClick={() =>
+          handleMinValue(value - 1, minValue, setValue, changeValue)
+        }
       >
         <MinusIcon className="touchspin__button-icon" />
       </button>
       <input
         ref={refInput}
         className="touchspin__input"
-        onChange={() => console.log("input onchange")}
+        onChange={e => {
+          console.log("input onchange");
+          handleMinValue(parseInt(e.target.value), minValue, setValue, changeValue);
+        }}
+        disabled={!props.isEnter}
         type="text"
         value={value.toString()}
       />
       <button
         className="flat-button touchspin__button"
-        onClick={() => {
-          setValue(value + 1);
-          changeValue(value + 1);
-        }}
+        onClick={() =>
+          handleMinValue(value + 1, minValue, setValue, changeValue)
+        }
       >
         <PlusIcon className="touchspin__button-icon" />
       </button>
@@ -55,5 +64,12 @@ export default function Touchspin({ onChange, className, ...props }) {
 
 Touchspin.propTypes = {
   value: PropTypes.number,
+  minValue: PropTypes.number,
+  isEnter: PropTypes.bool,
   onChange: PropTypes.func
+};
+
+Touchspin.defaultProps = {
+  minValue: 0,
+  isEnter: false,
 };

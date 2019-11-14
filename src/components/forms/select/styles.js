@@ -12,7 +12,7 @@ export const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     padding: "12px",
-    color: "#9B9B9B",
+    color: "#9B9B9B"
   }),
   input: (provided, state) => ({
     ...provided,
@@ -50,7 +50,7 @@ export const customStyles = {
       width: "1rem",
       height: "1rem",
       objectFit: "contain",
-      color: "#9B9B9B",
+      color: "#9B9B9B"
     },
     ":hover": {
       backgroundColor: "transparent",
@@ -78,16 +78,16 @@ export const customStyles = {
     fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: 1.43,
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
+    cursor: "pointer",
+    backgroundColor: "transparent",
     color: "var(--charcoal-grey)",
-    transition: 'all 0.1s ease',
-    ':hover, &:active': {
-      backgroundColor: 'unset',
-      color: 'var(--pale-orange)',
+    transition: "all 0.1s ease",
+    ":hover, &:active": {
+      backgroundColor: "unset",
+      color: "var(--pale-orange)"
     },
-    ':focus': {
-      borderColor: 'var(--pale-orange)',
+    ":focus": {
+      borderColor: "var(--pale-orange)"
     }
   }),
   placeholder: (provided, state) => ({
@@ -95,7 +95,8 @@ export const customStyles = {
     fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: 1.43,
-    color: "var(--greyish)"
+    color: "var(--greyish)",
+    marginLeft: "0.5rem",
   }),
   singleValue: (provided, state) => ({
     ...provided,
@@ -104,7 +105,7 @@ export const customStyles = {
     fontSize: "0.875rem",
     fontWeight: 500,
     lineHeight: 1.43,
-    color: "var(--charcoal-grey)",
+    color: "var(--charcoal-grey)"
   }),
   valueContainer: (provided, state) => ({
     ...provided,

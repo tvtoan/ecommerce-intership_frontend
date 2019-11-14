@@ -45,24 +45,25 @@ isLogin().then(result => {
     setupDB()
       .then(db => getUser(db))
       .then(user => {
+        console.log("set dispatch");
         store.dispatch(aLogin(user));
+        // ??? because run render before dispatch (async indexeddb)
+        ReactDOM.render(
+          <Suspense fallback={<Loading />}>
+            <Provider store={store}>
+              <Router>
+                <Switch>
+                  <Route path="/seller" component={SellerWeb} />
+                  <Route path="/" component={ShopWeb} />
+                </Switch>
+              </Router>
+            </Provider>
+          </Suspense>,
+          document.getElementById("root")
+        );
       });
   }
 });
-
-ReactDOM.render(
-  <Suspense fallback={<Loading />}>
-    <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route path="/seller" component={SellerWeb} />
-          <Route path="/" component={ShopWeb} />
-        </Switch>
-      </Router>
-    </Provider>
-  </Suspense>,
-  document.getElementById("root")
-);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

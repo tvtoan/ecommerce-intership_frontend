@@ -41,7 +41,6 @@ const handleSubmit = async (
   ...[handleAdd, files, refFileUpload, setUploadedFiles]
 ) => {
   setSubmitting(true);
-  console.log("values:", values);
   const newClone = _.omit(values, [
     "quantity",
     "sizes",
@@ -57,7 +56,6 @@ const handleSubmit = async (
   newClone.variant = variant;
   newClone.user = "5dc7e2045cb91f09c93a6b4a";
 
-  console.log("newClone:", newClone);
   try {
     await handleAdd(newClone, setFieldError);
   } catch (error) {
@@ -192,7 +190,7 @@ export default function AddProductPage(props) {
                       component={InputField}
                       id="input-name_product"
                       type="text"
-                      placeholder="Enter name product ..."
+                      placeholder="Enter name product"
                     />
                   </div>
                 </div>
@@ -215,6 +213,7 @@ export default function AddProductPage(props) {
                       getOptionLabel={option => option.name}
                       getOptionValue={option => option._id}
                       loadOptions={() => props.getCategories()}
+                      placeholder="Select categories"
                     />
                   </div>
                 </div>
@@ -237,6 +236,7 @@ export default function AddProductPage(props) {
                       getOptionLabel={option => option.name}
                       getOptionValue={option => option._id}
                       loadOptions={() => props.getBrands()}
+                      placeholder="Select brand"
                     />
                   </div>
                 </div>
@@ -253,7 +253,7 @@ export default function AddProductPage(props) {
                       component={InputField}
                       id="input-price"
                       type="text"
-                      placeholder="Enter price ..."
+                      placeholder="Enter price"
                     />
                   </div>
                 </div>
@@ -276,6 +276,7 @@ export default function AddProductPage(props) {
                       getOptionLabel={option => option.name}
                       getOptionValue={option => option._id}
                       loadOptions={() => props.getSizes()}
+                      placeholder="Select sizes"
                     />
                   </div>
                 </div>
@@ -298,6 +299,7 @@ export default function AddProductPage(props) {
                       getOptionLabel={option => option.name}
                       getOptionValue={option => option._id}
                       loadOptions={() => props.getColors()}
+                      placeholder="Select colors"
                     />
                   </div>
                 </div>
@@ -314,7 +316,7 @@ export default function AddProductPage(props) {
                       component={InputField}
                       id="input-quantity"
                       type="text"
-                      placeholder="Enter quantity ..."
+                      placeholder="Enter quantity"
                     />
                   </div>
                 </div>

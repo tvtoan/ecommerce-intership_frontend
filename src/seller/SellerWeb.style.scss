@@ -24,6 +24,9 @@
   line-height: 1.43;
   color: var(--charcoal-grey);
   padding: 13px 16px;
+  &::placeholder {
+    color: var(--greyish);
+  }
 }
 .form-group {
   label {

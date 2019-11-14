@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+// 3rd packages
+import {useHistory} from "react-router-dom";
 // components
 import RowItemCart from "./RowItemCart";
+// helper methods
+import isLogin from "helpers/auth/AuthChecker";
 // styles
 import "./style.scss";
 
@@ -12,14 +16,32 @@ export default function CartPage({
 }) {
   const [orderValue, setOrderValue] = useState(0);
   const [transportFee] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
     setOrderValue(
-      cart.reduce((acc, cur) => {
+      cart && cart.reduce((acc, cur) => {
         return acc + cur.product.price * cur.quantity;
       }, 0)
     );
   }, [cart]);
+
+  const handleCheckout = () => {
+    isLogin().then(logined => {
+      if (!logined) {
+        props.setShowLoginModal(true);
+      } else {
+        let order = { products: cart, user: props.user };
+        props
+          .addOrder(order)
+          .then(() => {
+            console.log("order success");
+            history.push("/");
+          })
+          .catch(error => console.error("[CART PAGE - ADDORDER:", error));
+      }
+    });
+  };
 
   return (
     <main className="container">
@@ -84,7 +106,10 @@ export default function CartPage({
                 </tfoot>
               </table>
             </div>
-            <button className="button button-lg button-tertiary cart-page__order-total__checkout">
+            <button
+              className="button button-lg button-tertiary cart-page__order-total__checkout"
+              onClick={handleCheckout}
+            >
               Check out
             </button>
           </div>

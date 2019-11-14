@@ -58,13 +58,10 @@ export default function ProductPage({
       );
     });
     // true => call action updateQuantityItemCart(quantity item check id + 1)
-    console.log("productAdd:", productAdd);
     if (productAdd) {
-      console.log("equal");
       props.updateQuantityProduct(productAdd.id, productAdd.quantity + 1);
       // false => add normal
     } else {
-      console.log("no equal");
       let productCart = handleAddProductCart(
         product,
         colorSelected,

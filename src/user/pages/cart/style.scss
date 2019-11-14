@@ -38,6 +38,9 @@
   line-height: 1.57;
   color: var(--dark-grey);
 }
+.cart-page__order-total__checkout {
+  cursor: pointer;
+}
 .cart-page__checkout-summary__rows {
   padding-bottom: 15px;
   vertical-align: middle;

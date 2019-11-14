@@ -231,5 +231,18 @@ export const getCart = db => {
     };
   });
 };
+export const removeCart = db => {
+  return new Promise((resolve, reject) => {
+    let tx = db.transaction("cart", "readwrite");
+    let store = tx.objectStore("cart");
+    let request = store.clear();
+    request.onsuccess = function(event) {
+      resolve(true);
+    };
+    request.onerror = function(event) {
+      reject(`error get all cart: ${event.target.errorCode}`);
+    };
+  });
+};
 
 export default setupDB;

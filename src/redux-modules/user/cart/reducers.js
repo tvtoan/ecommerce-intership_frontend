@@ -25,13 +25,22 @@ export default (state = initialState, action) => {
         ...state,
         cart: action.cart
       };
-      case types.UPDATE_QUANTITY_ITEM_CART:
-        const indexItem = state.cart.findIndex((item => item.id === action.id));
-        const cartNew = _.assoc(`[${indexItem}].quantity`, action.quantity, state.cart);
-        return {
-          ...state,
-          cart: cartNew
-        }
+    case types.UPDATE_QUANTITY_ITEM_CART:
+      const indexItem = state.cart.findIndex(item => item.id === action.id);
+      const cartNew = _.assoc(
+        `[${indexItem}].quantity`,
+        action.quantity,
+        state.cart
+      );
+      return {
+        ...state,
+        cart: cartNew
+      };
+    case types.RESET_CART:
+      return {
+        ...state,
+        cart: []
+      };
     default:
       return state;
   }

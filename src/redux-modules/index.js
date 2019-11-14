@@ -7,13 +7,15 @@ import CartReducer from "./user/cart/reducers";
 // data reducers
 import CategoryReducer from "./data/category/reducers";
 import ProductReducer from "./data/product/reducers";
+import OrderReducer from "./data/order/reducers";
 
 const reducerApp = combineReducers({
   UIReducer,
   AuthReducer,
   CategoryReducer,
   ProductReducer,
-  CartReducer
+  CartReducer,
+  OrderReducer,
   // FarmReducer,
   // TreeReducer,
   // DeviceReducer,

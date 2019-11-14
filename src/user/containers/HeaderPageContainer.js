@@ -10,7 +10,7 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.AuthReducer.isAuthenticated,
     userInfo: state.AuthReducer.user,
-    amountProductCart: state.CartReducer.cart.length,
+    amountProductCart: state.CartReducer.cart ? state.CartReducer.cart.length : 0,
     cart: state.CartReducer.cart
   };
 };

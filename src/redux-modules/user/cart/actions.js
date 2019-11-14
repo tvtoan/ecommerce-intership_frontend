@@ -1,5 +1,5 @@
 import * as types from "./types";
-//
+// storage methods
 import setupDB, {
   addItemCart,
   removeItemCart,
@@ -24,13 +24,18 @@ export const aUpdateQuantityItemCart = (id, quantity) => ({
   id,
   quantity
 });
+export const aResetCart = () => ({
+  type: types.RESET_CART
+});
 
 // action creators (functions that create actions)
 export const acAddProduct = product => dispatch => {
-  setupDB().then(addItemCart(product).then(idNew => {
-    product.id = idNew;
-    dispatch(aAddProduct(product));
-  }));
+  setupDB().then(
+    addItemCart(product).then(idNew => {
+      product.id = idNew;
+      dispatch(aAddProduct(product));
+    })
+  );
 };
 
 export const acRemoveProduct = itemCart => dispatch => {
@@ -43,6 +48,10 @@ export const acGetCart = cart => dispatch => {
 };
 
 export const acChangeQuantityItemCart = (id, quantityValue) => dispatch => {
-  setupDB().then(updateItemCart('quantity', quantityValue, id));
+  setupDB().then(updateItemCart("quantity", quantityValue, id));
   dispatch(aUpdateQuantityItemCart(id, quantityValue));
+};
+
+export const acResetCart = () => dispatch => {
+  dispatch(aGetCart());
 };

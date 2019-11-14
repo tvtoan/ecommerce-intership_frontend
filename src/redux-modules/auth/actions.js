@@ -53,6 +53,7 @@ export const acLogin = (user, setFieldError) => async dispatch => {
     });
     setupDB().then(addToken(res.accessToken));
     setupDB().then(addUser(res.user));
+    console.log("res.user:", res.user);
     dispatch(aLogin(res.user));
   } catch (error) {
     handleError(dispatch, error, setFieldError);

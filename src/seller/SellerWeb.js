@@ -3,7 +3,7 @@ import React from "react";
 import { Switch, useRouteMatch } from "react-router-dom";
 // routes
 import PrivateRoute from "./containers/PrivateRouteContainer";
-import AuthRoute from "./routes/AuthRoute";
+import AuthRoute from "./containers/AuthRouteContainer";
 // pages
 import LoginPage from "./containers/LoginPageContainer";
 import ForgotPassPage from "./pages/auth/ForgotPassPage";
@@ -17,16 +17,15 @@ export default function SellerWeb() {
 
   return (
     <Switch>
+      <PrivateRoute
+        path={`${match.path}/products/add-product`}
+        component={AddProductPage}
+      />
       <AuthRoute
         path={`${match.path}/forgot-password`}
         component={ForgotPassPage}
       />
       <AuthRoute path={`${match.path}/login`} component={LoginPage} />
-
-      <PrivateRoute
-        path={`${match.path}/products/add-product`}
-        component={AddProductPage}
-      />
       <PrivateRoute path={`${match.path}/`} component={DashboardPage} />
     </Switch>
   );

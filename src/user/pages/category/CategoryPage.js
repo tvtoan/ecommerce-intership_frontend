@@ -21,8 +21,9 @@ export default function CategoryPage({
   return (
     <main className="container">
       <Breadcrumb />
-      <div className="product-list__main">
-        <div className="product-list__side--left">
+      <div className="container product-list__main">
+        <div className="row">
+        <div className="l24-col-sm-4 product-list__side--left">
           <div className="product-list__side-item">
             <h5 className="product-list__side-item__title">Category</h5>
             <ul className="product-list__side-item__list">
@@ -56,12 +57,13 @@ export default function CategoryPage({
             <h5 className="product-list__side-item__title">Filter</h5>
           </div>
         </div>
-        <section className="product-list__content">
+        <section className="l24-col-sm-20 product-list__content">
           {products &&
             products.map(product => (
               <ProductItem key={product._id} dataProduct={product} />
             ))}
         </section>
+        </div>
       </div>
     </main>
   );

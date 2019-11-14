@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 // 3rd packages
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,11 +15,14 @@ import ProductPage from "./containers/ProductPageContainer";
 import CategoryPage from "./containers/CategoryPageContainer";
 import AccountPage from "./pages/account-page";
 import CartPage from "./containers/CartPageContainer";
+// helper methos
+import setupDB, { getCart } from "helpers/auth/StorageIndexedDB";
 // redux actions
 import {
   acShowAuthModal,
   acCloseAllAuthModal
 } from "redux-modules/user/ui/actions";
+import { acGetCart } from "redux-modules/user/cart/actions";
 // Demo Upload
 // import SingleUpload from './pages/upload-page/SingleUpload';
 // import AddProductPage from './pages/add-product';
@@ -27,6 +30,14 @@ import {
 import "./UserWeb.style.scss";
 
 function ShopWeb(props) {
+  useEffect(() => {
+    setupDB()
+      .then(db => getCart(db))
+      .then(cart => {
+        props.getCartFromStorage(cart);
+      });
+  });
+
   return (
     <div className="user-web">
       <HeaderPage />
@@ -81,7 +92,8 @@ const mapDispatchToProps = dispatch => {
     setShowLoginModal: isShow => dispatch(acShowAuthModal("login", isShow)),
     setShowForgotModal: isShow =>
       dispatch(acShowAuthModal("forgot_pass", isShow)),
-    closeAllAuthModal: () => dispatch(acCloseAllAuthModal())
+    closeAllAuthModal: () => dispatch(acCloseAllAuthModal()),
+    getCartFromStorage: cart => dispatch(acGetCart(cart))
   };
 };
 

@@ -27,8 +27,10 @@ export const aUpdateQuantityItemCart = (id, quantity) => ({
 
 // action creators (functions that create actions)
 export const acAddProduct = product => dispatch => {
-  setupDB().then(addItemCart(product));
-  dispatch(aAddProduct(product));
+  setupDB().then(addItemCart(product).then(idNew => {
+    product.id = idNew;
+    dispatch(aAddProduct(product));
+  }));
 };
 
 export const acRemoveProduct = itemCart => dispatch => {

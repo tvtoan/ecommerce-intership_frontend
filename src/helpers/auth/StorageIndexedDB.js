@@ -166,8 +166,10 @@ export const addItemCart = itemCart => {
     let data = {
       ...itemCart
     };
-    store.add(data);
-    tx.oncomplete = resolve;
+    let request = store.add(data);
+    tx.oncomplete = function(event) {
+      resolve(request.result);
+    };
     tx.onerror = function(event) {
       reject(`error add item cart: ${event.target.errorCode}`);
     };

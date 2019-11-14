@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // 3rd packages
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import _ from "lodash/object";
+import _ from "lodash";
 // styles
 import "./style.scss";
 
@@ -25,7 +25,7 @@ export default function SizeCheckbox({ className, onChange, ...props }) {
     }
     // eslint-disable-next-line
   }, [props.sizes]);
-
+  
   return (
     <>
       <div className={classNames("size-checkbox", className)}>
@@ -34,10 +34,9 @@ export default function SizeCheckbox({ className, onChange, ...props }) {
             <div
               key={size._id}
               className={classNames("size-checkbox__item", {
-                selected:
-                  selected &&
-                  _.get(size, props.pathIdentifier) ===
-                    _.get(selected, props.pathIdentifier)
+                selected: selected &&
+                _.get(size, props.pathIdentifier) ===
+                  _.get(selected, props.pathIdentifier)
               })}
               onClick={e => handleSelect(e, size)}
             >

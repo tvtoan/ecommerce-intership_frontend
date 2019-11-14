@@ -1,7 +1,8 @@
 import _ from "lodash/lang";
-import { getToken } from "helpers/auth/StorageMethods";
+// import { getToken } from "helpers/auth/StorageMethods";
+import setupDB, { getToken } from "helpers/auth/StorageIndexedDB";
 
-export default ({
+export default async ({
   endpoint,
   queryParams = {},
   method = "GET",
@@ -18,7 +19,7 @@ export default ({
     headers["Content-Type"] = "application/json";
   }
   if (isRequestToken) {
-    const accessToken = getToken() || null;
+    const accessToken = await setupDB().then(db => getToken(db)) || null;
     if (accessToken !== null) {
       headers["Authorization"] = `Bearer ${accessToken}`;
     }

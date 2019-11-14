@@ -13,7 +13,8 @@ import reducerApp from "./redux-modules";
 import thunk from "redux-thunk";
 // helper methods
 import isLogin from "helpers/auth/AuthChecker";
-import { getUser } from "helpers/auth/StorageMethods";
+// import { getUser } from "helpers/auth/StorageMethods";
+import setupDB, { getUser } from "helpers/auth/StorageIndexedDB";
 // redux actions
 import { aLogin } from "redux-modules/auth/actions";
 // stypes
@@ -39,9 +40,21 @@ const store = createStore(
 );
 
 // check auth / get auth from localstorage
-if (isLogin()) {
-  store.dispatch(aLogin(getUser()));
-}
+isLogin().then(result => {
+  if (result) {
+    store.dispatch(
+      aLogin(
+        setupDB()
+          .then(db => {
+            return getUser(db);
+          })
+          .then(user => {
+            return user;
+          })
+      )
+    );
+  }
+});
 
 ReactDOM.render(
   <Suspense fallback={<Loading />}>

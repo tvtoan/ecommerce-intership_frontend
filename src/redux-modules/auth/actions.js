@@ -1,12 +1,13 @@
 import * as types from "./types";
 import callApi from "helpers/api/CallApi";
 import handleError from "helpers/handlers";
-import {
-  setToken,
-  removeToken,
-  setUser,
-  removeUser
-} from "helpers/auth/StorageMethods";
+// import {
+//   setToken,
+//   removeToken,
+//   setUser,
+//   removeUser
+// } from "helpers/auth/StorageMethods";
+import setupDB, {addToken, removeToken, addUser, removeUser} from "helpers/auth/StorageIndexedDB";
 // other action creators
 import { acShowAuthModal } from "../user/ui/actions";
 
@@ -50,8 +51,8 @@ export const acLogin = (user, setFieldError) => async dispatch => {
       body: user,
       isRequestToken: false
     });
-    setToken(res.accessToken);
-    setUser(res.user);
+    setupDB().then(addToken(res.accessToken));
+    setupDB().then(addUser(res.user));
     dispatch(aLogin(res.user));
   } catch (error) {
     handleError(dispatch, error, setFieldError);
@@ -64,8 +65,10 @@ export const acLogout = () => async dispatch => {
       endpoint: `auth/logout`,
       method: "POST"
     });
-    removeToken();
-    removeUser();
+    // removeToken();
+    // removeUser();
+    setupDB().then(removeToken());
+    setupDB().then(removeUser());
     dispatch(aLogout());
   } catch (error) {
     handleError(dispatch, error);

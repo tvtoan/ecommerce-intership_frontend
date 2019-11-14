@@ -12,8 +12,6 @@ export default function CartPage({
 }) {
   const [orderValue, setOrderValue] = useState(0);
   const [transportFee] = useState(0);
-  // hack update when change quantity
-  const [isChangeTouchspin, setIsChangeTouchspin] = useState();
 
   useEffect(() => {
     setOrderValue(
@@ -21,7 +19,7 @@ export default function CartPage({
         return acc + cur.product.price * cur.quantity;
       }, 0)
     );
-  }, [cart, isChangeTouchspin]);
+  }, [cart]);
 
   return (
     <main className="container">
@@ -47,7 +45,6 @@ export default function CartPage({
                       itemCart={item}
                       onRemove={removeProduct}
                       updateQuantity={updateQuantityProduct}
-                      onChangeQuantity={setIsChangeTouchspin}
                     />
                   ))}
               </tbody>

@@ -1,6 +1,6 @@
 import * as types from "./types";
 // 3rd packages
-import _ from "lodash/object";
+import _ from "lodash/fp/object";
 
 // initial state for reducer
 const initialState = {
@@ -27,10 +27,10 @@ export default (state = initialState, action) => {
       };
       case types.UPDATE_QUANTITY_ITEM_CART:
         const indexItem = state.cart.findIndex((item => item.id === action.id));
-        state.cart[indexItem].quantity = action.quantity;
+        const cartNew = _.assoc(`[${indexItem}].quantity`, action.quantity, state.cart);
         return {
           ...state,
-          cart: state.cart
+          cart: cartNew
         }
     default:
       return state;

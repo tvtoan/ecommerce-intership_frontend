@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 // 3rd packages
 import PropTypes from "prop-types";
 import classNames from "classnames";

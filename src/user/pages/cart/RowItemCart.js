@@ -46,7 +46,6 @@ export default function RowItemCart({
         <Touchspin
           value={itemCart.quantity}
           onChange={value => {
-            props.onChangeQuantity(Math.random());
             updateQuantity(itemCart.id, value);
           }}
         />

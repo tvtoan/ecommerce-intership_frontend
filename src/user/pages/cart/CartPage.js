@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // components
 import RowItemCart from "./RowItemCart";
 // styles
 import "./style.scss";
 
-export default function CartPage({cart, removeProduct, ...props}) {
+export default function CartPage({
+  cart,
+  removeProduct,
+  updateQuantityProduct,
+  ...props
+}) {
+  const [orderValue, setOrderValue] = useState(0);
+  const [transportFee] = useState(0);
+  // hack update when change quantity
+  const [isChangeTouchspin, setIsChangeTouchspin] = useState();
+
+  useEffect(() => {
+    setOrderValue(
+      cart.reduce((acc, cur) => {
+        return acc + cur.product.price * cur.quantity;
+      }, 0)
+    );
+  }, [cart, isChangeTouchspin]);
+
   return (
     <main className="container">
       <div className="cart-page">
@@ -22,7 +40,16 @@ export default function CartPage({cart, removeProduct, ...props}) {
                 </tr>
               </thead>
               <tbody>
-                {cart && cart.map(item => <RowItemCart key={item.id} itemCart={item} onRemove={removeProduct} />)}
+                {cart &&
+                  cart.map(item => (
+                    <RowItemCart
+                      key={item.id}
+                      itemCart={item}
+                      onRemove={removeProduct}
+                      updateQuantity={updateQuantityProduct}
+                      onChangeQuantity={setIsChangeTouchspin}
+                    />
+                  ))}
               </tbody>
             </table>
           </div>
@@ -44,7 +71,7 @@ export default function CartPage({cart, removeProduct, ...props}) {
                       Total product
                     </td>
                     <td className="cart-page__checkout-summary__value">
-                      $6.900
+                      ${orderValue}
                     </td>
                   </tr>
                 </tbody>
@@ -53,7 +80,9 @@ export default function CartPage({cart, removeProduct, ...props}) {
                     <th className="cart-page__checkout-total__label">
                       Subtotal
                     </th>
-                    <th className="cart-page__checkout-total__value">$6.900</th>
+                    <th className="cart-page__checkout-total__value">
+                      ${orderValue + transportFee}
+                    </th>
                   </tr>
                 </tfoot>
               </table>

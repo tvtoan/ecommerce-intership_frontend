@@ -173,14 +173,14 @@ export const addItemCart = itemCart => {
     };
   });
 };
-export const updateItemCart = (itemCart, nameKey) => {
+export const updateItemCart = (field, value, nameKey) => {
   return new Promise((resolve, reject) => {
     let tx = db.transaction("cart", "readwrite");
     let store = tx.objectStore("cart");
     let request = store.get(nameKey);
     request.onsuccess = function(event) {
       let data = event.target.result;
-      data.product = itemCart;
+      data[field] = value;
       let requestUpdate = store.put(data);
       requestUpdate.onerror = function(event) {
         reject(`error update item cart: ${event.target.errorCode}`);

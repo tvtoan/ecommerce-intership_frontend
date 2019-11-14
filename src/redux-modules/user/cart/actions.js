@@ -2,7 +2,8 @@ import * as types from "./types";
 //
 import setupDB, {
   addItemCart,
-  removeItemCart
+  removeItemCart,
+  updateItemCart
 } from "helpers/auth/StorageIndexedDB";
 
 // action (Actions are payloads of information that send data from your application to your store)
@@ -18,6 +19,11 @@ export const aGetCart = cart => ({
   type: types.GET_CART,
   cart
 });
+export const aUpdateQuantityItemCart = (id, quantity) => ({
+  type: types.UPDATE_QUANTITY_ITEM_CART,
+  id,
+  quantity
+});
 
 // action creators (functions that create actions)
 export const acAddProduct = product => dispatch => {
@@ -32,4 +38,9 @@ export const acRemoveProduct = itemCart => dispatch => {
 
 export const acGetCart = cart => dispatch => {
   dispatch(aGetCart(cart));
+};
+
+export const acChangeQuantityItemCart = (id, quantityValue) => dispatch => {
+  setupDB().then(updateItemCart('quantity', quantityValue, id));
+  dispatch(aUpdateQuantityItemCart(id, quantityValue));
 };

@@ -31,7 +31,7 @@ export default function ProductPage({
   const { slug } = useParams();
   const [sizeSelected, setSizeSelected] = useState();
   const [colorSelected, setColorSelected] = useState();
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddProductCart = (product, color, size, quantity) => {
     return {
@@ -40,13 +40,37 @@ export default function ProductPage({
         slug: product.slug,
         coverImage: product.photos[0],
         name: product.name,
-        price: product.price,
+        price: product.price
       },
       color,
       size,
       quantity
     };
-  }
+  };
+
+  const handleAdd = () => {
+    // check id product equal
+    let productAdd = props.cart.find(item => {
+      return (
+        item.product._id === product._id &&
+        JSON.stringify(item.color) === JSON.stringify(colorSelected) &&
+        JSON.stringify(item.size) === JSON.stringify(sizeSelected.size)
+      );
+    });
+    // true => call action updateQuantityItemCart(quantity item check id + 1)
+    if (productAdd) {
+      props.updateQuantityProduct(productAdd.id, productAdd.quantity + 1);
+      // false => add normal
+    } else {
+      let productCart = handleAddProductCart(
+        product,
+        colorSelected,
+        sizeSelected.size,
+        quantity
+      );
+      addProductCart(productCart);
+    }
+  };
 
   useEffect(() => {
     getProductBySlug(slug);
@@ -131,16 +155,7 @@ export default function ProductPage({
               </div>
               <button
                 className="button button-secondary button-lg product__info__btn-add"
-                onClick={() => {
-                  let productCart = handleAddProductCart(
-                    product,
-                    colorSelected,
-                    sizeSelected.size,
-                    quantity
-                  );
-                  console.log("productCart:", productCart);
-                  addProductCart(productCart);
-                }}
+                onClick={handleAdd}
               >
                 Add to cart
               </button>

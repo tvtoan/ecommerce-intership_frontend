@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // component
 import CartPage from "../pages/cart";
 // Redux actions
-import { acRemoveProduct } from "redux-modules/user/cart/actions";
+import { acRemoveProduct, acChangeQuantityItemCart } from "redux-modules/user/cart/actions";
 
 const mapStateToProps = state => {
   return {
@@ -12,7 +12,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    removeProduct: product => dispatch(acRemoveProduct(product))
+    removeProduct: product => dispatch(acRemoveProduct(product)),
+    updateQuantityProduct: (id, quantityValue) => dispatch(acChangeQuantityItemCart(id, quantityValue))
   };
 };
 
